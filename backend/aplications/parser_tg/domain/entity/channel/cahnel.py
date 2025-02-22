@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from backend.aplications.parser_tg.domain.entity.base import BaseEntity
 
 
@@ -6,6 +6,6 @@ from backend.aplications.parser_tg.domain.entity.base import BaseEntity
 @dataclass
 class Channel(BaseEntity):
     name: str
-    description: str
+    # description: str
     url: str
-
+    news: set = field(default_factory=lambda: set())
