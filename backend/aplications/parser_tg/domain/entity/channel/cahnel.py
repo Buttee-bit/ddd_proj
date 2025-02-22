@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from backend.domain.entity.base import BaseEntity
+from backend.aplications.parser_tg.domain.entity.base import BaseEntity
 
 
 

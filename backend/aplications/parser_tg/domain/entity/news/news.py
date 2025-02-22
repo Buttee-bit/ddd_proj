@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from backend.domain.entity.base import BaseEntity
-from backend.domain.values.title import Title
+from backend.aplications.parser_tg.domain.entity.base import BaseEntity
+from backend.aplications.parser_tg.domain.values.title import Title
 
 
 

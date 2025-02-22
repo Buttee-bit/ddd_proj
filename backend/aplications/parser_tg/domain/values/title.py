@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from backend.domain.values.base import BaseValueObject
-from backend.domain.errors.title import TitleError
+from backend.aplications.parser_tg.domain.values.base import BaseValueObject
+from backend.aplications.parser_tg.domain.errors.title import TitleError
 
 
 @dataclass(frozen=True)

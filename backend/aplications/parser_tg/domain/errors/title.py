@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from backend.domain.errors.base import ApplicationError
+from backend.aplications.parser_tg.domain.errors.base import ApplicationError
 
 
 

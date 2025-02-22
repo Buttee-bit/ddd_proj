@@ -3,10 +3,7 @@ from typing import Protocol
 from abc import abstractmethod
 from dataclasses import dataclass
 
-from dishka import Provider, provide, Scope, make_async_container
-from dishka.integrations.fastapi import inject, FromDishka, setup_dishka
-from fastapi import APIRouter
-
+from dishka import Provider, provide, Scope, make_async_container, make_container
 
 @dataclass
 class Connection:
@@ -49,12 +46,8 @@ class ServiceProvider(Provider):
     service = provide(Service)
 
 
-container = make_async_container(DataGatewayProvider(), ServiceProvider())
+container = make_container(DataGatewayProvider(), ServiceProvider())
 
-
-router = APIRouter()
-
-@router.get('/')
-async def index():
-    service = await container.get(Service)
-    return await service.say()
+with container() as request_container:
+    service = request_container.get(Service)
+    print(service.say())
