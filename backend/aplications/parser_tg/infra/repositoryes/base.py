@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
 from backend.aplications.parser_tg.domain.entity.news.news import News
-from backend.aplications.parser_tg.domain.entity.channel.cahnel import Channel
+from backend.aplications.parser_tg.domain.entity.channel.entity import ChannelEntity
 
 
 class BaseChannelRepository(ABC):
@@ -10,7 +10,7 @@ class BaseChannelRepository(ABC):
         ...
 
     @abstractmethod
-    def get_channel(self) -> Channel:
+    def get_channel(self) -> ChannelEntity:
         ...
 
 class BaseNewsRepository(ABC):

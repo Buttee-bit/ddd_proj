@@ -1,6 +1,6 @@
 venv/
 __pycache__/
 .pytest-cache/
-TelagramNews.session
+TelagramNews*
 .env
 *.session

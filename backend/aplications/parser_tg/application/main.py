@@ -1,26 +1,32 @@
 import logging
 from faststream import FastStream, Logger, Depends
 from faststream.kafka import KafkaBroker
-from dishka.integrations.faststream import FastStreamProvider, FromDishka, setup_dishka, inject
-from backend.aplications.parser_tg.application.handlers.news import router as news_router
+from backend.aplications.parser_tg.application.services.tg import TgParsServices
 from backend.aplications.parser_tg.ioc import _init_container
-from backend.aplications.parser_tg.setings.setting import ParserTgSettings
 from punq import Container
 
 broker = KafkaBroker()
-broker.include_router(news_router)
 app = FastStream(broker=broker)
 
-@broker.subscriber("test-topic")
-async def handle():
-    await broker.publish("Hi!", topic="another-topic")
-
 @app.after_startup
-@inject
-async def test(
+async def start_telegram_listener(
     logger: Logger,
     container: Container = Depends(_init_container),
 ):
-    settings = container.resolve(ParserTgSettings)
-    logger.info(f"settings: {settings}")
-    ...
+    async def handle_telegram_message(message: str):
+        ...
+        # logger.info(f"Получено сообщение из Telegram: {message}")
+        # await broker.publish(message, topic="telegram_messages")
+        # logger.info(f"Сообщение отправлено в Kafka: {message}")
+
+    tg_services: TgParsServices = container.resolve(TgParsServices)
+
+
+    tg_services.message_handler = handle_telegram_message
+
+    await tg_services.start_listening()
+    logger.info("Прослушивание сообщений Telegram запущено.")
+
+@broker.subscriber("telegram_messages")
+async def handle_telegram_message(data, logger: Logger): ...
+    # logger.info(f"Получено сообщение из Kafka: {data}")
