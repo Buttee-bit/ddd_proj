@@ -4,9 +4,11 @@ from telethon import TelegramClient
 from backend.aplications.parser_tg.setings.setting import ParserTgSettings
 from backend.aplications.parser_tg.application.services.tg import TgParsServices
 
+
 @lru_cache(1)
 def init_container() -> Container:
     return _init_container()
+
 
 def _init_container() -> Container:
     container = Container()
@@ -18,7 +20,9 @@ def _init_container() -> Container:
     def _init_TgServices() -> TgParsServices:
         return TgParsServices(
             tg_client=TelegramClient(
-                parserTgSettings.session_file, parserTgSettings.tg_api_id, parserTgSettings.tg_api_hash
+                parserTgSettings.session_file,
+                parserTgSettings.tg_api_id,
+                parserTgSettings.tg_api_hash,
             ),
             watcher_groups=[
                 "https://t.me/Ukr_G_M",
@@ -48,7 +52,7 @@ def _init_container() -> Container:
                 "https://t.me/novinach",
                 "https://t.me/lachentyt",
             ],
-            message_handler=lambda x: None,  # Заглушка, будет переопределена в main.py
+            message_handler=lambda x: None
         )
 
     container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)

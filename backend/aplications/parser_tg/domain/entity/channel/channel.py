@@ -4,7 +4,7 @@ from backend.aplications.parser_tg.domain.entity.base import BaseEntity
 
 
 @dataclass
-class ChannelEntity(BaseEntity):
+class Channel(BaseEntity):
     name: str
     description: str
     url: str
