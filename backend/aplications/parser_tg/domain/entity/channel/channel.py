@@ -8,4 +8,4 @@ class Channel(BaseEntity):
     name: str
     description: str
     url: str
-    news: set = field(default_factory=lambda: set())
+    news: set = field(default_factory=set, kw_only=True)

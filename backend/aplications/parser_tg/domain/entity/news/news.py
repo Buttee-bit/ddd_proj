@@ -8,5 +8,5 @@ from backend.aplications.parser_tg.domain.values.title import Title
 class News(BaseEntity):
     title: Title
     text: str
-    media_url: list = field(default_factory=lambda: [])
+    media_url: set = field(default_factory=set, kw_only=True)
     published_at: datetime
