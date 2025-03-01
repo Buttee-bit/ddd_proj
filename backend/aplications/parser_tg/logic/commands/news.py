@@ -7,14 +7,14 @@ from backend.aplications.parser_tg.logic.commands.base import BaseCommand, Comma
 
 
 @dataclass(frozen=True)
-class CreateMessageCommand(BaseCommand):
+class CreateNewsCommand(BaseCommand):
     title: str
     text: str
     published_at: datetime
 
 
 @dataclass(frozen=True)
-class CreateMessageCommandHandler(CommandHandler[CreateMessageCommand, News]):
+class CreateNewsCommandHandler(CommandHandler[CreateNewsCommand, News]):
     news_repository: BaseNewsRepository
 
     async def handle(self, command) -> News:

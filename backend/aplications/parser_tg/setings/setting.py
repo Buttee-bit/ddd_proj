@@ -2,10 +2,18 @@ from pydantic_settings import BaseSettings
 from pydantic import Field
 
 
-class ParserTgSettings(BaseSettings):
+class Settings(BaseSettings):
     session_file: str = Field(..., alias='SESSION_FILE')
     tg_api_id: str = Field(..., alias='TG_API_ID')
     tg_api_hash: str = Field(..., alias='TG_API_HASH')
+
+    mongodb_connection_uri: str = Field(..., alias='MONGODB_CONNECTION')
+
+    mongodb_news_database_name: str = Field(..., alias='MONGODB_NEWS_DATABASE_NAME')
+    mongodb_news_collection_name: str = Field(..., alias='MONGODB_NEWS_COLLECTION_NAME')
+
+    mongodb_channels_database_name: str = Field(..., alias='MONGODB_CHANNELS_DATABASE_NAME')
+    mongodb_channels_collection_name: str = Field(..., alias='MONGODB_CHANNELS_COLLECTION_NAME')
 
     class Config:
         env_file = ".env"

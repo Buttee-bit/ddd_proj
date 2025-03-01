@@ -8,12 +8,13 @@ from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
 
 class BaseChannelRepository(ABC):
     @abstractmethod
-    async def add_channel(self, channel: str) -> None:
+    async def add_channel(self, channel: Channel) -> None:
         ...
 
     @abstractmethod
     async def get_channel(self) -> Channel:
         ...
+
 
 class BaseNewsRepository(ABC):
     @abstractmethod
@@ -23,6 +24,7 @@ class BaseNewsRepository(ABC):
     @abstractmethod
     async def get_one_news(self) -> News:
         ...
+
 
 @dataclass
 class BaseMongoDBRepository(ABC):

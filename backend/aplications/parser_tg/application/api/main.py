@@ -1,0 +1,23 @@
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from punq import Container
+from backend.aplications.parser_tg.logic.init import init_conatainer
+from backend.aplications.parser_tg.application.api.handlers.channels import router as channel_router
+
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    container: Container = init_conatainer()
+    yield
+
+def create_app() -> FastAPI:
+    app = FastAPI(
+        title="API Application",
+        version="0.0.1",
+        debug=True,
+        lifespan=lifespan,
+    )
+    app.include_router(channel_router)
+
+    return app
