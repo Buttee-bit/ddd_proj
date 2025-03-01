@@ -1,4 +1,15 @@
 services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/aplications/parser_tg/application/api/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    command: uvicorn --factory backend.aplications.parser_tg.application.api.main:create_app --timeout-graceful-shutdown 2 --host 0.0.0.0 --port 8000 --reload
+
   kafka:
     image: confluentinc/cp-kafka:7.4.0
     ports:
@@ -53,5 +64,5 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
       ME_CONFIG_BASICAUTH: false
 
-# volumes:
-#   mongodb_data:
+volumes:
+  mongodb_data:
