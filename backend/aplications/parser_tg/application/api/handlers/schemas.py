@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+from backend.aplications.parser_tg.application.api.schemas import BaseQueryResponseSchema
 from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
 
 
@@ -20,3 +21,7 @@ class CreateChannelResponseSchema(BaseModel):
             oid=Chanel.oid,
             url=Chanel.url,
         )
+
+
+class GetMessagesQueryResponseSchema(BaseQueryResponseSchema[list[CreateChannelResponseSchema]]):
+    ...

@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
+from typing import Iterable
 from motor.core import AgnosticClient
 
 from backend.aplications.parser_tg.domain.entity.news.news import News
 from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
+from backend.aplications.parser_tg.logic.queries.base import BaseQuery
 
 
 class BaseChannelRepository(ABC):
@@ -13,6 +15,10 @@ class BaseChannelRepository(ABC):
 
     @abstractmethod
     async def get_channel(self) -> Channel:
+        ...
+
+    @abstractmethod
+    async def get_all_channels(self, limit: int, offset: int) -> Iterable[Channel]:
         ...
 
 

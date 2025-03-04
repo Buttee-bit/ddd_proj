@@ -14,6 +14,7 @@ from backend.aplications.parser_tg.infra.repositoryes.news_repo import NewsRepos
 from backend.aplications.parser_tg.logic.commands.news import CreateNewsCommandHandler
 from backend.aplications.parser_tg.logic.commands.channels import CreateChannelCommandHandler, CreateChannelsCommand
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
+from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery, GetChannelQueryHandler
 from backend.aplications.parser_tg.setings.setting import Settings
 
 
@@ -58,14 +59,14 @@ def _init_container() -> Container:
     container.register(BaseChannelRepository, factory=init_channels_repository, scope=Scope.singleton)
 
 
+    container.register(GetChannelQueryHandler)
+
+
     def init_mediator() -> Mediator:
         mediator = Mediator()
 
-        # create_news_handler = CreateNewsCommandHandler(
-        #     _mediator=mediator,
-        #     news_repository=container.resolve(BaseNewsRepository)
-        # )
 
+        # Commands
         create_channel_handler = CreateChannelCommandHandler(
             _mediator=mediator,
             channels_repository=container.resolve(BaseChannelRepository)
@@ -76,10 +77,13 @@ def _init_container() -> Container:
             [create_channel_handler]
         )
 
-        # mediator.register_command(
-        #     CreateNewsCommandHandler,
-        #     create_news_handler
-        # )
+        # Queries
+        mediator.register_query(
+            GetChannelsQuery,
+            container.resolve(GetChannelQueryHandler)
+        )
+
+
         return mediator
 
     container.register(Mediator, factory=init_mediator)

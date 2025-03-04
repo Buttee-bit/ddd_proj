@@ -14,10 +14,10 @@ def convert_channel_document_to_entity(document: dict) -> Channel:
     return Channel(
         oid=document['oid'],
         created_at=document['created_at'],
-        name=document['name'],
-        description=document['description'],
+        # name=document['name'],
+        # description=document['description'],
         url=document['url'],
-        news=document['news'],
+        # news=document['news'],
     )
 
 def convert_news_entity_to_document(news: News) -> dict:
