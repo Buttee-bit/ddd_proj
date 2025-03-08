@@ -6,7 +6,7 @@ from telethon import TelegramClient, events
 from faststream.kafka import KafkaBroker
 from pydantic import BaseModel, Field
 
-from backend.aplications.parser_tg.application.services.dto import ListChannelDTO
+from backend.aplications.parser_tg.application.scrapping.dto import ListChannelDTO
 
 
 class MessageDTO(BaseModel):
@@ -42,6 +42,7 @@ class TgParsServices:
             moscow_tz = pytz.timezone("Europe/Moscow")
             time_publish = event.date.astimezone(moscow_tz)
             oid = url_to_oid.get(chat.username, "unknown")
+            logging.warning(f"Отправка в брокер сообщения")
             await self.broker.publish(
                 topic=self.topic,
                 message=MessageDTO(

@@ -11,6 +11,7 @@ class CreateNewsCommand(BaseCommand):
     title: str
     text: str
     published_at: datetime
+    oid_channel: str
 
 
 @dataclass(frozen=True)
@@ -21,7 +22,8 @@ class CreateNewsCommandHandler(CommandHandler[CreateNewsCommand, News]):
         news = News(
             title=command.title,
             text=command.text,
-            published_at=command.published_at
+            published_at=command.published_at,
+            oid_channel=command.oid_channel,
         )
         await self.news_repository.add_news(news=news)
         return News

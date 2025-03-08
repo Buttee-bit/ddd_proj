@@ -2,8 +2,9 @@ from punq import Container
 
 from faststream import FastStream, Logger, Depends
 from faststream.kafka import KafkaBroker
-from backend.aplications.parser_tg.application.services.dto import ChannelDTO, ListChannelDTO
-from backend.aplications.parser_tg.application.services.tg import MessageDTO, TgParsServices
+
+from backend.aplications.parser_tg.application.scrapping.dto import ChannelDTO, ListChannelDTO
+from backend.aplications.parser_tg.application.scrapping.tg import MessageDTO, TgParsServices
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
@@ -21,8 +22,3 @@ async def start_telegram_listener(
     channels = await mediator.handle_query(GetChannelsQuery())
     channelsDTO = ListChannelDTO(channels=[ChannelDTO(oid=chat.oid, url=chat.url) for chat in channels])
     await tg_services.start_listening(channels=channelsDTO)
-
-
-@broker.subscriber("telegram_messages")
-async def handle_telegram_message(data:MessageDTO, logger: Logger):
-    logger.warning(f"Получено сообщение из Kafka: {data}")
