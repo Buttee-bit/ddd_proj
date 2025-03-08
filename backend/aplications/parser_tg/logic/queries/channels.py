@@ -30,8 +30,22 @@ from backend.aplications.parser_tg.logic.queries.base import BaseQuery, BaseQuer
 
 
 @dataclass(frozen=True)
-class GetChannelsQuery(BaseQuery):
+class GetChannelsQueryWithFilter(BaseQuery):
     filters: GetAllChannelsFilters
+
+
+@dataclass(frozen=True)
+class GetChannelQueryWithilterHandler(BaseQueryHandler):
+    channels_repository: BaseChannelRepository
+
+    async def handle(self, query: GetChannelsQueryWithFilter) -> Iterable[Channel]:
+        channels = await self.channels_repository.get_all_channels_with_filter(filters=query.filters)
+        return channels
+
+
+@dataclass(frozen=True)
+class GetChannelsQuery(BaseQuery):
+    ...
 
 
 @dataclass(frozen=True)
@@ -39,5 +53,5 @@ class GetChannelQueryHandler(BaseQueryHandler):
     channels_repository: BaseChannelRepository
 
     async def handle(self, query: GetChannelsQuery) -> Iterable[Channel]:
-        channels = await self.channels_repository.get_all_channels(filters=query.filters)
+        channels = await self.channels_repository.get_all_channels()
         return channels

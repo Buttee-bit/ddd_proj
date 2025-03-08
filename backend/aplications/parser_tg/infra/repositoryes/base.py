@@ -18,9 +18,11 @@ class BaseChannelRepository(ABC):
         ...
 
     @abstractmethod
-    async def get_all_channels(self, limit: int, offset: int) -> Iterable[Channel]:
+    async def get_all_channels_with_filter(self, limit: int, offset: int) -> Iterable[Channel]:
         ...
-
+    @abstractmethod
+    async def get_all_channels(self) -> Iterable[Channel]:
+        ...
 
 class BaseNewsRepository(ABC):
     @abstractmethod

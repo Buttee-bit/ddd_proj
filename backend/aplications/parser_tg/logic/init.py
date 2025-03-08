@@ -1,20 +1,22 @@
 from functools import lru_cache
 import logging
 from motor.motor_asyncio import AsyncIOMotorClient
-from motor.core import AgnosticClient
 
 from punq import (
     Container,
     Scope,
 )
+from telethon import TelegramClient
+from faststream.kafka import KafkaBroker
 
+from backend.aplications.parser_tg.application.services.tg import TgParsServices
 from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository, BaseNewsRepository
 from backend.aplications.parser_tg.infra.repositoryes.channels_repo import ChannelsRepository
 from backend.aplications.parser_tg.infra.repositoryes.news_repo import NewsRepository
 from backend.aplications.parser_tg.logic.commands.news import CreateNewsCommandHandler
 from backend.aplications.parser_tg.logic.commands.channels import CreateChannelCommandHandler, CreateChannelsCommand
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
-from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery, GetChannelQueryHandler
+from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQueryWithFilter, GetChannelQueryWithilterHandler, GetChannelQueryHandler, GetChannelsQuery
 from backend.aplications.parser_tg.setings.setting import Settings
 
 
@@ -29,15 +31,30 @@ def _init_container() -> Container:
     container.register(Settings, instance=Settings(), scope=Scope.singleton)
 
     settings: Settings = container.resolve(Settings)
-
+    logging.warning(f"settings: {settings}")
     def create_mongodb_client():
         return AsyncIOMotorClient(
             settings.mongodb_connection_uri,
             serverSelectionTimeoutMS=3000,
         )
-
     container.register(AsyncIOMotorClient, factory=create_mongodb_client, scope=Scope.singleton)
     client = container.resolve(AsyncIOMotorClient)
+
+    def _init_TgServices() -> TgParsServices:
+        return TgParsServices(
+            tg_client=TelegramClient(
+                settings.session_file,
+                settings.tg_api_id,
+                settings.tg_api_hash,
+                app_version="1.0.0",
+                device_model="Desktop",
+                system_version="4.17.30-vxCUSTOM",
+            ),
+            broker = KafkaBroker(),
+            topic="telegram_messages",
+        )
+
+    container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)
 
     def init_news_repository() -> BaseNewsRepository:
         return NewsRepository(
@@ -46,7 +63,6 @@ def _init_container() -> Container:
             mongo_db_collection_name=settings.mongodb_news_collection_name
         )
 
-    container.register(BaseNewsRepository, factory=init_news_repository, scope=Scope.singleton)
 
 
     def init_channels_repository() -> BaseChannelRepository:
@@ -56,15 +72,15 @@ def _init_container() -> Container:
             mongo_db_collection_name=settings.mongodb_channels_collection_name
         )
 
+    container.register(BaseNewsRepository, factory=init_news_repository, scope=Scope.singleton)
     container.register(BaseChannelRepository, factory=init_channels_repository, scope=Scope.singleton)
 
 
+    container.register(GetChannelQueryWithilterHandler)
     container.register(GetChannelQueryHandler)
-
 
     def init_mediator() -> Mediator:
         mediator = Mediator()
-
 
         # Commands
         create_channel_handler = CreateChannelCommandHandler(
@@ -79,10 +95,14 @@ def _init_container() -> Container:
 
         # Queries
         mediator.register_query(
+            GetChannelsQueryWithFilter,
+            container.resolve(GetChannelQueryWithilterHandler)
+        )
+
+        mediator.register_query(
             GetChannelsQuery,
             container.resolve(GetChannelQueryHandler)
         )
-
 
         return mediator
 

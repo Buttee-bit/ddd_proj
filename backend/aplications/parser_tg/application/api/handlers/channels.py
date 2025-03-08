@@ -12,7 +12,7 @@ from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.commands.channels import CreateChannelsCommand
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.application.api.handlers.schemas import CreateChannelRequestSchema, CreateChannelResponseSchema, ErrorSchema, GetMessagesQueryResponseSchema
-from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
+from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQueryWithFilter
 
 
 router = APIRouter(
@@ -61,7 +61,7 @@ async def get_channels_handler(
 
     try:
         channels = await mediator.handle_query(
-            GetChannelsQuery(filters=filters.to_infra()),
+            GetChannelsQueryWithFilter(filters=filters.to_infra()),
         )
     except Exception as exception:
         raise HTTPException(

@@ -1,7 +1,7 @@
 from functools import lru_cache
 from punq import Container, Scope
 from telethon import TelegramClient
-from backend.aplications.parser_tg.setings.setting import ParserTgSettings
+from backend.aplications.parser_tg.setings.setting import Settings
 from backend.aplications.parser_tg.application.services.tg import TgParsServices
 
 
@@ -13,9 +13,9 @@ def init_container() -> Container:
 def _init_container() -> Container:
     container = Container()
     container.register(
-        ParserTgSettings, instance=ParserTgSettings(), scope=Scope.singleton
+        Settings, instance=Settings(), scope=Scope.singleton
     )
-    parserTgSettings: ParserTgSettings = container.resolve(ParserTgSettings)
+    parserTgSettings: Settings = container.resolve(Settings)
 
     def _init_TgServices() -> TgParsServices:
         return TgParsServices(
@@ -52,7 +52,7 @@ def _init_container() -> Container:
                 "https://t.me/novinach",
                 "https://t.me/lachentyt",
             ],
-            message_handler=lambda x: None
+            # message_handler=lambda x: None
         )
 
     container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)

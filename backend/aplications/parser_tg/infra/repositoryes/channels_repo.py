@@ -21,7 +21,10 @@ class ChannelsRepository(BaseChannelRepository, BaseMongoDBRepository):
         )
         return convert_channel_document_to_entity(document)
 
-    async def get_all_channels(self, filters: GetAllChannelsFilters) -> list[Channel]:
+    async def get_all_channels_with_filter(self, filters: GetAllChannelsFilters) -> list[Channel]:
         documents = self._collection.find().skip(filters.offset).limit(filters.limit)
-        logging.warning(f"documents: {documents}")
+        return [convert_channel_document_to_entity(document) async for document in documents]
+
+    async def get_all_channels(self) -> list[Channel]:
+        documents = self._collection.find()
         return [convert_channel_document_to_entity(document) async for document in documents]

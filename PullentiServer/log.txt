@@ -1,0 +1,4 @@
+Initializing SDK Pullenti ver 4.28 (2025.02.02) ... OK (by 1551 ms)
+2025.02.27 20:36:35 Version 4.28
+2025.02.27 20:36:35 Start server (address: *, port: 1111) ...  OK
+2025.02.27 20:36:35 Ready (to exit server press any key) ... 

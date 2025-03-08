@@ -8,3 +8,4 @@ class News(BaseEntity):
     text: str
     published_at: datetime
     media_url: set = field(default_factory=set, kw_only=True)
+    oid_channel: str

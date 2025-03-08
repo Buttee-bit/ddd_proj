@@ -52,11 +52,24 @@ services:
   mongo:
     image: mongo
     restart: always
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - mongodb_data:/data/db
+
+
+  puletti:
+    build:
+      context: .
+      dockerfile: PullentiServer/Dockerfile
+    container_name: puletti
+    restart: always
+    ports:
+      - 1111:1111
+
 
   mongo-express:
     image: mongo-express

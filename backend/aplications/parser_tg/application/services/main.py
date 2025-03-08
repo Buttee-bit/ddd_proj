@@ -1,30 +1,28 @@
-import logging
+from punq import Container
+
 from faststream import FastStream, Logger, Depends
 from faststream.kafka import KafkaBroker
-from backend.aplications.parser_tg.application.services.tg import TgParsServices
-from backend.aplications.parser_tg.ioc import _init_container
-from punq import Container
+from backend.aplications.parser_tg.application.services.dto import ChannelDTO, ListChannelDTO
+from backend.aplications.parser_tg.application.services.tg import MessageDTO, TgParsServices
+from backend.aplications.parser_tg.logic.init import init_conatainer
+from backend.aplications.parser_tg.logic.mediator.base import Mediator
+from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
+
 
 broker = KafkaBroker()
 app = FastStream(broker=broker)
 
 @app.after_startup
 async def start_telegram_listener(
-    logger: Logger,
-    container: Container = Depends(_init_container),
+    container: Container = Depends(init_conatainer),
 ):
-
-    async def handle_telegram_message(message: str):
-        ...
-
+    mediator: Mediator = container.resolve(Mediator)
     tg_services: TgParsServices = container.resolve(TgParsServices)
-    tg_services.message_handler = handle_telegram_message
+    channels = await mediator.handle_query(GetChannelsQuery())
+    channelsDTO = ListChannelDTO(channels=[ChannelDTO(oid=chat.oid, url=chat.url) for chat in channels])
+    await tg_services.start_listening(channels=channelsDTO)
 
-    await tg_services.start_listening()
-
-
-    logger.info("Прослушивание сообщений Telegram запущено.")
 
 @broker.subscriber("telegram_messages")
-async def handle_telegram_message(data, logger: Logger):
-    logger.info(f"Получено сообщение из Kafka: {data}")
+async def handle_telegram_message(data:MessageDTO, logger: Logger):
+    logger.warning(f"Получено сообщение из Kafka: {data}")
