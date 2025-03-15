@@ -23,5 +23,12 @@ class CreateChannelResponseSchema(BaseModel):
         )
 
 
+class TestAddEntityPersonToDocumentRequestSchema(BaseModel):
+    document_oid: str
+
+
+class TestAddEntityPersonToDocumentResponseSchema(BaseModel):
+    ...
+
 class GetMessagesQueryResponseSchema(BaseQueryResponseSchema[list[CreateChannelResponseSchema]]):
     ...
