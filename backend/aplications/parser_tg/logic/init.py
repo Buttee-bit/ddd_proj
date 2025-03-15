@@ -10,9 +10,10 @@ from telethon import TelegramClient
 from faststream.kafka import KafkaBroker
 
 from backend.aplications.parser_tg.application.scrapping.tg import TgParsServices
-from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository, BaseNewsRepository
+from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository, BaseNerPeopleRepository, BaseNewsRepository
 from backend.aplications.parser_tg.infra.repositoryes.channels_repo import ChannelsRepository
 from backend.aplications.parser_tg.infra.repositoryes.news_repo import NewsRepository
+from backend.aplications.parser_tg.logic.commands.ner_people import AddNerPeopleToDocumentCommand, AddNerPeopleToDocumenthandler
 from backend.aplications.parser_tg.logic.commands.news import CreateNewsCommandHandler, CreateNewsCommand
 from backend.aplications.parser_tg.logic.commands.channels import CreateChannelCommandHandler, CreateChannelsCommand
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
@@ -56,6 +57,8 @@ def _init_container() -> Container:
 
     container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)
 
+
+    #Repositories
     def init_news_repository() -> BaseNewsRepository:
         return NewsRepository(
             mongo_db_client=client,
@@ -76,8 +79,6 @@ def _init_container() -> Container:
     container.register(BaseChannelRepository, factory=init_channels_repository, scope=Scope.singleton)
 
 
-    container.register(GetChannelQueryWithilterHandler)
-    container.register(GetChannelQueryHandler)
 
     def init_mediator() -> Mediator:
         mediator = Mediator()
@@ -88,14 +89,25 @@ def _init_container() -> Container:
             channels_repository=container.resolve(BaseChannelRepository)
         )
 
+        add_ner_people_to_documenthandler = AddNerPeopleToDocumenthandler(
+            _mediator=mediator,
+            ner_people_repository=container.resolve(BaseNerPeopleRepository)
+        )
+
         create_news_handler = CreateNewsCommandHandler(
             _mediator=mediator,
             news_repository=container.resolve(BaseNewsRepository)
         )
 
+
         mediator.register_command(
             CreateNewsCommand,
             [create_news_handler]
+        )
+
+        mediator.register_command(
+            AddNerPeopleToDocumentCommand,
+            [add_ner_people_to_documenthandler]
         )
 
         mediator.register_command(
@@ -116,6 +128,8 @@ def _init_container() -> Container:
 
         return mediator
 
+    container.register(GetChannelQueryWithilterHandler)
+    container.register(GetChannelQueryHandler)
     container.register(Mediator, factory=init_mediator)
 
     return container
