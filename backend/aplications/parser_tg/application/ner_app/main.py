@@ -2,29 +2,28 @@ from punq import Container
 
 from faststream import FastStream, Logger, Depends
 from faststream.kafka import KafkaBroker
-from backend.aplications.parser_tg.application.scrapping.tg import MessageDTO
-from backend.aplications.parser_tg.logic.commands.ner_people import AddNerPeopleToDocumentCommand
-from backend.aplications.parser_tg.logic.commands.news import CreateNewsCommand
+from backend.aplications.parser_tg.domain.entity.news.news import News
+from backend.aplications.parser_tg.logic.commands.ner_people import AddNerPeopleToDocumentCommand, FindPeopleCommand
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
-from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
 
 def main() -> FastStream:
     broker = KafkaBroker(bootstrap_servers=["kafka:29092"])
     app = FastStream(broker=broker)
     container = init_conatainer()
 
-    @broker.subscriber("telegram_messages")
+    @broker.subscriber("Recive_messsages")
     async def handle_telegram_message(
-        data: MessageDTO,
+        data: News,
         logger: Logger,
         mediator: Mediator = Depends(lambda: container.resolve(Mediator)),
     ):
 
         logger.warning(f"Получено сообщение из Kafka: {data}")
         await mediator.handle_command(
-            AddNerPeopleToDocumentCommand(
-                document_oid=data
+            FindPeopleCommand(
+                oid=data.oid,
+                text=data.text,
             )
         )
 

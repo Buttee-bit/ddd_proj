@@ -28,6 +28,8 @@ from backend.aplications.parser_tg.infra.repositoryes.news_repo import NewsRepos
 from backend.aplications.parser_tg.logic.commands.ner_people import (
     AddNerPeopleToDocumentCommand,
     AddNerPeopleToDocumentHandler,
+    FindPeopleCommand,
+    FindPeopleHandler,
 )
 from backend.aplications.parser_tg.logic.commands.news import (
     CreateNewsCommandHandler,
@@ -110,15 +112,11 @@ def _init_container() -> Container:
         )
 
     container.register(
-        BaseNewsRepository,
-        factory=init_news_repository,
-        scope=Scope.singleton
+        BaseNewsRepository, factory=init_news_repository, scope=Scope.singleton
     )
 
     container.register(
-        BaseChannelRepository,
-        factory=init_channels_repository,
-        scope=Scope.singleton
+        BaseChannelRepository, factory=init_channels_repository, scope=Scope.singleton
     )
 
     container.register(
@@ -144,6 +142,13 @@ def _init_container() -> Container:
             channels_repository=container.resolve(BaseChannelRepository),
         )
 
+        create_find_people_command = FindPeopleHandler(
+            _mediator=mediator,
+            ner_people_repository=container.resolve(BaseNerPeopleRepository),
+            news_repository=container.resolve(BaseNewsRepository),
+            analizer=container.resolve(BaseAnalazer),
+        )
+
         add_ner_people_to_documenthandler = AddNerPeopleToDocumentHandler(
             _mediator=mediator,
             ner_people_repository=container.resolve(BaseNerPeopleRepository),
@@ -160,6 +165,8 @@ def _init_container() -> Container:
         mediator.register_command(
             AddNerPeopleToDocumentCommand, [add_ner_people_to_documenthandler]
         )
+
+        mediator.register_command(FindPeopleCommand, [create_find_people_command])
 
         mediator.register_command(CreateChannelsCommand, [create_channel_handler])
 

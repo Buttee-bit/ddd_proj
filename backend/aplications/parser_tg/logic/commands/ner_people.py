@@ -51,11 +51,12 @@ class AddNerPeopleToDocumentHandler(
 
 @dataclass(frozen=True)
 class FindPeopleCommand(BaseCommand):
+    oid: str
     text: str
 
 
 @dataclass(frozen=True)
-class AddNerPeopleToDocumentHandler(
+class FindPeopleHandler(
     CommandHandler[FindPeopleCommand, NerPeople]
 ):
     ner_people_repository: BaseNerPeopleRepository
@@ -65,9 +66,9 @@ class AddNerPeopleToDocumentHandler(
     async def handle(self, command: FindPeopleCommand) -> None:
         analis_result = self.analizer.get_result(text=command.text)
         list_ners = convert_analysis_result_to_ners(result=analis_result)
-
+        logging.warning(f'list_ners: {list_ners}')
         await self.ner_people_repository.add_ner_by_id_document(
-            id_document=command.document_oid,
+            id_document=command.oid,
             ner=[
                 NerPeople(
                     value=ner.value,

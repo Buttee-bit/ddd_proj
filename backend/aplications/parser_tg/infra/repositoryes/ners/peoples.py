@@ -16,7 +16,8 @@ class NerPeoplesRepository(BaseNerPeopleRepository, BaseMongoDBRepository):
             }
         )
 
-    async def add_ner_by_id_document(self, id_document: str, ner: NerPeople) -> None:
+    async def add_ner_by_id_document(self, id_document: str, ner: list[NerPeople]) -> None:
+        logging.warning(f'id_document: {id_document}, ner: {ner}')
         if ner == []:
             return None
         await self._collection.insert_one(

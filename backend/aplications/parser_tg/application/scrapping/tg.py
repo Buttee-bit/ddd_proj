@@ -7,7 +7,7 @@ from faststream.kafka import KafkaBroker
 from pydantic import BaseModel, Field
 
 from backend.aplications.parser_tg.application.scrapping.dto import ListChannelDTO
-
+from backend.aplications.parser_tg.domain.entity.news.news import News
 
 class MessageDTO(BaseModel):
     message: str
@@ -37,20 +37,19 @@ class TgParsServices:
 
         @self.tg_client.on(events.NewMessage(chats=chats))
         async def handler(event: events.NewMessage.Event):
-            logging.warning(f"event: {event}")
             chat = await event.get_chat()
             moscow_tz = pytz.timezone("Europe/Moscow")
             time_publish = event.date.astimezone(moscow_tz)
             oid = url_to_oid.get(chat.username, "unknown")
-            logging.warning(f"event-publish")
+            news = News(
+                title=event.text[:50],
+                text=event.text,
+                published_at=time_publish,
+                oid_channel=oid,
+            )
             await self.broker.publish(
                 topic=self.topic,
-                message=MessageDTO(
-                    message=event.text,
-                    chat_oid=oid,
-                    time_publish=time_publish,
-                    time_recived=datetime.now(moscow_tz),
-                ),
+                message=news,
             )
 
         await self.tg_client.run_until_disconnected()

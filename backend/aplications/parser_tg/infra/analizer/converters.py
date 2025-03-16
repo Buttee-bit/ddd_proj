@@ -12,9 +12,9 @@ def convert_analysis_result_to_ners(result: AnalysisResult) -> Iterable[NerPeopl
         entity: Referent
         if entity.type_name == "PERSON":
             ner = NerPeople(
-                value=entity.get_compare_strings(),
-                props=[value for value in entity.slots ],
-                index=entity.occurrence,
+                value=entity.get_compare_strings()[0],
+                props=[str(value.value) for value in entity.slots],
+                index=[(i.begin_char, i.end_char) for i in entity.occurrence],
             )
             logging.warning(f'ner: {ner}')
             list_ner.append(ner)
