@@ -1,19 +1,19 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import math
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import ProgressEventArgs
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import ProgressEventArgs
 
-from pullenti.semantic.internal.SentItemType import SentItemType
-from pullenti.ner.TextToken import TextToken
-from pullenti.semantic.SemDocument import SemDocument
-from pullenti.semantic.SemBlock import SemBlock
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.semantic.internal.Sentence import Sentence
-from pullenti.semantic.internal.OptimizerHelper import OptimizerHelper
+from backend.pullenti.semantic.internal.SentItemType import SentItemType
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.semantic.SemDocument import SemDocument
+from backend.pullenti.semantic.SemBlock import SemBlock
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.semantic.internal.Sentence import Sentence
+from backend.pullenti.semantic.internal.OptimizerHelper import OptimizerHelper
 
 class AnalyzeHelper:
     

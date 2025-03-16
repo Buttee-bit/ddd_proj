@@ -1,41 +1,41 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
 import operator
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Token import Token
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.Referent import Referent
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.keyword.internal.AutoannoSentToken import AutoannoSentToken
-from pullenti.ner.money.MoneyReferent import MoneyReferent
-from pullenti.ner.denomination.DenominationReferent import DenominationReferent
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.phone.PhoneReferent import PhoneReferent
-from pullenti.ner.bank.BankDataReferent import BankDataReferent
-from pullenti.semantic.utils.DerivateService import DerivateService
-from pullenti.ner.keyword.internal.KeywordMeta import KeywordMeta
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.keyword.KeywordReferent import KeywordReferent
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.keyword.KeywordType import KeywordType
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.denomination.DenominationAnalyzer import DenominationAnalyzer
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.keyword.internal.AutoannoSentToken import AutoannoSentToken
+from backend.pullenti.ner.money.MoneyReferent import MoneyReferent
+from backend.pullenti.ner.denomination.DenominationReferent import DenominationReferent
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.phone.PhoneReferent import PhoneReferent
+from backend.pullenti.ner.bank.BankDataReferent import BankDataReferent
+from backend.pullenti.semantic.utils.DerivateService import DerivateService
+from backend.pullenti.ner.keyword.internal.KeywordMeta import KeywordMeta
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.keyword.KeywordReferent import KeywordReferent
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.keyword.KeywordType import KeywordType
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.denomination.DenominationAnalyzer import DenominationAnalyzer
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.ProcessorService import ProcessorService
 
 class KeywordAnalyzer(Analyzer):
     """ Анализатор ключевых комбинаций.
@@ -45,7 +45,7 @@ class KeywordAnalyzer(Analyzer):
     class CompByRank(object):
         
         def compare(self, x : 'Referent', y : 'Referent') -> int:
-            from pullenti.ner.keyword.KeywordReferent import KeywordReferent
+            from backend.pullenti.ner.keyword.KeywordReferent import KeywordReferent
             d1 = x.rank
             d2 = y.rank
             if (d1 > d2): 
@@ -91,9 +91,9 @@ class KeywordAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[KeywordMeta.IMAGE_OBJ] = PullentiNerCoreInternalResourceHelper.get_bytes("kwobject.png")
-        res[KeywordMeta.IMAGE_PRED] = PullentiNerCoreInternalResourceHelper.get_bytes("kwpredicate.png")
-        res[KeywordMeta.IMAGE_REF] = PullentiNerCoreInternalResourceHelper.get_bytes("kwreferent.png")
+        res[KeywordMeta.IMAGE_OBJ] = NerCoreInternalResourceHelper.get_bytes("kwobject.png")
+        res[KeywordMeta.IMAGE_PRED] = NerCoreInternalResourceHelper.get_bytes("kwpredicate.png")
+        res[KeywordMeta.IMAGE_REF] = NerCoreInternalResourceHelper.get_bytes("kwreferent.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

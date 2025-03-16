@@ -1,19 +1,19 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.ner.core.internal.TextsCompareType import TextsCompareType
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.core.internal.SerializerHelper import SerializerHelper
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.TextAnnotation import TextAnnotation
+from backend.pullenti.ner.core.internal.TextsCompareType import TextsCompareType
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.core.internal.SerializerHelper import SerializerHelper
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.TextAnnotation import TextAnnotation
 
 class Referent:
     """ Базовый класс для всех именованных сущностей
@@ -82,7 +82,7 @@ class Referent:
         Returns:
             Slot: слот(атрибут)
         """
-        from pullenti.ner.Slot import Slot
+        from backend.pullenti.ner.Slot import Slot
         if ((Utils.asObjectOrNull(attr_value, str)) == "СЕН"): 
             pass
         if (clear_old_value): 
@@ -322,7 +322,7 @@ class Referent:
         return False
     
     def clone(self) -> 'Referent':
-        from pullenti.ner.Slot import Slot
+        from backend.pullenti.ner.Slot import Slot
         res = ProcessorService.create_referent(self.type_name)
         if (res is None): 
             res = Referent(self.type_name)

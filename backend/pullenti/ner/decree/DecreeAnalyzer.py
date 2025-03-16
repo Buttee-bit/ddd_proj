@@ -1,51 +1,51 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import datetime
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.decree.internal.MetaDecree import MetaDecree
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.decree.internal.MetaDecreeChange import MetaDecreeChange
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.decree.internal.MetaDecreeChangeValue import MetaDecreeChangeValue
-from pullenti.ner.decree.internal.DecreeChangeTokenTyp import DecreeChangeTokenTyp
-from pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
-from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
-from pullenti.ner.Slot import Slot
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.core.ComplexNumToken import ComplexNumToken
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.ner.Token import Token
-from pullenti.ner.Referent import Referent
-from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.date.DateRangeReferent import DateRangeReferent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.decree.internal.MetaDecree import MetaDecree
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.decree.internal.MetaDecreeChange import MetaDecreeChange
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.decree.internal.MetaDecreeChangeValue import MetaDecreeChangeValue
+from backend.pullenti.ner.decree.internal.DecreeChangeTokenTyp import DecreeChangeTokenTyp
+from backend.pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
+from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+from backend.pullenti.ner.Slot import Slot
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.core.ComplexNumToken import ComplexNumToken
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.date.DateRangeReferent import DateRangeReferent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.ProcessorService import ProcessorService
 
 class DecreeAnalyzer(Analyzer):
     """ Анализатор ссылок на НПА """
@@ -63,10 +63,10 @@ class DecreeAnalyzer(Analyzer):
             return "{0} ({1})".format(Utils.ifNotNull(self.typ, "?"), ("This" if self.has_this_ref else (("Other" if self.has_other_ref else "?"))))
         
         def check_decree(self, r : 'DecreeReferent') -> bool:
-            from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
-            from pullenti.ner.decree.DecreeKind import DecreeKind
-            from pullenti.ner.ProcessorService import ProcessorService
-            from pullenti.ner.decree.DecreeReferent import DecreeReferent
+            from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+            from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+            from backend.pullenti.ner.ProcessorService import ProcessorService
+            from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
             if (r is None): 
                 return False
             if (self.real == r): 
@@ -92,8 +92,8 @@ class DecreeAnalyzer(Analyzer):
         
         @staticmethod
         def try_attach_back(t : 'Token', base_typ : 'DecreeToken') -> 'ThisDecree':
-            from pullenti.ner.TextToken import TextToken
-            from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+            from backend.pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
             if (t is None): 
                 return None
             ukaz = None
@@ -139,15 +139,15 @@ class DecreeAnalyzer(Analyzer):
         
         @staticmethod
         def try_attach(dtok : 'PartToken', base_typ : 'DecreeToken') -> 'ThisDecree':
-            from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-            from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-            from pullenti.morph.MorphGender import MorphGender
-            from pullenti.morph.MorphNumber import MorphNumber
-            from pullenti.ner.ReferentToken import ReferentToken
-            from pullenti.ner.decree.DecreeReferent import DecreeReferent
-            from pullenti.ner.TextToken import TextToken
-            from pullenti.ner.core.BracketHelper import BracketHelper
-            from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+            from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+            from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+            from backend.pullenti.morph.MorphGender import MorphGender
+            from backend.pullenti.morph.MorphNumber import MorphNumber
+            from backend.pullenti.ner.ReferentToken import ReferentToken
+            from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+            from backend.pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.core.BracketHelper import BracketHelper
+            from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
             t = dtok.end_token.next0_
             if (t is None): 
                 return None
@@ -235,7 +235,7 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _try_attach(dts : typing.List['DecreeToken'], base_typ : 'DecreeToken', ad : 'AnalyzerData') -> typing.List['ReferentToken']:
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
         if (ad is None): 
             ad = DecreeAnalyzer.get_data(dts[0])
         if (ad.level > 2): 
@@ -266,10 +266,10 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach(dts : typing.List['DecreeToken'], base_typ : 'DecreeToken', after_decree : bool, ad : 'AnalyzerData') -> typing.List['ReferentToken']:
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-        from pullenti.ner.decree.internal.PartToken import PartToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (dts is None or (len(dts) < 1)): 
             return None
         if (dts[0].typ == DecreeToken.ItemType.EDITION and len(dts) > 1): 
@@ -1111,8 +1111,8 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _can_be_start_of_attach_approved(t : 'Token') -> 'Token':
-        from pullenti.ner.decree.internal.PartToken import PartToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (not (isinstance(t, TextToken))): 
             return None
         if (BracketHelper.can_be_start_of_sequence(t, True, False)): 
@@ -1181,9 +1181,9 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _try_attach_approved(t : 'Token', ad : 'AnalyzerData') -> 'ReferentToken':
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.internal.PartToken import PartToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (t is None): 
             return None
         br = None
@@ -1483,8 +1483,8 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _try_attach_approved0(t : 'Token', ad : 'AnalyzerData', must_be_comma : bool=True, name_in_brackets : bool=False) -> 'ReferentToken':
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (t is None or t.next0_ is None): 
             return None
         t0 = t
@@ -1604,10 +1604,10 @@ class DecreeAnalyzer(Analyzer):
             kit.misc_data["dovr"] = (lev)
     
     def __try_attach_pulishers(self, dts : typing.List['DecreeToken']) -> typing.List['ReferentToken']:
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-        from pullenti.ner.decree.internal.PartToken import PartToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         i = 0
         t1 = None
         typ = None
@@ -1804,20 +1804,20 @@ class DecreeAnalyzer(Analyzer):
     
     @property
     def type_system(self) -> typing.List['ReferentClass']:
-        from pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
+        from backend.pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
         return [MetaDecree.GLOBAL_META, MetaDecreePart.GLOBAL_META, MetaDecreeChange.GLOBAL_META, MetaDecreeChangeValue.GLOBAL_META]
     
     @property
     def images(self) -> typing.List[tuple]:
-        from pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
+        from backend.pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
         res = dict()
-        res[MetaDecree.DECREE_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("decree.png")
-        res[MetaDecree.STANDADR_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("decreestd.png")
-        res[MetaDecreePart.PART_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("part.png")
-        res[MetaDecreePart.PART_LOC_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("document_into.png")
-        res[MetaDecree.PUBLISH_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("publish.png")
-        res[MetaDecreeChange.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("decreechange.png")
-        res[MetaDecreeChangeValue.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("decreechangevalue.png")
+        res[MetaDecree.DECREE_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("decree.png")
+        res[MetaDecree.STANDADR_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("decreestd.png")
+        res[MetaDecreePart.PART_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("part.png")
+        res[MetaDecreePart.PART_LOC_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("document_into.png")
+        res[MetaDecree.PUBLISH_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("publish.png")
+        res[MetaDecreeChange.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("decreechange.png")
+        res[MetaDecreeChangeValue.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("decreechangevalue.png")
         return res
     
     @property
@@ -1825,10 +1825,10 @@ class DecreeAnalyzer(Analyzer):
         return [DateReferent.OBJ_TYPENAME, GeoReferent.OBJ_TYPENAME, OrganizationReferent.OBJ_TYPENAME, PersonReferent.OBJ_TYPENAME]
     
     def create_referent(self, type0_ : str) -> 'Referent':
-        from pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
         if (type0_ == DecreeReferent.OBJ_TYPENAME): 
             return DecreeReferent()
         if (type0_ == DecreePartReferent.OBJ_TYPENAME): 
@@ -1850,13 +1850,13 @@ class DecreeAnalyzer(Analyzer):
         return t.kit.get_analyzer_data_by_analyzer_name(DecreeAnalyzer.ANALYZER_NAME)
     
     def process(self, kit : 'AnalysisKit') -> None:
-        from pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-        from pullenti.ner.decree.internal.PartToken import PartToken
-        from pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         ad = kit.get_analyzer_data(self)
         base_typ = None
         ref0 = None
@@ -2613,8 +2613,8 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _check_alias_after(t : 'Token') -> 'MetaToken':
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
         if ((t is not None and t.is_char('<') and t.next0_ is not None) and t.next0_.next0_ is not None and t.next0_.next0_.is_char('>')): 
             t = t.next0_.next0_.next0_
         if (t is None or t.next0_ is None or not t.is_char('(')): 
@@ -2656,8 +2656,8 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _get_decree(t : 'Token') -> 'DecreeReferent':
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
         if (not (isinstance(t, ReferentToken))): 
             return None
         r = t.get_referent()
@@ -2669,7 +2669,7 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _check_other_typ(t : 'Token', first : bool) -> 'Token':
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (t is None): 
             return None
         dit = DecreeToken.try_attach(t, None, False)
@@ -2695,7 +2695,7 @@ class DecreeAnalyzer(Analyzer):
         return None
     
     def process_referent(self, begin : 'Token', param : str) -> 'ReferentToken':
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         rt = DecreeAnalyzer._try_attach_approved(begin, None)
         if (rt is not None): 
             return rt
@@ -2713,9 +2713,9 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
-        from pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
+        from backend.pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (DecreeAnalyzer.M_INITED): 
             return
         DecreeAnalyzer.M_INITED = True
@@ -2734,12 +2734,12 @@ class DecreeAnalyzer(Analyzer):
     
     @staticmethod
     def _try_attach_parts(parts : typing.List['PartToken'], base_typ : 'DecreeToken', _def_owner : 'Referent', in_changes : bool=False) -> typing.List['MetaToken']:
-        from pullenti.ner.decree.DecreeReferent import DecreeReferent
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-        from pullenti.ner.decree.internal.PartToken import PartToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
-        from pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
-        from pullenti.ner.instrument.internal.InstrToken import InstrToken
+        from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
+        from backend.pullenti.ner.instrument.internal.InstrToken import InstrToken
         if (parts is None or len(parts) == 0): 
             return None
         i = 0

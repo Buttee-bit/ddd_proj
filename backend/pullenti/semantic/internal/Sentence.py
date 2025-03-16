@@ -1,36 +1,36 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.semantic.internal.NGItem import NGItem
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.semantic.SemAttributeType import SemAttributeType
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.semantic.internal.AdverbToken import AdverbToken
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.semantic.SemFraglinkType import SemFraglinkType
-from pullenti.semantic.SemFragment import SemFragment
-from pullenti.semantic.SemBlock import SemBlock
-from pullenti.semantic.internal.SentenceVariant import SentenceVariant
-from pullenti.semantic.internal.Subsent import Subsent
-from pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
-from pullenti.semantic.internal.SentItemType import SentItemType
-from pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
-from pullenti.semantic.SemLinkType import SemLinkType
-from pullenti.semantic.internal.NGLinkType import NGLinkType
-from pullenti.semantic.internal.SentItemSubtype import SentItemSubtype
-from pullenti.semantic.SemObjectType import SemObjectType
-from pullenti.ner.core.NounPhraseToken import NounPhraseToken
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.semantic.SemObject import SemObject
-from pullenti.semantic.internal.CreateHelper import CreateHelper
-from pullenti.semantic.internal.NGLink import NGLink
+from backend.pullenti.semantic.internal.NGItem import NGItem
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.semantic.SemAttributeType import SemAttributeType
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.semantic.internal.AdverbToken import AdverbToken
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.semantic.SemFraglinkType import SemFraglinkType
+from backend.pullenti.semantic.SemFragment import SemFragment
+from backend.pullenti.semantic.SemBlock import SemBlock
+from backend.pullenti.semantic.internal.SentenceVariant import SentenceVariant
+from backend.pullenti.semantic.internal.Subsent import Subsent
+from backend.pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
+from backend.pullenti.semantic.internal.SentItemType import SentItemType
+from backend.pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
+from backend.pullenti.semantic.SemLinkType import SemLinkType
+from backend.pullenti.semantic.internal.NGLinkType import NGLinkType
+from backend.pullenti.semantic.internal.SentItemSubtype import SentItemSubtype
+from backend.pullenti.semantic.SemObjectType import SemObjectType
+from backend.pullenti.ner.core.NounPhraseToken import NounPhraseToken
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.semantic.SemObject import SemObject
+from backend.pullenti.semantic.internal.CreateHelper import CreateHelper
+from backend.pullenti.semantic.internal.NGLink import NGLink
 
 class Sentence(object):
     
@@ -482,7 +482,7 @@ class Sentence(object):
     
     @staticmethod
     def parse_variants(t0 : 'Token', t1 : 'Token', lev : int, max_count : int=0, regime : 'SentItemType'=SentItemType.UNDEFINED) -> typing.List['Sentence']:
-        from pullenti.semantic.internal.SentItem import SentItem
+        from backend.pullenti.semantic.internal.SentItem import SentItem
         if ((t0 is None or t1 is None or t0.end_char > t1.end_char) or lev > 100): 
             return None
         res = list()
@@ -562,7 +562,7 @@ class Sentence(object):
         return 0
     
     def calc_coef(self, no_result : bool) -> None:
-        from pullenti.semantic.internal.NGSegment import NGSegment
+        from backend.pullenti.semantic.internal.NGSegment import NGSegment
         self.coef = (0)
         i = 0
         first_pass4314 = True

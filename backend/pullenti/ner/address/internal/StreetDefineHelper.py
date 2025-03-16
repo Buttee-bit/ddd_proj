@@ -1,43 +1,43 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.Referent import Referent
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.address.AddressDetailType import AddressDetailType
-from pullenti.ner.Token import Token
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.address.internal.StreetItemType import StreetItemType
-from pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
-from pullenti.ner.address.StreetKind import StreetKind
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.address.internal.AddressItemType import AddressItemType
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-from pullenti.ner.address.internal.AddressItemToken import AddressItemToken
-from pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.address.AddressDetailType import AddressDetailType
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.address.internal.StreetItemType import StreetItemType
+from backend.pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
+from backend.pullenti.ner.address.StreetKind import StreetKind
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.address.internal.AddressItemType import AddressItemType
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+from backend.pullenti.ner.address.internal.AddressItemToken import AddressItemToken
+from backend.pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
 
 class StreetDefineHelper:
     
@@ -954,7 +954,7 @@ class StreetDefineHelper:
     
     @staticmethod
     def __try_detect_non_noun(sli : typing.List['StreetItemToken'], onto_regim : bool, for_metro : bool, street_before : bool, cross_street : 'StreetReferent') -> 'AddressItemToken':
-        from pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
+        from backend.pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
         if (len(sli) > 1 and sli[len(sli) - 1].typ == StreetItemType.NUMBER and not sli[len(sli) - 1].number_has_prefix): 
             del sli[len(sli) - 1]
         street = None

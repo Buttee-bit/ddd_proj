@@ -1,23 +1,23 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.core.internal.BlockLine import BlockLine
-from pullenti.ner.core.internal.NumberExHelper import NumberExHelper
-from pullenti.ner.metadata.ImageWrapper import ImageWrapper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.core.PrepositionHelper import PrepositionHelper
-from pullenti.semantic.utils.DerivateService import DerivateService
-from pullenti.ner.core.internal.NounPhraseItem import NounPhraseItem
-from pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.core.internal.BlockLine import BlockLine
+from backend.pullenti.ner.core.internal.NumberExHelper import NumberExHelper
+from backend.pullenti.ner.metadata.ImageWrapper import ImageWrapper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.core.PrepositionHelper import PrepositionHelper
+from backend.pullenti.semantic.utils.DerivateService import DerivateService
+from backend.pullenti.ner.core.internal.NounPhraseItem import NounPhraseItem
+from backend.pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
 
 class ProcessorService:
     """ Служба лингвистических процессоров
@@ -73,7 +73,7 @@ class ProcessorService:
             Processor: экземпляр процессора
         
         """
-        from pullenti.ner.Processor import Processor
+        from backend.pullenti.ner.Processor import Processor
         if (not ProcessorService.__m_inited): 
             return None
         proc = Processor()
@@ -96,7 +96,7 @@ class ProcessorService:
             Processor: Экземпляр процессора
         
         """
-        from pullenti.ner.Processor import Processor
+        from backend.pullenti.ner.Processor import Processor
         if (not ProcessorService.__m_inited): 
             return None
         proc = Processor()
@@ -116,7 +116,7 @@ class ProcessorService:
             Processor: Процессор без выделения сущностей
         
         """
-        from pullenti.ner.Processor import Processor
+        from backend.pullenti.ner.Processor import Processor
         return Processor()
     
     @staticmethod
@@ -186,7 +186,7 @@ class ProcessorService:
         Returns:
             Referent: результат
         """
-        from pullenti.ner.Referent import Referent
+        from backend.pullenti.ner.Referent import Referent
         for cart in ProcessorService.__m_analizer_instances: 
             obj = cart.create_referent(type_name)
             if (obj is not None): 
@@ -215,7 +215,7 @@ class ProcessorService:
             if (inoutres3597): 
                 return res
         if (ProcessorService.__m_unknown_image is None): 
-            ProcessorService.__m_unknown_image = ImageWrapper._new3595("unknown", PullentiNerCoreInternalResourceHelper.get_bytes("unknown.png"))
+            ProcessorService.__m_unknown_image = ImageWrapper._new3595("unknown", NerCoreInternalResourceHelper.get_bytes("unknown.png"))
         return ProcessorService.__m_unknown_image
     
     @staticmethod

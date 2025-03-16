@@ -1,34 +1,34 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.denomination.DenominationReferent import DenominationReferent
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.ner.phone.PhoneReferent import PhoneReferent
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.booklink.internal.BookLinkTyp import BookLinkTyp
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.titlepage.internal.TitleItemToken import TitleItemToken
-from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
-from pullenti.ner.person.internal.FioTemplateType import FioTemplateType
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.booklink.internal.BookLinkToken import BookLinkToken
+from backend.pullenti.ner.denomination.DenominationReferent import DenominationReferent
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.ner.phone.PhoneReferent import PhoneReferent
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.booklink.internal.BookLinkTyp import BookLinkTyp
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.titlepage.internal.TitleItemToken import TitleItemToken
+from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+from backend.pullenti.ner.person.internal.FioTemplateType import FioTemplateType
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.booklink.internal.BookLinkToken import BookLinkToken
 
 class TitleNameToken(MetaToken):
     """ Название статьи """

@@ -1,33 +1,33 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import math
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.org.OrgProfile import OrgProfile
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.org.internal.MetaOrganization import MetaOrganization
-from pullenti.ner.org.OrganizationKind import OrganizationKind
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.IntOntologyItem import IntOntologyItem
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.org.OrgProfile import OrgProfile
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.org.internal.MetaOrganization import MetaOrganization
+from backend.pullenti.ner.org.OrganizationKind import OrganizationKind
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.IntOntologyItem import IntOntologyItem
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
 
 class OrganizationReferent(Referent):
     """ Сущность - организация
@@ -88,7 +88,7 @@ class OrganizationReferent(Referent):
     """ При выводе в ToString() первым ставить номер, если есть """
     
     def to_string_ex(self, short_variant : bool, lang : 'MorphLang'=None, lev : int=0) -> str:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         res = io.StringIO()
         is_dep = self.kind == OrganizationKind.DEPARTMENT
         name = None
@@ -572,7 +572,7 @@ class OrganizationReferent(Referent):
         return False
     
     def add_type(self, typ : 'OrgItemTypeToken', final_add : bool=False) -> None:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (typ is None): 
             return
         for p in typ.profiles: 
@@ -829,7 +829,7 @@ class OrganizationReferent(Referent):
     
     @property
     def _name_vars(self) -> typing.List[tuple]:
-        from pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
+        from backend.pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
         if (self.__m_name_vars is not None): 
             return self.__m_name_vars
         self.__m_name_vars = dict()
@@ -963,7 +963,7 @@ class OrganizationReferent(Referent):
         return ret
     
     def __can_be_equals(self, obj : 'Referent', ignore_geo_objects : bool, typ : 'ReferentsEqualType', lev : int) -> bool:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         org0_ = Utils.asObjectOrNull(obj, OrganizationReferent)
         if (org0_ is None): 
             return False
@@ -1469,7 +1469,7 @@ class OrganizationReferent(Referent):
     @property
     def kind(self) -> 'OrganizationKind':
         """ Категория организации (некоторая экспертная оценка на основе названия и типов) """
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (not self.__m_kind_calc): 
             self.__m_kind = OrgItemTypeToken.check_kind(self)
             if (self.__m_kind == OrganizationKind.UNDEFINED): 
@@ -1562,7 +1562,7 @@ class OrganizationReferent(Referent):
     @staticmethod
     def can_be_higher(higher_ : 'OrganizationReferent', lower : 'OrganizationReferent') -> bool:
         # Проверка на отношения "вышестоящий - нижестоящий"
-        from pullenti.ner.org.internal.OrgOwnershipHelper import OrgOwnershipHelper
+        from backend.pullenti.ner.org.internal.OrgOwnershipHelper import OrgOwnershipHelper
         return OrgOwnershipHelper.can_be_higher(higher_, lower, False)
     
     # static constructor for class OrganizationReferent

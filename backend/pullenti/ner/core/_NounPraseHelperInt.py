@@ -1,35 +1,35 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.core.internal.NounPhraseItemTextVar import NounPhraseItemTextVar
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.core.NounPhraseToken import NounPhraseToken
-from pullenti.semantic.core.SemanticHelper import SemanticHelper
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.PrepositionHelper import PrepositionHelper
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.internal.NounPhraseItem import NounPhraseItem
-from pullenti.ner.core.VerbPhraseHelper import VerbPhraseHelper
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.core.internal.NounPhraseItemTextVar import NounPhraseItemTextVar
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.core.NounPhraseToken import NounPhraseToken
+from backend.pullenti.semantic.core.SemanticHelper import SemanticHelper
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.PrepositionHelper import PrepositionHelper
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.internal.NounPhraseItem import NounPhraseItem
+from backend.pullenti.ner.core.VerbPhraseHelper import VerbPhraseHelper
 
 class _NounPraseHelperInt:
     

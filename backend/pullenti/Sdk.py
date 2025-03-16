@@ -1,43 +1,43 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.decree.DecreeAnalyzer import DecreeAnalyzer
-from pullenti.ner.transport.TransportAnalyzer import TransportAnalyzer
-from pullenti.ner.instrument.InstrumentAnalyzer import InstrumentAnalyzer
-from pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
-from pullenti.ner.mail.MailAnalyzer import MailAnalyzer
-from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
-from pullenti.ner.titlepage.TitlePageAnalyzer import TitlePageAnalyzer
-from pullenti.ner.weapon.WeaponAnalyzer import WeaponAnalyzer
-from pullenti.semantic.SemanticService import SemanticService
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.named.NamedEntityAnalyzer import NamedEntityAnalyzer
-from pullenti.ner.booklink.BookLinkAnalyzer import BookLinkAnalyzer
-from pullenti.ner.goods.GoodsAnalyzer import GoodsAnalyzer
-from pullenti.ner.date.DateAnalyzer import DateAnalyzer
-from pullenti.ner.uri.UriAnalyzer import UriAnalyzer
-from pullenti.ner.keyword.KeywordAnalyzer import KeywordAnalyzer
-from pullenti.ner.money.MoneyAnalyzer import MoneyAnalyzer
-from pullenti.ner.phone.PhoneAnalyzer import PhoneAnalyzer
-from pullenti.ner.definition.DefinitionAnalyzer import DefinitionAnalyzer
-from pullenti.ner.address.AddressAnalyzer import AddressAnalyzer
-from pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
-from pullenti.ner.bank.BankAnalyzer import BankAnalyzer
-from pullenti.ner.denomination.DenominationAnalyzer import DenominationAnalyzer
-from pullenti.ner.measure.MeasureAnalyzer import MeasureAnalyzer
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.decree.DecreeAnalyzer import DecreeAnalyzer
+from backend.pullenti.ner.transport.TransportAnalyzer import TransportAnalyzer
+from backend.pullenti.ner.instrument.InstrumentAnalyzer import InstrumentAnalyzer
+from backend.pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
+from backend.pullenti.ner.mail.MailAnalyzer import MailAnalyzer
+from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from backend.pullenti.ner.titlepage.TitlePageAnalyzer import TitlePageAnalyzer
+from backend.pullenti.ner.weapon.WeaponAnalyzer import WeaponAnalyzer
+from backend.pullenti.semantic.SemanticService import SemanticService
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.named.NamedEntityAnalyzer import NamedEntityAnalyzer
+from backend.pullenti.ner.booklink.BookLinkAnalyzer import BookLinkAnalyzer
+from backend.pullenti.ner.goods.GoodsAnalyzer import GoodsAnalyzer
+from backend.pullenti.ner.date.DateAnalyzer import DateAnalyzer
+from backend.pullenti.ner.uri.UriAnalyzer import UriAnalyzer
+from backend.pullenti.ner.keyword.KeywordAnalyzer import KeywordAnalyzer
+from backend.pullenti.ner.money.MoneyAnalyzer import MoneyAnalyzer
+from backend.pullenti.ner.phone.PhoneAnalyzer import PhoneAnalyzer
+from backend.pullenti.ner.definition.DefinitionAnalyzer import DefinitionAnalyzer
+from backend.pullenti.ner.address.AddressAnalyzer import AddressAnalyzer
+from backend.pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
+from backend.pullenti.ner.bank.BankAnalyzer import BankAnalyzer
+from backend.pullenti.ner.denomination.DenominationAnalyzer import DenominationAnalyzer
+from backend.pullenti.ner.measure.MeasureAnalyzer import MeasureAnalyzer
 
 class Sdk:
-    """ Инициализация SDK Pullenti
+    """ Инициализация SDK backend.pullenti
     
     """
     
     @staticmethod
     def get_version() -> str:
-        """ Версия SDK Pullenti """
+        """ Версия SDK backend.pullenti """
         return ProcessorService.get_version()
     
     @staticmethod

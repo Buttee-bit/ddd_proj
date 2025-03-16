@@ -1,25 +1,25 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import threading
 import typing
 import datetime
 import math
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Misc import EventHandler
-from pullenti.unisharp.Misc import ProgressEventArgs
-from pullenti.unisharp.Misc import CancelEventArgs
-from pullenti.unisharp.Misc import Stopwatch
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Misc import EventHandler
+from backend.pullenti.unisharp.Misc import ProgressEventArgs
+from backend.pullenti.unisharp.Misc import CancelEventArgs
+from backend.pullenti.unisharp.Misc import Stopwatch
 
-from pullenti.ner.core.internal.GeneralRelationHelper import GeneralRelationHelper
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.internal.ProgressPeace import ProgressPeace
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.core.AnalysisKit import AnalysisKit
-from pullenti.ner.AnalysisResult import AnalysisResult
+from backend.pullenti.ner.core.internal.GeneralRelationHelper import GeneralRelationHelper
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.internal.ProgressPeace import ProgressPeace
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.core.AnalysisKit import AnalysisKit
+from backend.pullenti.ner.AnalysisResult import AnalysisResult
 
 class Processor(object):
     """ Лингвистический процессор

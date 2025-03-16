@@ -1,30 +1,30 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.CanBeEqualsAttr import CanBeEqualsAttr
-from pullenti.ner.instrument.internal.NumberTypes import NumberTypes
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
-from pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
-from pullenti.ner.instrument.InstrumentKind import InstrumentKind
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-from pullenti.ner.decree.internal.PartToken import PartToken
-from pullenti.ner.instrument.internal.FragToken import FragToken
-from pullenti.ner.instrument.internal.ContentAnalyzeWhapper import ContentAnalyzeWhapper
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.CanBeEqualsAttr import CanBeEqualsAttr
+from backend.pullenti.ner.instrument.internal.NumberTypes import NumberTypes
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
+from backend.pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
+from backend.pullenti.ner.instrument.InstrumentKind import InstrumentKind
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+from backend.pullenti.ner.decree.internal.PartToken import PartToken
+from backend.pullenti.ner.instrument.internal.FragToken import FragToken
+from backend.pullenti.ner.instrument.internal.ContentAnalyzeWhapper import ContentAnalyzeWhapper
 
 class ListHelper:
     
@@ -49,12 +49,12 @@ class ListHelper:
         
         @staticmethod
         def parse(t : 'Token', max_char : int, prev : 'LineToken') -> 'LineToken':
-            from pullenti.morph.LanguageHelper import LanguageHelper
-            from pullenti.ner.NumberToken import NumberToken
-            from pullenti.ner.TextToken import TextToken
-            from pullenti.ner.core.BracketHelper import BracketHelper
-            from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-            from pullenti.ner.decree.DecreeReferent import DecreeReferent
+            from backend.pullenti.morph.LanguageHelper import LanguageHelper
+            from backend.pullenti.ner.NumberToken import NumberToken
+            from backend.pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.core.BracketHelper import BracketHelper
+            from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+            from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
             if (t is None or t.end_char > max_char): 
                 return None
             res = ListHelper.LineToken(t, t)

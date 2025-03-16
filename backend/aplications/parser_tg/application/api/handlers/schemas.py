@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from backend.aplications.parser_tg.application.api.schemas import BaseQueryResponseSchema
 from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
@@ -28,7 +28,8 @@ class TestAddEntityPersonToDocumentRequestSchema(BaseModel):
 
 
 class TestAddEntityPersonToDocumentResponseSchema(BaseModel):
-    ...
+    test: str
+
 
 class GetMessagesQueryResponseSchema(BaseQueryResponseSchema[list[CreateChannelResponseSchema]]):
     ...

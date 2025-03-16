@@ -1,28 +1,28 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.decree.internal.DecreeToken import DecreeToken
-from pullenti.ner.instrument.InstrumentKind import InstrumentKind
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.instrument.internal.InstrumentArtefactMeta import InstrumentArtefactMeta
-from pullenti.ner.instrument.internal.InstrToken import InstrToken
-from pullenti.ner.instrument.InstrumentBlockReferent import InstrumentBlockReferent
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.instrument.internal.MetaInstrumentBlock import MetaInstrumentBlock
-from pullenti.ner.instrument.internal.InstrumentParticipantMeta import InstrumentParticipantMeta
-from pullenti.ner.instrument.InstrumentArtefactReferent import InstrumentArtefactReferent
-from pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
-from pullenti.ner.instrument.internal.MetaInstrument import MetaInstrument
-from pullenti.ner.instrument.InstrumentParticipantReferent import InstrumentParticipantReferent
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
+from backend.pullenti.ner.instrument.InstrumentKind import InstrumentKind
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.instrument.internal.InstrumentArtefactMeta import InstrumentArtefactMeta
+from backend.pullenti.ner.instrument.internal.InstrToken import InstrToken
+from backend.pullenti.ner.instrument.InstrumentBlockReferent import InstrumentBlockReferent
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.instrument.internal.MetaInstrumentBlock import MetaInstrumentBlock
+from backend.pullenti.ner.instrument.internal.InstrumentParticipantMeta import InstrumentParticipantMeta
+from backend.pullenti.ner.instrument.InstrumentArtefactReferent import InstrumentArtefactReferent
+from backend.pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
+from backend.pullenti.ner.instrument.internal.MetaInstrument import MetaInstrument
+from backend.pullenti.ner.instrument.InstrumentParticipantReferent import InstrumentParticipantReferent
 
 class InstrumentAnalyzer(Analyzer):
     """ Анализатор структуры нормативных актов и договоров: восстановление иерархической структуры фрагментов,
@@ -64,10 +64,10 @@ class InstrumentAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaInstrument.DOC_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("decree.png")
-        res[MetaInstrumentBlock.PART_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("part.png")
-        res[InstrumentParticipantMeta.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("participant.png")
-        res[InstrumentArtefactMeta.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("artefact.png")
+        res[MetaInstrument.DOC_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("decree.png")
+        res[MetaInstrumentBlock.PART_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("part.png")
+        res[InstrumentParticipantMeta.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("participant.png")
+        res[InstrumentArtefactMeta.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("artefact.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':
@@ -82,7 +82,7 @@ class InstrumentAnalyzer(Analyzer):
         return None
     
     def process(self, kit : 'AnalysisKit') -> None:
-        from pullenti.ner.instrument.internal.FragToken import FragToken
+        from backend.pullenti.ner.instrument.internal.FragToken import FragToken
         aa = kit.processor.find_analyzer("DOCUMENT")
         if (aa is None): 
             for a in ProcessorService.get_analyzers(): 
@@ -127,7 +127,7 @@ class InstrumentAnalyzer(Analyzer):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.instrument.internal.ParticipantToken import ParticipantToken
+        from backend.pullenti.ner.instrument.internal.ParticipantToken import ParticipantToken
         if (InstrumentAnalyzer.__m_inited): 
             return
         InstrumentAnalyzer.__m_inited = True

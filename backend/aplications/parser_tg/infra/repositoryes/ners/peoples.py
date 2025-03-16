@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import logging
 
 from backend.aplications.parser_tg.domain.entity.ner.person import NerPeople
 from backend.aplications.parser_tg.infra.repositoryes.base import BaseMongoDBRepository, BaseNerPeopleRepository
@@ -8,7 +9,7 @@ from backend.aplications.parser_tg.infra.repositoryes.ners.converters import con
 @dataclass
 class NerPeoplesRepository(BaseNerPeopleRepository, BaseMongoDBRepository):
 
-    async def get_ner_by_id_document(self, id_document: str) -> NerPeople:
+    async def get_by_id_document(self, id_document: str) -> NerPeople:
         document = self._collection.find_one(
             filter={
                 "id_document": id_document
@@ -16,6 +17,8 @@ class NerPeoplesRepository(BaseNerPeopleRepository, BaseMongoDBRepository):
         )
 
     async def add_ner_by_id_document(self, id_document: str, ner: NerPeople) -> None:
+        if ner == []:
+            return None
         await self._collection.insert_one(
             {
                 "id_document": id_document,

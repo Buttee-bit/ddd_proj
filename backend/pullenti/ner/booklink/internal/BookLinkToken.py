@@ -1,39 +1,39 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import datetime
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.org.OrganizationKind import OrganizationKind
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.internal.BlkTyps import BlkTyps
-from pullenti.ner.booklink.BookLinkRefReferent import BookLinkRefReferent
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.core.internal.BlockLine import BlockLine
-from pullenti.ner.booklink.internal.TitleItemToken import TitleItemToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
-from pullenti.ner.booklink.internal.BookLinkTyp import BookLinkTyp
-from pullenti.ner.person.internal.FioTemplateType import FioTemplateType
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.person.internal.PersonItemToken import PersonItemToken
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.org.OrganizationKind import OrganizationKind
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.internal.BlkTyps import BlkTyps
+from backend.pullenti.ner.booklink.BookLinkRefReferent import BookLinkRefReferent
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.core.internal.BlockLine import BlockLine
+from backend.pullenti.ner.booklink.internal.TitleItemToken import TitleItemToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+from backend.pullenti.ner.booklink.internal.BookLinkTyp import BookLinkTyp
+from backend.pullenti.ner.person.internal.FioTemplateType import FioTemplateType
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.person.internal.PersonItemToken import PersonItemToken
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.NumberToken import NumberToken
 
 class BookLinkToken(MetaToken):
     

@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.core.StatisticBigrammInfo import StatisticBigrammInfo
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.StatisticWordInfo import StatisticWordInfo
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.core.StatisticBigrammInfo import StatisticBigrammInfo
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.StatisticWordInfo import StatisticWordInfo
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
 
 class StatisticCollection:
     """ Статистическая информация о словоформах и их биграммах в тексте - поле AnalysisKit.Statistic.

@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.semantic.utils.DerivateGroup import DerivateGroup
-from pullenti.semantic.SemLinkType import SemLinkType
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.semantic.SemObjectType import SemObjectType
-from pullenti.ner.measure.MeasureKind import MeasureKind
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.semantic.utils.DerivateGroup import DerivateGroup
+from backend.pullenti.semantic.SemLinkType import SemLinkType
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.semantic.SemObjectType import SemObjectType
+from backend.pullenti.ner.measure.MeasureKind import MeasureKind
 
 class SemObject(object):
     """ Семантический объект """

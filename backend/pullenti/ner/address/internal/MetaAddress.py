@@ -1,14 +1,14 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.address.AddressDetailType import AddressDetailType
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.address.AddressHouseType import AddressHouseType
-from pullenti.ner.address.AddressBuildingType import AddressBuildingType
+from backend.pullenti.ner.address.AddressDetailType import AddressDetailType
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.address.AddressHouseType import AddressHouseType
+from backend.pullenti.ner.address.AddressBuildingType import AddressBuildingType
 
 class MetaAddress(ReferentClass):
     
@@ -20,7 +20,7 @@ class MetaAddress(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.address.AddressReferent import AddressReferent
+        from backend.pullenti.ner.address.AddressReferent import AddressReferent
         MetaAddress._global_meta = MetaAddress()
         MetaAddress._global_meta.add_feature(AddressReferent.ATTR_STREET, "Улица", 0, 2)
         MetaAddress._global_meta.add_feature(AddressReferent.ATTR_HOUSE, "Дом", 0, 1)
@@ -85,7 +85,7 @@ class MetaAddress(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.address.AddressReferent import AddressReferent
+        from backend.pullenti.ner.address.AddressReferent import AddressReferent
         return AddressReferent.OBJ_TYPENAME
     
     @property

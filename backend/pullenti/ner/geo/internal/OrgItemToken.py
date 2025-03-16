@@ -1,44 +1,44 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.geo.internal.GeoTokenType import GeoTokenType
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.address.AddressDetailType import AddressDetailType
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
-from pullenti.ner.address.internal.AddressItemToken import AddressItemToken
-from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
-from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-from pullenti.ner.geo.internal.CityAttachHelper import CityAttachHelper
-from pullenti.ner.address.internal.StreetItemType import StreetItemType
-from pullenti.ner.Token import Token
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.address.internal.AddressItemType import AddressItemType
-from pullenti.ner.Referent import Referent
-from pullenti.ner.address.AddressHouseType import AddressHouseType
-from pullenti.ner.address.StreetKind import StreetKind
-from pullenti.ner.geo.internal.GeoTokenData import GeoTokenData
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
-from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
-from pullenti.ner.geo.internal.NumToken import NumToken
+from backend.pullenti.ner.geo.internal.GeoTokenType import GeoTokenType
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.address.AddressDetailType import AddressDetailType
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
+from backend.pullenti.ner.address.internal.AddressItemToken import AddressItemToken
+from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+from backend.pullenti.ner.geo.internal.CityAttachHelper import CityAttachHelper
+from backend.pullenti.ner.address.internal.StreetItemType import StreetItemType
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.address.internal.AddressItemType import AddressItemType
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.address.AddressHouseType import AddressHouseType
+from backend.pullenti.ner.address.StreetKind import StreetKind
+from backend.pullenti.ner.geo.internal.GeoTokenData import GeoTokenData
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
+from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from backend.pullenti.ner.geo.internal.NumToken import NumToken
 
 class OrgItemToken(ReferentToken):
     
@@ -154,8 +154,8 @@ class OrgItemToken(ReferentToken):
     
     @staticmethod
     def __try_parse(t : 'Token', after_terr : bool, lev : int, ad : 'GeoAnalyzerData') -> 'OrgItemToken':
-        from pullenti.ner.geo.internal.CityItemToken import CityItemToken
-        from pullenti.ner.geo.internal.NameToken import NameToken
+        from backend.pullenti.ner.geo.internal.CityItemToken import CityItemToken
+        from backend.pullenti.ner.geo.internal.NameToken import NameToken
         if (lev > 3 or t is None or t.is_comma): 
             return None
         tt2 = MiscLocationHelper.check_territory(t)
@@ -929,8 +929,8 @@ class OrgItemToken(ReferentToken):
         return res
     
     def __try_parse_details(self) -> None:
-        from pullenti.ner.geo.internal.CityItemToken import CityItemToken
-        from pullenti.ner.geo.internal.NameToken import NameToken
+        from backend.pullenti.ner.geo.internal.CityItemToken import CityItemToken
+        from backend.pullenti.ner.geo.internal.NameToken import NameToken
         if (self.whitespaces_after_count > 2): 
             return
         t = self.end_token.next0_

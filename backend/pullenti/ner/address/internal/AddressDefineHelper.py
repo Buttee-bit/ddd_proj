@@ -1,36 +1,36 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
-from pullenti.ner.Referent import Referent
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.address.StreetKind import StreetKind
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.Token import Token
-from pullenti.ner.address.internal.AddressItemType import AddressItemType
-from pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
-from pullenti.ner.address.AddressDetailType import AddressDetailType
-from pullenti.ner.address.AddressHouseType import AddressHouseType
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.address.AddressBuildingType import AddressBuildingType
-from pullenti.ner.address.internal.AddressItemToken import AddressItemToken
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.address.StreetKind import StreetKind
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.address.internal.AddressItemType import AddressItemType
+from backend.pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
+from backend.pullenti.ner.address.AddressDetailType import AddressDetailType
+from backend.pullenti.ner.address.AddressHouseType import AddressHouseType
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.address.AddressBuildingType import AddressBuildingType
+from backend.pullenti.ner.address.internal.AddressItemToken import AddressItemToken
 
 class AddressDefineHelper:
     
     @staticmethod
     def try_define(li : typing.List['AddressItemToken'], t : 'Token', ad : 'AnalyzerData', ignore_street : bool=False) -> 'Token':
-        from pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
+        from backend.pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
         if (li is None or len(li) == 0): 
             return None
         empty = True

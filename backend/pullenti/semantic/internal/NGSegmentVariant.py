@@ -1,23 +1,23 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.semantic.internal.SentItemType import SentItemType
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.semantic.internal.NGItem import NGItem
-from pullenti.semantic.internal.SentItem import SentItem
-from pullenti.semantic.SemanticService import SemanticService
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.semantic.internal.NGLinkType import NGLinkType
-from pullenti.semantic.internal.NGLink import NGLink
+from backend.pullenti.semantic.internal.SentItemType import SentItemType
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.semantic.internal.NGItem import NGItem
+from backend.pullenti.semantic.internal.SentItem import SentItem
+from backend.pullenti.semantic.SemanticService import SemanticService
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.semantic.internal.NGLinkType import NGLinkType
+from backend.pullenti.semantic.internal.NGLink import NGLink
 
 class NGSegmentVariant(object):
     

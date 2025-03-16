@@ -1,29 +1,29 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Token import Token
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.Referent import Referent
-from pullenti.ner.named.NamedEntityKind import NamedEntityKind
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.named.internal.MetaNamedEntity import MetaNamedEntity
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
-from pullenti.ner.named.NamedEntityReferent import NamedEntityReferent
-from pullenti.ner.named.internal.NamedItemToken import NamedItemToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.named.NamedEntityKind import NamedEntityKind
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.named.internal.MetaNamedEntity import MetaNamedEntity
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
+from backend.pullenti.ner.named.NamedEntityReferent import NamedEntityReferent
+from backend.pullenti.ner.named.internal.NamedItemToken import NamedItemToken
 
 class NamedEntityAnalyzer(Analyzer):
     """ Анализатор именованных сущностей "тип" + "имя": планеты, памятники, здания, местоположения, планеты и пр. """
@@ -53,12 +53,12 @@ class NamedEntityAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[Utils.enumToString(NamedEntityKind.MONUMENT)] = PullentiNerCoreInternalResourceHelper.get_bytes("monument.png")
-        res[Utils.enumToString(NamedEntityKind.PLANET)] = PullentiNerCoreInternalResourceHelper.get_bytes("planet.png")
-        res[Utils.enumToString(NamedEntityKind.LOCATION)] = PullentiNerCoreInternalResourceHelper.get_bytes("location.png")
-        res[Utils.enumToString(NamedEntityKind.BUILDING)] = PullentiNerCoreInternalResourceHelper.get_bytes("building.png")
-        res[Utils.enumToString(NamedEntityKind.AWARD)] = PullentiNerCoreInternalResourceHelper.get_bytes("award.png")
-        res[Utils.enumToString(NamedEntityKind.ART)] = PullentiNerCoreInternalResourceHelper.get_bytes("art.png")
+        res[Utils.enumToString(NamedEntityKind.MONUMENT)] = NerCoreInternalResourceHelper.get_bytes("monument.png")
+        res[Utils.enumToString(NamedEntityKind.PLANET)] = NerCoreInternalResourceHelper.get_bytes("planet.png")
+        res[Utils.enumToString(NamedEntityKind.LOCATION)] = NerCoreInternalResourceHelper.get_bytes("location.png")
+        res[Utils.enumToString(NamedEntityKind.BUILDING)] = NerCoreInternalResourceHelper.get_bytes("building.png")
+        res[Utils.enumToString(NamedEntityKind.AWARD)] = NerCoreInternalResourceHelper.get_bytes("award.png")
+        res[Utils.enumToString(NamedEntityKind.ART)] = NerCoreInternalResourceHelper.get_bytes("art.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

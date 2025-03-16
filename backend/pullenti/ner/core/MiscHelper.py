@@ -1,35 +1,35 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
 import unicodedata
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.semantic.utils.DerivateService import DerivateService
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.internal.RusLatAccord import RusLatAccord
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.morph.MorphPerson import MorphPerson
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.Token import Token
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.CanBeEqualsAttr import CanBeEqualsAttr
-from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.semantic.utils.DerivateService import DerivateService
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.internal.RusLatAccord import RusLatAccord
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.morph.MorphPerson import MorphPerson
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.CanBeEqualsAttr import CanBeEqualsAttr
+from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
 
 class MiscHelper:
     """ Разные полезные процедурки лингвистического анализа. Особо полезные функции выделены шрифтом.
@@ -226,8 +226,8 @@ class MiscHelper:
         Returns:
             bool: да-нет
         """
-        from pullenti.ner.core.BracketHelper import BracketHelper
-        from pullenti.ner.core.AnalysisKit import AnalysisKit
+        from backend.pullenti.ner.core.BracketHelper import BracketHelper
+        from backend.pullenti.ner.core.AnalysisKit import AnalysisKit
         if (Utils.isNullOrEmpty(s1) or Utils.isNullOrEmpty(s2)): 
             return False
         if (s1 == s2): 
@@ -1098,7 +1098,7 @@ class MiscHelper:
             str: результирующая строка
         
         """
-        from pullenti.ner.core.NounPhraseMultivarToken import NounPhraseMultivarToken
+        from backend.pullenti.ner.core.NounPhraseMultivarToken import NounPhraseMultivarToken
         if (mt is None): 
             return None
         if (isinstance(mt, NounPhraseMultivarToken)): 
@@ -1132,9 +1132,9 @@ class MiscHelper:
     
     @staticmethod
     def __get_text_value_(begin : 'Token', end : 'Token', attrs : 'GetTextAttr', r : 'Referent') -> str:
-        from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-        from pullenti.ner.core.BracketHelper import BracketHelper
-        from pullenti.ner.ProcessorService import ProcessorService
+        from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+        from backend.pullenti.ner.core.BracketHelper import BracketHelper
+        from backend.pullenti.ner.ProcessorService import ProcessorService
         if (begin is None or end is None or begin.end_char > end.end_char): 
             return None
         if ((((attrs) & (GetTextAttr.KEEPQUOTES))) == (GetTextAttr.NO)): 
@@ -1325,7 +1325,7 @@ class MiscHelper:
     @staticmethod
     def is_eng_adj_suffix(t : 'Token') -> bool:
         # Проверка, что это суффикс прилагательного (street's)
-        from pullenti.ner.core.BracketHelper import BracketHelper
+        from backend.pullenti.ner.core.BracketHelper import BracketHelper
         if (t is None): 
             return False
         if (not BracketHelper.is_bracket(t, True)): 
@@ -1377,7 +1377,7 @@ class MiscHelper:
     
     @staticmethod
     def __rest_chars(t : 'TextToken', r : 'Referent') -> str:
-        from pullenti.ner.core.BracketHelper import BracketHelper
+        from backend.pullenti.ner.core.BracketHelper import BracketHelper
         if (not t.chars.is_all_upper or not t.chars.is_letter): 
             return MiscHelper.__corr_chars(t.term, t.chars, True, t)
         if (t.term == "Г" or t.term == "ГГ"): 
@@ -1432,8 +1432,8 @@ class MiscHelper:
             str: результат, в худшем случае вернёт исходную строку
         
         """
-        from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-        from pullenti.ner.ProcessorService import ProcessorService
+        from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+        from backend.pullenti.ner.ProcessorService import ProcessorService
         if (Utils.isNullOrEmpty(txt)): 
             return txt
         npt = NounPhraseHelper.try_parse(begin_sample, NounPhraseParseAttr.NO, 0, None)
@@ -1514,8 +1514,8 @@ class MiscHelper:
             str: результат (в крайнем случае, вернёт исходную строку, если ничего не получилось)
         
         """
-        from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-        from pullenti.ner.ProcessorService import ProcessorService
+        from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+        from backend.pullenti.ner.ProcessorService import ProcessorService
         ar = None
         try: 
             ar = ProcessorService.get_empty_processor().process(SourceOfAnalysis(txt), None, None)
@@ -1632,9 +1632,9 @@ class MiscHelper:
         Returns:
             str: результат
         """
-        from pullenti.ner.core.NounPhraseToken import NounPhraseToken
-        from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-        from pullenti.ner.ProcessorService import ProcessorService
+        from backend.pullenti.ner.core.NounPhraseToken import NounPhraseToken
+        from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+        from backend.pullenti.ner.ProcessorService import ProcessorService
         if (str0_ == "коп" or str0_ == "руб"): 
             return str0_
         if (str0_ == "лет"): 

@@ -1,33 +1,33 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.uri.UriAnalyzer import UriAnalyzer
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.phone.internal.PhoneHelper import PhoneHelper
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.bank.internal.PullentiNerBankInternalResourceHelper import PullentiNerBankInternalResourceHelper
-from pullenti.ner.Referent import Referent
-from pullenti.ner.phone.internal.MetaPhone import MetaPhone
-from pullenti.ner.phone.PhoneReferent import PhoneReferent
-from pullenti.ner.phone.PhoneKind import PhoneKind
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.phone.internal.PhoneItemToken import PhoneItemToken
-from pullenti.ner.core.AnalyzerData import AnalyzerData
-from pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.uri.UriAnalyzer import UriAnalyzer
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.phone.internal.PhoneHelper import PhoneHelper
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.bank.internal.backend.pullentiNerBankInternalResourceHelper import backend.pullentiNerBankInternalResourceHelper
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.phone.internal.MetaPhone import MetaPhone
+from backend.pullenti.ner.phone.PhoneReferent import PhoneReferent
+from backend.pullenti.ner.phone.PhoneKind import PhoneKind
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.phone.internal.PhoneItemToken import PhoneItemToken
+from backend.pullenti.ner.core.AnalyzerData import AnalyzerData
+from backend.pullenti.ner.Analyzer import Analyzer
 
 class PhoneAnalyzer(Analyzer):
     """ Анализатор для выделения телефонных номеров """
@@ -39,9 +39,9 @@ class PhoneAnalyzer(Analyzer):
             self.__m_phones_hash = dict()
         
         def register_referent(self, referent : 'Referent') -> 'Referent':
-            from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-            from pullenti.ner.Referent import Referent
-            from pullenti.ner.phone.PhoneReferent import PhoneReferent
+            from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+            from backend.pullenti.ner.Referent import Referent
+            from backend.pullenti.ner.phone.PhoneReferent import PhoneReferent
             phone_ = Utils.asObjectOrNull(referent, PhoneReferent)
             if (phone_ is None): 
                 return None
@@ -88,7 +88,7 @@ class PhoneAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaPhone.PHONE_IMAGE_ID] = PullentiNerBankInternalResourceHelper.get_bytes("phone.png")
+        res[MetaPhone.PHONE_IMAGE_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("phone.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

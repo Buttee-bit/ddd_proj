@@ -1,24 +1,24 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Token import Token
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
 
 class OrgItemEponymToken(MetaToken):
     
@@ -45,7 +45,7 @@ class OrgItemEponymToken(MetaToken):
         
         @staticmethod
         def try_attach(t : 'Token') -> typing.List['PersonItemToken']:
-            from pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.TextToken import TextToken
             res = list()
             first_pass4137 = True
             while True:
@@ -117,7 +117,7 @@ class OrgItemEponymToken(MetaToken):
     
     @staticmethod
     def try_attach(t : 'Token', must_has_prefix : bool=False) -> 'OrgItemEponymToken':
-        from pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
+        from backend.pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
         tt = Utils.asObjectOrNull(t, TextToken)
         if (tt is None): 
             if (t is None): 

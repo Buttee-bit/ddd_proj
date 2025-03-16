@@ -1,32 +1,32 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.semantic.SemLinkType import SemLinkType
-from pullenti.semantic.SemQuantity import SemQuantity
-from pullenti.ner.measure.MeasureReferent import MeasureReferent
-from pullenti.semantic.SemAttributeType import SemAttributeType
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphAspect import MorphAspect
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.semantic.internal.AdverbToken import AdverbToken
-from pullenti.semantic.SemAttribute import SemAttribute
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.TextToken import TextToken
-from pullenti.semantic.SemObject import SemObject
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.semantic.utils.DerivateService import DerivateService
-from pullenti.semantic.SemObjectType import SemObjectType
-from pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.semantic.SemLinkType import SemLinkType
+from backend.pullenti.semantic.SemQuantity import SemQuantity
+from backend.pullenti.ner.measure.MeasureReferent import MeasureReferent
+from backend.pullenti.semantic.SemAttributeType import SemAttributeType
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphAspect import MorphAspect
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.semantic.internal.AdverbToken import AdverbToken
+from backend.pullenti.semantic.SemAttribute import SemAttribute
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.semantic.SemObject import SemObject
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.semantic.utils.DerivateService import DerivateService
+from backend.pullenti.semantic.SemObjectType import SemObjectType
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
 
 class CreateHelper:
     

@@ -10,21 +10,47 @@ from telethon import TelegramClient
 from faststream.kafka import KafkaBroker
 
 from backend.aplications.parser_tg.application.scrapping.tg import TgParsServices
-from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository, BaseNerPeopleRepository, BaseNewsRepository
-from backend.aplications.parser_tg.infra.repositoryes.channels_repo import ChannelsRepository
+from backend.aplications.parser_tg.infra.analizer.base import BaseAnalazer
+from backend.aplications.parser_tg.infra.analizer.person_analizer import PersonAnalizer
+from backend.aplications.parser_tg.infra.repositoryes.base import (
+    BaseChannelRepository,
+    BaseNerPeopleRepository,
+    BaseNewsRepository,
+)
+from backend.aplications.parser_tg.infra.repositoryes.channels_repo import (
+    ChannelsRepository,
+)
+from backend.aplications.parser_tg.infra.repositoryes.ners.peoples import (
+    NerPeoplesRepository,
+)
 from backend.aplications.parser_tg.infra.repositoryes.news_repo import NewsRepository
-from backend.aplications.parser_tg.logic.commands.ner_people import AddNerPeopleToDocumentCommand, AddNerPeopleToDocumenthandler
-from backend.aplications.parser_tg.logic.commands.news import CreateNewsCommandHandler, CreateNewsCommand
-from backend.aplications.parser_tg.logic.commands.channels import CreateChannelCommandHandler, CreateChannelsCommand
-from backend.aplications.parser_tg.logic.mediator.base import Mediator
-from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQueryWithFilter, GetChannelQueryWithilterHandler, GetChannelQueryHandler, GetChannelsQuery
-from backend.aplications.parser_tg.setings.setting import Settings
 
+from backend.aplications.parser_tg.logic.commands.ner_people import (
+    AddNerPeopleToDocumentCommand,
+    AddNerPeopleToDocumentHandler,
+)
+from backend.aplications.parser_tg.logic.commands.news import (
+    CreateNewsCommandHandler,
+    CreateNewsCommand,
+)
+from backend.aplications.parser_tg.logic.commands.channels import (
+    CreateChannelCommandHandler,
+    CreateChannelsCommand,
+)
+from backend.aplications.parser_tg.logic.mediator.base import Mediator
+from backend.aplications.parser_tg.logic.queries.channels import (
+    GetChannelsQueryWithFilter,
+    GetChannelQueryWithilterHandler,
+    GetChannelQueryHandler,
+    GetChannelsQuery,
+)
+from backend.aplications.parser_tg.setings.setting import Settings
 
 
 @lru_cache(1)
 def init_conatainer() -> Container:
     return _init_container()
+
 
 def _init_container() -> Container:
     container = Container()
@@ -33,12 +59,16 @@ def _init_container() -> Container:
 
     settings: Settings = container.resolve(Settings)
     logging.warning(f"settings: {settings}")
+
     def create_mongodb_client():
         return AsyncIOMotorClient(
             settings.mongodb_connection_uri,
             serverSelectionTimeoutMS=3000,
         )
-    container.register(AsyncIOMotorClient, factory=create_mongodb_client, scope=Scope.singleton)
+
+    container.register(
+        AsyncIOMotorClient, factory=create_mongodb_client, scope=Scope.singleton
+    )
     client = container.resolve(AsyncIOMotorClient)
 
     def _init_TgServices() -> TgParsServices:
@@ -51,34 +81,59 @@ def _init_container() -> Container:
                 device_model="Desktop",
                 system_version="4.17.30-vxCUSTOM",
             ),
-            broker = KafkaBroker(),
+            broker=KafkaBroker(bootstrap_servers=["kafka:29092"]),
             topic="telegram_messages",
         )
 
     container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)
 
-
-    #Repositories
+    # Repositories
     def init_news_repository() -> BaseNewsRepository:
         return NewsRepository(
             mongo_db_client=client,
             mongo_db_db_name=settings.mongodb_news_database_name,
-            mongo_db_collection_name=settings.mongodb_news_collection_name
+            mongo_db_collection_name=settings.mongodb_news_collection_name,
         )
-
-
 
     def init_channels_repository() -> BaseChannelRepository:
         return ChannelsRepository(
             mongo_db_client=client,
             mongo_db_db_name=settings.mongodb_channels_database_name,
-            mongo_db_collection_name=settings.mongodb_channels_collection_name
+            mongo_db_collection_name=settings.mongodb_channels_collection_name,
         )
 
-    container.register(BaseNewsRepository, factory=init_news_repository, scope=Scope.singleton)
-    container.register(BaseChannelRepository, factory=init_channels_repository, scope=Scope.singleton)
+    def init_ner_people_repository() -> BaseNerPeopleRepository:
+        return NerPeoplesRepository(
+            mongo_db_client=client,
+            mongo_db_db_name=settings.mongodb_ner_database_name,
+            mongo_db_collection_name=settings.mongodb_ner_collection_persones_name,
+        )
 
+    container.register(
+        BaseNewsRepository,
+        factory=init_news_repository,
+        scope=Scope.singleton
+    )
 
+    container.register(
+        BaseChannelRepository,
+        factory=init_channels_repository,
+        scope=Scope.singleton
+    )
+
+    container.register(
+        BaseNerPeopleRepository,
+        factory=init_ner_people_repository,
+        scope=Scope.singleton,
+    )
+
+    # Analizers
+    def init_analizer_persones() -> BaseAnalazer:
+        return PersonAnalizer(address_=settings.pulenty_server)
+
+    container.register(
+        BaseAnalazer, factory=init_analizer_persones, scope=Scope.singleton
+    )
 
     def init_mediator() -> Mediator:
         mediator = Mediator()
@@ -86,44 +141,36 @@ def _init_container() -> Container:
         # Commands
         create_channel_handler = CreateChannelCommandHandler(
             _mediator=mediator,
-            channels_repository=container.resolve(BaseChannelRepository)
+            channels_repository=container.resolve(BaseChannelRepository),
         )
 
-        add_ner_people_to_documenthandler = AddNerPeopleToDocumenthandler(
+        add_ner_people_to_documenthandler = AddNerPeopleToDocumentHandler(
             _mediator=mediator,
-            ner_people_repository=container.resolve(BaseNerPeopleRepository)
+            ner_people_repository=container.resolve(BaseNerPeopleRepository),
+            news_repository=container.resolve(BaseNewsRepository),
+            analizer=container.resolve(BaseAnalazer),
         )
 
         create_news_handler = CreateNewsCommandHandler(
-            _mediator=mediator,
-            news_repository=container.resolve(BaseNewsRepository)
+            _mediator=mediator, news_repository=container.resolve(BaseNewsRepository)
         )
 
-
-        mediator.register_command(
-            CreateNewsCommand,
-            [create_news_handler]
-        )
+        mediator.register_command(CreateNewsCommand, [create_news_handler])
 
         mediator.register_command(
-            AddNerPeopleToDocumentCommand,
-            [add_ner_people_to_documenthandler]
+            AddNerPeopleToDocumentCommand, [add_ner_people_to_documenthandler]
         )
 
-        mediator.register_command(
-            CreateChannelsCommand,
-            [create_channel_handler]
-        )
+        mediator.register_command(CreateChannelsCommand, [create_channel_handler])
 
         # Queries
         mediator.register_query(
             GetChannelsQueryWithFilter,
-            container.resolve(GetChannelQueryWithilterHandler)
+            container.resolve(GetChannelQueryWithilterHandler),
         )
 
         mediator.register_query(
-            GetChannelsQuery,
-            container.resolve(GetChannelQueryHandler)
+            GetChannelsQuery, container.resolve(GetChannelQueryHandler)
         )
 
         return mediator

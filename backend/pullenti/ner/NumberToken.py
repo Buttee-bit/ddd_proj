@@ -1,19 +1,19 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import math
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.internal.SerializerHelper import SerializerHelper
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.internal.SerializerHelper import SerializerHelper
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.morph.MorphNumber import MorphNumber
 
 class NumberToken(MetaToken):
     """ Метатокен - число (числительное). Причём задаваемое не только цифрами, но и словами, возможно, римская запись и др.
@@ -38,7 +38,7 @@ class NumberToken(MetaToken):
         return self.__m_value
     @value.setter
     def value(self, value_) -> str:
-        from pullenti.ner.core.NumberHelper import NumberHelper
+        from backend.pullenti.ner.core.NumberHelper import NumberHelper
         self.__m_value = (Utils.ifNotNull(value_, ""))
         if (len(self.__m_value) > 2 and self.__m_value.endswith(".0")): 
             self.__m_value = self.__m_value[0:0+len(self.__m_value) - 2]
@@ -77,7 +77,7 @@ class NumberToken(MetaToken):
         return self.__m_real_val
     @real_value.setter
     def real_value(self, value_) -> float:
-        from pullenti.ner.core.NumberHelper import NumberHelper
+        from backend.pullenti.ner.core.NumberHelper import NumberHelper
         self.value = NumberHelper.double_to_string(value_)
         return value_
     

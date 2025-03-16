@@ -1,35 +1,35 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import math
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.NumberParseAttr import NumberParseAttr
-from pullenti.ner.core.NumberExType import NumberExType
-from pullenti.ner.Token import Token
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.NumberExToken import NumberExToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.NumberParseAttr import NumberParseAttr
+from backend.pullenti.ner.core.NumberExType import NumberExType
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.NumberExToken import NumberExToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
 
 class NumberHelper:
     """ Работа с числовыми значениями
@@ -684,7 +684,7 @@ class NumberHelper:
     
     @staticmethod
     def __try_parse_float(t : 'NumberToken', d : float, attrs : 'NumberParseAttr') -> 'Token':
-        from pullenti.ner.core.internal.NumberExHelper import NumberExHelper
+        from backend.pullenti.ner.core.internal.NumberExHelper import NumberExHelper
         d.value = (0)
         if (t is None or t.next0_ is None or t.typ != NumberSpellingType.DIGIT): 
             return None
@@ -1157,14 +1157,14 @@ class NumberHelper:
     def try_parse_number_with_postfix(t : 'Token') -> 'NumberExToken':
         # Выделение стандартных мер, типа: 10 кв.м.
         # УСТАРЕЛО. Вместо этого лучше использовать возможности MeasureReferent.
-        from pullenti.ner.core.internal.NumberExHelper import NumberExHelper
+        from backend.pullenti.ner.core.internal.NumberExHelper import NumberExHelper
         return NumberExHelper.try_parse_number_with_postfix(t)
     
     @staticmethod
     def try_parse_postfix_only(t : 'Token') -> 'NumberExToken':
         # Это попробовать только тип (постфикс) без самого числа.
         # Например, куб.м.
-        from pullenti.ner.core.internal.NumberExHelper import NumberExHelper
+        from backend.pullenti.ner.core.internal.NumberExHelper import NumberExHelper
         return NumberExHelper.try_attach_postfix_only(t)
     
     @staticmethod

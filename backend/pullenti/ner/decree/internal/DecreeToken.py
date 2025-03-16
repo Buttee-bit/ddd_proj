@@ -1,57 +1,57 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import datetime
 import typing
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.Referent import Referent
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.core.ConjunctionType import ConjunctionType
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.date.DateRangeReferent import DateRangeReferent
-from pullenti.ner.denomination.DenominationReferent import DenominationReferent
-from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-from pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
-from pullenti.ner.decree.internal.PartToken import PartToken
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.ner.mail.internal.MailLine import MailLine
-from pullenti.semantic.core.SemanticHelper import SemanticHelper
-from pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.org.OrgProfile import OrgProfile
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.decree.DecreeAnalyzer import DecreeAnalyzer
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.core.ConjunctionType import ConjunctionType
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.date.DateRangeReferent import DateRangeReferent
+from backend.pullenti.ner.denomination.DenominationReferent import DenominationReferent
+from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+from backend.pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
+from backend.pullenti.ner.decree.internal.PartToken import PartToken
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.ner.mail.internal.MailLine import MailLine
+from backend.pullenti.semantic.core.SemanticHelper import SemanticHelper
+from backend.pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.org.OrgProfile import OrgProfile
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.decree.DecreeAnalyzer import DecreeAnalyzer
 
 class DecreeToken(MetaToken):
     # Примитив, из которых состоит декрет

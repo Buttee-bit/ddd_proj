@@ -1,20 +1,20 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.core.ConjunctionType import ConjunctionType
-from pullenti.semantic.internal.NGLinkType import NGLinkType
-from pullenti.semantic.internal.NGLink import NGLink
-from pullenti.ner.core.ConjunctionToken import ConjunctionToken
-from pullenti.semantic.internal.SentItemType import SentItemType
-from pullenti.semantic.internal.NGItem import NGItem
-from pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
-from pullenti.semantic.internal.NGSegmentVariant import NGSegmentVariant
+from backend.pullenti.ner.core.ConjunctionType import ConjunctionType
+from backend.pullenti.semantic.internal.NGLinkType import NGLinkType
+from backend.pullenti.semantic.internal.NGLink import NGLink
+from backend.pullenti.ner.core.ConjunctionToken import ConjunctionToken
+from backend.pullenti.semantic.internal.SentItemType import SentItemType
+from backend.pullenti.semantic.internal.NGItem import NGItem
+from backend.pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
+from backend.pullenti.semantic.internal.NGSegmentVariant import NGSegmentVariant
 
 class NGSegment:
     

@@ -1,23 +1,23 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import datetime
 import math
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.date.DatePointerType import DatePointerType
-from pullenti.ner.date.internal.MetaDate import MetaDate
-from pullenti.ner.Referent import Referent
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.date.DatePointerType import DatePointerType
+from backend.pullenti.ner.date.internal.MetaDate import MetaDate
+from backend.pullenti.ner.Referent import Referent
 
 class DateReferent(Referent):
     """ Сущность, представляющая дату
@@ -134,7 +134,7 @@ class DateReferent(Referent):
         Returns:
             datetime.datetime: дата-время или null
         """
-        from pullenti.ner.date.internal.DateRelHelper import DateRelHelper
+        from backend.pullenti.ner.date.internal.DateRelHelper import DateRelHelper
         return DateRelHelper.calculate_date(self, now, tense)
     
     def calculate_date_range(self, now : datetime.datetime, from0_ : datetime.datetime, to : datetime.datetime, tense : int=0) -> bool:
@@ -151,7 +151,7 @@ class DateReferent(Referent):
         Returns:
             bool: признак корректности
         """
-        from pullenti.ner.date.internal.DateRelHelper import DateRelHelper
+        from backend.pullenti.ner.date.internal.DateRelHelper import DateRelHelper
         inoutres1007 = DateRelHelper.calculate_date_range(self, now, from0_, to, tense)
         return inoutres1007
     
@@ -371,7 +371,7 @@ class DateReferent(Referent):
         return self._to_string(short_variant, lang, lev, 0)
     
     def _to_string(self, short_variant : bool, lang : 'MorphLang', lev : int, from_range : int) -> str:
-        from pullenti.ner.date.internal.DateRelHelper import DateRelHelper
+        from backend.pullenti.ner.date.internal.DateRelHelper import DateRelHelper
         res = io.StringIO()
         p = self.pointer
         if (lang is None): 
@@ -703,7 +703,7 @@ class DateReferent(Referent):
             obj(Referent): 
         
         """
-        from pullenti.ner.date.DateRangeReferent import DateRangeReferent
+        from backend.pullenti.ner.date.DateRangeReferent import DateRangeReferent
         sd = Utils.asObjectOrNull(obj, DateReferent)
         if (sd is not None): 
             return (sd.year > 0 and sd.month > 0)

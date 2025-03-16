@@ -1,32 +1,32 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.MorphMood import MorphMood
-from pullenti.morph.MorphVoice import MorphVoice
-from pullenti.morph.MorphPerson import MorphPerson
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.NounPhraseToken import NounPhraseToken
-from pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
-from pullenti.semantic.SemanticService import SemanticService
-from pullenti.ner.measure.MeasureKind import MeasureKind
-from pullenti.semantic.internal.NGLinkType import NGLinkType
-from pullenti.semantic.internal.SentItemType import SentItemType
-from pullenti.semantic.core.SemanticRole import SemanticRole
-from pullenti.ner.measure.internal.UnitsHelper import UnitsHelper
-from pullenti.ner.Token import Token
-from pullenti.ner.measure.internal.UnitToken import UnitToken
-from pullenti.semantic.core.SemanticHelper import SemanticHelper
-from pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.MorphMood import MorphMood
+from backend.pullenti.morph.MorphVoice import MorphVoice
+from backend.pullenti.morph.MorphPerson import MorphPerson
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.NounPhraseToken import NounPhraseToken
+from backend.pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
+from backend.pullenti.semantic.SemanticService import SemanticService
+from backend.pullenti.ner.measure.MeasureKind import MeasureKind
+from backend.pullenti.semantic.internal.NGLinkType import NGLinkType
+from backend.pullenti.semantic.internal.SentItemType import SentItemType
+from backend.pullenti.semantic.core.SemanticRole import SemanticRole
+from backend.pullenti.ner.measure.internal.UnitsHelper import UnitsHelper
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.measure.internal.UnitToken import UnitToken
+from backend.pullenti.semantic.core.SemanticHelper import SemanticHelper
+from backend.pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
 
 class NGLink(object):
     

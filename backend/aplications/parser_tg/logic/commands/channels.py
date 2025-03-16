@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+
 
 from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
 from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository

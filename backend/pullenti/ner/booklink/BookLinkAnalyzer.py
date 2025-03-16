@@ -1,45 +1,45 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.booklink.internal.BookLinkTyp import BookLinkTyp
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.booklink.BookLinkRefType import BookLinkRefType
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.ner.person.internal.PersonItemToken import PersonItemToken
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.person.internal.FioTemplateType import FioTemplateType
-from pullenti.ner.booklink.internal.TitleItemToken import TitleItemToken
-from pullenti.ner.booklink.internal.MetaBookLinkRef import MetaBookLinkRef
-from pullenti.ner.booklink.internal.MetaBookLink import MetaBookLink
-from pullenti.ner.Referent import Referent
-from pullenti.ner.decree.internal.PullentiNerDecreeInternalResourceHelper import PullentiNerDecreeInternalResourceHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.booklink.BookLinkReferent import BookLinkReferent
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.booklink.BookLinkRefReferent import BookLinkRefReferent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.booklink.internal.BookLinkToken import BookLinkToken
-from pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.booklink.internal.BookLinkTyp import BookLinkTyp
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.booklink.BookLinkRefType import BookLinkRefType
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.ner.person.internal.PersonItemToken import PersonItemToken
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.person.internal.FioTemplateType import FioTemplateType
+from backend.pullenti.ner.booklink.internal.TitleItemToken import TitleItemToken
+from backend.pullenti.ner.booklink.internal.MetaBookLinkRef import MetaBookLinkRef
+from backend.pullenti.ner.booklink.internal.MetaBookLink import MetaBookLink
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.decree.internal.backend.pullentiNerDecreeInternalResourceHelper import backend.pullentiNerDecreeInternalResourceHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.booklink.BookLinkReferent import BookLinkReferent
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.booklink.BookLinkRefReferent import BookLinkRefReferent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.booklink.internal.BookLinkToken import BookLinkToken
+from backend.pullenti.ner.Analyzer import Analyzer
 
 class BookLinkAnalyzer(Analyzer):
     """ Анализатор ссылок на внешнюю литературу (библиография) """
@@ -92,10 +92,10 @@ class BookLinkAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaBookLink.IMAGE_ID] = PullentiNerDecreeInternalResourceHelper.get_bytes("booklink.png")
-        res[MetaBookLinkRef.IMAGE_ID] = PullentiNerDecreeInternalResourceHelper.get_bytes("booklinkref.png")
-        res[MetaBookLinkRef.IMAGE_ID_INLINE] = PullentiNerDecreeInternalResourceHelper.get_bytes("booklinkrefinline.png")
-        res[MetaBookLinkRef.IMAGE_ID_LAST] = PullentiNerDecreeInternalResourceHelper.get_bytes("booklinkreflast.png")
+        res[MetaBookLink.IMAGE_ID] = backend.pullentiNerDecreeInternalResourceHelper.get_bytes("booklink.png")
+        res[MetaBookLinkRef.IMAGE_ID] = backend.pullentiNerDecreeInternalResourceHelper.get_bytes("booklinkref.png")
+        res[MetaBookLinkRef.IMAGE_ID_INLINE] = backend.pullentiNerDecreeInternalResourceHelper.get_bytes("booklinkrefinline.png")
+        res[MetaBookLinkRef.IMAGE_ID_LAST] = backend.pullentiNerDecreeInternalResourceHelper.get_bytes("booklinkreflast.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

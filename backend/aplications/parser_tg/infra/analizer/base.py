@@ -1,10 +1,10 @@
 from abc import abstractmethod
 from dataclasses import dataclass
 from backend.pullenti.ner.ServerService import ServerService
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.AnalysisResult import AnalysisResult
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.AnalysisResult import AnalysisResult
 
 
 @dataclass(frozen=True)

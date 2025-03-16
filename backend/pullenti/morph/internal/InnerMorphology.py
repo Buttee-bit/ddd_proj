@@ -1,28 +1,28 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import threading
 import gc
 import math
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Misc import EventHandler
-from pullenti.unisharp.Misc import ProgressEventArgs
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Misc import EventHandler
+from backend.pullenti.unisharp.Misc import ProgressEventArgs
 
-from pullenti.morph.CharsInfo import CharsInfo
-from pullenti.morph.MorphToken import MorphToken
-from pullenti.morph.internal.UnicodeInfo import UnicodeInfo
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.internal.MorphEngine import MorphEngine
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.morph.internal.TextWrapper import TextWrapper
-from pullenti.morph.internal.UniLexWrap import UniLexWrap
-from pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.morph.CharsInfo import CharsInfo
+from backend.pullenti.morph.MorphToken import MorphToken
+from backend.pullenti.morph.internal.UnicodeInfo import UnicodeInfo
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.internal.MorphEngine import MorphEngine
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.morph.internal.TextWrapper import TextWrapper
+from backend.pullenti.morph.internal.UniLexWrap import UniLexWrap
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
 
 class InnerMorphology:
     

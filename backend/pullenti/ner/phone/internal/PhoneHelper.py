@@ -1,14 +1,14 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.bank.internal.PullentiNerBankInternalResourceHelper import PullentiNerBankInternalResourceHelper
+from backend.pullenti.ner.bank.internal.backend.pullentiNerBankInternalResourceHelper import backend.pullentiNerBankInternalResourceHelper
 
 class PhoneHelper:
     
@@ -33,7 +33,7 @@ class PhoneHelper:
             return
         PhoneHelper.M_PHONE_ROOT = PhoneHelper.PhoneNode()
         PhoneHelper.M_ALL_COUNTRY_CODES = dict()
-        str0_ = PullentiNerBankInternalResourceHelper.get_string("CountryPhoneCodes.txt")
+        str0_ = backend.pullentiNerBankInternalResourceHelper.get_string("CountryPhoneCodes.txt")
         if (str0_ is None): 
             raise Utils.newException("Can't file resource file {0} in Organization analyzer".format("CountryPhoneCodes.txt"), None)
         for line0 in Utils.splitString(str0_, '\n', False): 

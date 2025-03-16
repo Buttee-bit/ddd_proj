@@ -1,43 +1,43 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import math
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.instrument.InstrumentKind import InstrumentKind
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.Token import Token
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.ner.core.TableHelper import TableHelper
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
-from pullenti.ner.instrument.internal.NumberTypes import NumberTypes
-from pullenti.ner.decree.internal.PartToken import PartToken
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-from pullenti.ner.core.ComplexNumToken import ComplexNumToken
-from pullenti.ner.decree.internal.DecreeToken import DecreeToken
-from pullenti.ner.instrument.InstrumentParticipantReferent import InstrumentParticipantReferent
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.instrument.InstrumentKind import InstrumentKind
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.ner.core.TableHelper import TableHelper
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
+from backend.pullenti.ner.instrument.internal.NumberTypes import NumberTypes
+from backend.pullenti.ner.decree.internal.PartToken import PartToken
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+from backend.pullenti.ner.core.ComplexNumToken import ComplexNumToken
+from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
+from backend.pullenti.ner.instrument.InstrumentParticipantReferent import InstrumentParticipantReferent
 
 class InstrToken1(MetaToken):
     
@@ -168,10 +168,10 @@ class InstrToken1(MetaToken):
     
     @staticmethod
     def parse(t : 'Token', ignore_directives : bool, cur : 'FragToken'=None, lev : int=0, prev : 'InstrToken1'=None, is_citat : bool=False, max_char : int=0, can_be_table_cell : bool=False, is_in_index : bool=False) -> 'InstrToken1':
-        from pullenti.ner.instrument.internal.InstrToken import InstrToken
-        from pullenti.ner.instrument.internal.ParticipantToken import ParticipantToken
-        from pullenti.ner.instrument.internal.FragToken import FragToken
-        from pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
+        from backend.pullenti.ner.instrument.internal.InstrToken import InstrToken
+        from backend.pullenti.ner.instrument.internal.ParticipantToken import ParticipantToken
+        from backend.pullenti.ner.instrument.internal.FragToken import FragToken
+        from backend.pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
         if (t is None): 
             return None
         if (lev > 30): 
@@ -1129,7 +1129,7 @@ class InstrToken1(MetaToken):
     
     @staticmethod
     def _create_edition(t : 'Token') -> 'Token':
-        from pullenti.ner.instrument.internal.InstrToken import InstrToken
+        from backend.pullenti.ner.instrument.internal.InstrToken import InstrToken
         if (t is None or t.next0_ is None): 
             return None
         ok = False
@@ -1167,7 +1167,7 @@ class InstrToken1(MetaToken):
     
     @staticmethod
     def _check_directive(t : 'Token', val : str) -> 'Token':
-        from pullenti.ner.instrument.internal.InstrToken import InstrToken
+        from backend.pullenti.ner.instrument.internal.InstrToken import InstrToken
         val.value = (None)
         if (t is None or t.morph.class0_.is_adjective): 
             return None

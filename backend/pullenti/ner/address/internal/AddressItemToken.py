@@ -1,51 +1,51 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
 import math
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.address.AddressHouseType import AddressHouseType
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.address.AddressBuildingType import AddressBuildingType
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.geo.internal.GeoTokenType import GeoTokenType
-from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.NumberExType import NumberExType
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.geo.internal.GeoTokenData import GeoTokenData
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.Token import Token
-from pullenti.ner.address.AddressDetailType import AddressDetailType
-from pullenti.ner.address.internal.StreetItemType import StreetItemType
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.address.internal.AddressItemType import AddressItemType
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.address.StreetKind import StreetKind
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from backend.pullenti.ner.address.AddressHouseType import AddressHouseType
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.address.AddressBuildingType import AddressBuildingType
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.geo.internal.GeoTokenType import GeoTokenType
+from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.NumberExType import NumberExType
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.geo.internal.GeoTokenData import GeoTokenData
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.address.AddressDetailType import AddressDetailType
+from backend.pullenti.ner.address.internal.StreetItemType import StreetItemType
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.address.internal.AddressItemType import AddressItemType
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.address.StreetKind import StreetKind
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
 
 class AddressItemToken(MetaToken):
     
@@ -67,10 +67,10 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def __try_parse_list_int(t : 'Token', max_count : int=20) -> typing.List['AddressItemToken']:
-        from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-        from pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
-        from pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
-        from pullenti.ner.address.internal.StreetDefineHelper import StreetDefineHelper
+        from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+        from backend.pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
+        from backend.pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
+        from backend.pullenti.ner.address.internal.StreetDefineHelper import StreetDefineHelper
         if (isinstance(t, NumberToken)): 
             if (t.int_value is None): 
                 return None
@@ -674,7 +674,7 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+        from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
         if (AddressItemToken.__m_ontology is not None): 
             return
         StreetItemToken.initialize()
@@ -1347,9 +1347,9 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def __try_parse(t : 'Token', prefix_before : bool, prev : 'AddressItemToken', ad : 'GeoAnalyzerData') -> 'AddressItemToken':
-        from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-        from pullenti.ner.address.internal.StreetDefineHelper import StreetDefineHelper
-        from pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
+        from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+        from backend.pullenti.ner.address.internal.StreetDefineHelper import StreetDefineHelper
+        from backend.pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
         if (t is None): 
             return None
         if (isinstance(t, ReferentToken)): 
@@ -1608,7 +1608,7 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def check_street_after(t : 'Token', check_this_and_not_next : bool=False) -> bool:
-        from pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
+        from backend.pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
         cou = 0
         while t is not None and (cou < 4): 
             if (t.is_char_of(",.") or t.is_hiphen or t.morph.class0_.is_preposition): 
@@ -1781,7 +1781,7 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def create_address(txt : str) -> 'ReferentToken':
-        from pullenti.ner.address.internal.AddressDefineHelper import AddressDefineHelper
+        from backend.pullenti.ner.address.internal.AddressDefineHelper import AddressDefineHelper
         ar = None
         try: 
             ar = ProcessorService.get_empty_processor().process(SourceOfAnalysis._new200(txt, "ADDRESS"), None, None)
@@ -1811,9 +1811,9 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def try_parse_pure_item(t : 'Token', prev : 'AddressItemToken'=None, ad : 'GeoAnalyzerData'=None) -> 'AddressItemToken':
-        from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-        from pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
-        from pullenti.ner.geo.internal.NumToken import NumToken
+        from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+        from backend.pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
+        from backend.pullenti.ner.geo.internal.NumToken import NumToken
         if (t is None): 
             return None
         if (t.is_char(',')): 
@@ -1923,11 +1923,11 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def __try_parse_pure_item(t : 'Token', prefix_before : bool, prev : 'AddressItemToken') -> 'AddressItemToken':
-        from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
-        from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-        from pullenti.ner.geo.internal.NumToken import NumToken
-        from pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
-        from pullenti.ner.geo.internal.CityItemToken import CityItemToken
+        from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+        from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+        from backend.pullenti.ner.geo.internal.NumToken import NumToken
+        from backend.pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
+        from backend.pullenti.ner.geo.internal.CityItemToken import CityItemToken
         if (isinstance(t, NumberToken)): 
             n = Utils.asObjectOrNull(t, NumberToken)
             if (((n.length_char == 6 or ((n.length_char == 5 and t.kit.base_language.is_ua)))) and n.typ == NumberSpellingType.DIGIT and not n.morph.class0_.is_adjective): 
@@ -3036,7 +3036,7 @@ class AddressItemToken(MetaToken):
     
     @staticmethod
     def __try_attach_detail(t : 'Token', tok : 'TerminToken') -> 'AddressItemToken':
-        from pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
+        from backend.pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
         if (t is None or (isinstance(t, ReferentToken))): 
             return None
         if (t.is_value("КМ", None)): 

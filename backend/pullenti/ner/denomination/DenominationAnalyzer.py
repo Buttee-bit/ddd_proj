@@ -1,27 +1,27 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import datetime
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.Referent import Referent
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.denomination.internal.MetaDenom import MetaDenom
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
-from pullenti.ner.bank.internal.PullentiNerBankInternalResourceHelper import PullentiNerBankInternalResourceHelper
-from pullenti.ner.denomination.DenominationReferent import DenominationReferent
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.denomination.internal.MetaDenom import MetaDenom
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
+from backend.pullenti.ner.bank.internal.backend.pullentiNerBankInternalResourceHelper import backend.pullentiNerBankInternalResourceHelper
+from backend.pullenti.ner.denomination.DenominationReferent import DenominationReferent
 
 class DenominationAnalyzer(Analyzer):
     """ Анализатор деноминаций и обозначений (типа C#, A-320)
@@ -64,7 +64,7 @@ class DenominationAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaDenom.DENOM_IMAGE_ID] = PullentiNerBankInternalResourceHelper.get_bytes("denom.png")
+        res[MetaDenom.DENOM_IMAGE_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("denom.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

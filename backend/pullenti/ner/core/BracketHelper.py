@@ -1,22 +1,22 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.BracketSequenceToken import BracketSequenceToken
-from pullenti.ner.Token import Token
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.BracketSequenceToken import BracketSequenceToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
 
 class BracketHelper:
     """ Поддержка анализа скобок и кавычек
@@ -27,7 +27,7 @@ class BracketHelper:
     class Bracket:
         
         def __init__(self, t : 'Token') -> None:
-            from pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.TextToken import TextToken
             self.source = None;
             self.char0_ = '\x00'
             self.can_be_open = False
@@ -194,7 +194,7 @@ class BracketHelper:
             BracketSequenceToken: метатокен BracketSequenceToken
         
         """
-        from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+        from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
         t0 = t
         cou = 0
         if (not BracketHelper.can_be_start_of_sequence(t0, False, False)): 

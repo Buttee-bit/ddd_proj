@@ -1,24 +1,24 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphMood import MorphMood
-from pullenti.morph.MorphVoice import MorphVoice
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphForm import MorphForm
-from pullenti.morph.MorphFinite import MorphFinite
-from pullenti.morph.MorphAspect import MorphAspect
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.internal.UnicodeInfo import UnicodeInfo
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphPerson import MorphPerson
-from pullenti.morph.MorphTense import MorphTense
+from backend.pullenti.morph.MorphMood import MorphMood
+from backend.pullenti.morph.MorphVoice import MorphVoice
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphForm import MorphForm
+from backend.pullenti.morph.MorphFinite import MorphFinite
+from backend.pullenti.morph.MorphAspect import MorphAspect
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.internal.UnicodeInfo import UnicodeInfo
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphPerson import MorphPerson
+from backend.pullenti.morph.MorphTense import MorphTense
 
 class LanguageHelper:
     # Служба подержки языков.

@@ -1,14 +1,14 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Referent import Referent
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.instrument.InstrumentKind import InstrumentKind
-from pullenti.ner.decree.internal.PartToken import PartToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.instrument.InstrumentKind import InstrumentKind
+from backend.pullenti.ner.decree.internal.PartToken import PartToken
 
 class EditionHelper:
     """ Поддержка анализа редакций для фрагментов НПА """

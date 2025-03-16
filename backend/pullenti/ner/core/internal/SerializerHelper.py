@@ -1,12 +1,12 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
 
 class SerializerHelper:
     
@@ -69,7 +69,7 @@ class SerializerHelper:
     
     @staticmethod
     def deserialize_tokens(stream : Stream, kit : 'AnalysisKit', vers : int) -> 'Token':
-        from pullenti.ner.MetaToken import MetaToken
+        from backend.pullenti.ner.MetaToken import MetaToken
         cou = SerializerHelper.deserialize_int(stream)
         if (cou == 0): 
             return None
@@ -97,7 +97,7 @@ class SerializerHelper:
     
     @staticmethod
     def __corr_prev_next(mt : 'MetaToken', prev : 'Token', next0_ : 'Token') -> None:
-        from pullenti.ner.MetaToken import MetaToken
+        from backend.pullenti.ner.MetaToken import MetaToken
         mt.begin_token._m_previous = prev
         mt.end_token._m_next = next0_
         t = mt.begin_token
@@ -108,10 +108,10 @@ class SerializerHelper:
     
     @staticmethod
     def serialize_token(stream : Stream, t : 'Token') -> None:
-        from pullenti.ner.MetaToken import MetaToken
-        from pullenti.ner.TextToken import TextToken
-        from pullenti.ner.ReferentToken import ReferentToken
-        from pullenti.ner.NumberToken import NumberToken
+        from backend.pullenti.ner.MetaToken import MetaToken
+        from backend.pullenti.ner.TextToken import TextToken
+        from backend.pullenti.ner.ReferentToken import ReferentToken
+        from backend.pullenti.ner.NumberToken import NumberToken
         typ = 0
         if (isinstance(t, TextToken)): 
             typ = (1)
@@ -130,11 +130,11 @@ class SerializerHelper:
     
     @staticmethod
     def __deserialize_token(stream : Stream, kit : 'AnalysisKit', vers : int) -> 'Token':
-        from pullenti.ner.MetaToken import MetaToken
-        from pullenti.ner.ReferentToken import ReferentToken
-        from pullenti.ner.TextToken import TextToken
-        from pullenti.ner.Token import Token
-        from pullenti.ner.NumberToken import NumberToken
+        from backend.pullenti.ner.MetaToken import MetaToken
+        from backend.pullenti.ner.ReferentToken import ReferentToken
+        from backend.pullenti.ner.TextToken import TextToken
+        from backend.pullenti.ner.Token import Token
+        from backend.pullenti.ner.NumberToken import NumberToken
         typ = SerializerHelper.deserialize_short(stream)
         if (typ == (0)): 
             return None

@@ -18,7 +18,7 @@ class CreateNewsCommand(BaseCommand):
 class CreateNewsCommandHandler(CommandHandler[CreateNewsCommand, News]):
     news_repository: BaseNewsRepository
 
-    async def handle(self, command) -> News:
+    async def handle(self, command: CreateNewsCommand) -> News:
         news = News(
             title=command.title,
             text=command.text,

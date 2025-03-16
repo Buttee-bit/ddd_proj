@@ -1,20 +1,20 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.address.AddressBuildingType import AddressBuildingType
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.address.AddressDetailType import AddressDetailType
-from pullenti.ner.address.AddressHouseType import AddressHouseType
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.address.internal.MetaAddress import MetaAddress
-from pullenti.ner.Referent import Referent
+from backend.pullenti.ner.address.AddressBuildingType import AddressBuildingType
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.address.AddressDetailType import AddressDetailType
+from backend.pullenti.ner.address.AddressHouseType import AddressHouseType
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.address.internal.MetaAddress import MetaAddress
+from backend.pullenti.ner.Referent import Referent
 
 class AddressReferent(Referent):
     """ Сущность, представляющая адрес
@@ -464,8 +464,8 @@ class AddressReferent(Referent):
         return None
     
     def add_referent(self, r : 'Referent') -> None:
-        from pullenti.ner.address.StreetReferent import StreetReferent
-        from pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
+        from backend.pullenti.ner.address.StreetReferent import StreetReferent
+        from backend.pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
         if (r is None): 
             return
         geo = Utils.asObjectOrNull(r, GeoReferent)
@@ -627,7 +627,7 @@ class AddressReferent(Referent):
         """ Вывод адреса в каноническом виде (сначала индекс, потом страна, город, улица и т.д.)
         
         """
-        from pullenti.ner.address.StreetReferent import StreetReferent
+        from backend.pullenti.ner.address.StreetReferent import StreetReferent
         geos_ = list()
         geo = None
         street = Utils.asObjectOrNull(self.get_slot_value(AddressReferent.ATTR_STREET), StreetReferent)
@@ -792,7 +792,7 @@ class AddressReferent(Referent):
         self._correct()
     
     def _correct(self) -> None:
-        from pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
+        from backend.pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
         geos_ = list()
         for a in self.slots: 
             if (a.type_name == AddressReferent.ATTR_GEO and (isinstance(a.value, GeoReferent))): 

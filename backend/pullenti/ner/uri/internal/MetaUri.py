@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
 
 class MetaUri(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.uri.UriReferent import UriReferent
+        from backend.pullenti.ner.uri.UriReferent import UriReferent
         MetaUri._global_meta = MetaUri()
         MetaUri._global_meta.add_feature(UriReferent.ATTR_VALUE, "Значение", 0, 1)
         MetaUri._global_meta.add_feature(UriReferent.ATTR_SCHEME, "Схема", 0, 1)
@@ -19,7 +19,7 @@ class MetaUri(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.uri.UriReferent import UriReferent
+        from backend.pullenti.ner.uri.UriReferent import UriReferent
         return UriReferent.OBJ_TYPENAME
     
     @property
@@ -31,7 +31,7 @@ class MetaUri(ReferentClass):
     URI_IMAGE_ID = "uri"
     
     def get_image_id(self, obj : 'Referent'=None) -> str:
-        from pullenti.ner.uri.UriReferent import UriReferent
+        from backend.pullenti.ner.uri.UriReferent import UriReferent
         web = Utils.asObjectOrNull(obj, UriReferent)
         if (web is not None and web.scheme == "mailto"): 
             return MetaUri.MAIL_IMAGE_ID

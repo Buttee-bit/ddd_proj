@@ -1,34 +1,34 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import Stopwatch
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import Stopwatch
 
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.address.internal.AddressItemType import AddressItemType
-from pullenti.ner.address.StreetKind import StreetKind
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.address.internal.StreetDefineHelper import StreetDefineHelper
-from pullenti.ner.address.internal.AddressDefineHelper import AddressDefineHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.address.internal.MetaStreet import MetaStreet
-from pullenti.ner.address.internal.MetaAddress import MetaAddress
-from pullenti.ner.Referent import Referent
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.address.internal.AddressItemToken import AddressItemToken
-from pullenti.ner.core.AnalyzerData import AnalyzerData
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
-from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.address.internal.AddressItemType import AddressItemType
+from backend.pullenti.ner.address.StreetKind import StreetKind
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.address.internal.StreetDefineHelper import StreetDefineHelper
+from backend.pullenti.ner.address.internal.AddressDefineHelper import AddressDefineHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.address.internal.MetaStreet import MetaStreet
+from backend.pullenti.ner.address.internal.MetaAddress import MetaAddress
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.address.internal.AddressItemToken import AddressItemToken
+from backend.pullenti.ner.core.AnalyzerData import AnalyzerData
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
+from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
 
 class AddressAnalyzer(Analyzer):
     """ Анализатор адресов """
@@ -36,14 +36,14 @@ class AddressAnalyzer(Analyzer):
     class AddressAnalyzerData(AnalyzerData):
         
         def __init__(self) -> None:
-            from pullenti.ner.core.AnalyzerData import AnalyzerData
-            from pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
+            from backend.pullenti.ner.core.AnalyzerData import AnalyzerData
+            from backend.pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
             super().__init__()
             self.__m_addresses = AnalyzerData()
             self.streets = AnalyzerDataWithOntology()
         
         def register_referent(self, referent : 'Referent') -> 'Referent':
-            from pullenti.ner.address.StreetReferent import StreetReferent
+            from backend.pullenti.ner.address.StreetReferent import StreetReferent
             if (isinstance(referent, StreetReferent)): 
                 referent._correct()
                 return self.streets.register_referent(referent)
@@ -85,11 +85,11 @@ class AddressAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaAddress.ADDRESS_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("address.png")
-        res[MetaStreet.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("street.png")
-        res[MetaStreet.IMAGE_TERR_ORG_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("terrorg.png")
-        res[MetaStreet.IMAGE_TERR_SPEC_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("terrspec.png")
-        res[MetaStreet.IMAGE_TERR_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("territory.png")
+        res[MetaAddress.ADDRESS_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("address.png")
+        res[MetaStreet.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("street.png")
+        res[MetaStreet.IMAGE_TERR_ORG_ID] = NerCoreInternalResourceHelper.get_bytes("terrorg.png")
+        res[MetaStreet.IMAGE_TERR_SPEC_ID] = NerCoreInternalResourceHelper.get_bytes("terrspec.png")
+        res[MetaStreet.IMAGE_TERR_ID] = NerCoreInternalResourceHelper.get_bytes("territory.png")
         return res
     
     @property

@@ -1,62 +1,62 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
 import io
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.TextAnnotation import TextAnnotation
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.ner.org.internal.OrgItemNumberToken import OrgItemNumberToken
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.org.OrganizationKind import OrganizationKind
-from pullenti.ner.org.OrgProfile import OrgProfile
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.org.internal.OrgItemTypeTyp import OrgItemTypeTyp
-from pullenti.ner.Referent import Referent
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.org.internal.OrgItemEponymToken import OrgItemEponymToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.morph.CharsInfo import CharsInfo
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.org.internal.MetaOrganization import MetaOrganization
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.AnalyzerData import AnalyzerData
-from pullenti.ner.org.internal.OrgOwnershipHelper import OrgOwnershipHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.org.internal.OrgItemEngItem import OrgItemEngItem
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.org.internal.OrgAnalyzerData import OrgAnalyzerData
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.TextAnnotation import TextAnnotation
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.ner.org.internal.OrgItemNumberToken import OrgItemNumberToken
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.org.OrganizationKind import OrganizationKind
+from backend.pullenti.ner.org.OrgProfile import OrgProfile
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.org.internal.OrgItemTypeTyp import OrgItemTypeTyp
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.org.internal.OrgItemEponymToken import OrgItemEponymToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.morph.CharsInfo import CharsInfo
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.org.internal.MetaOrganization import MetaOrganization
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.AnalyzerData import AnalyzerData
+from backend.pullenti.ner.org.internal.OrgOwnershipHelper import OrgOwnershipHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.org.internal.OrgItemEngItem import OrgItemEngItem
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.org.internal.OrgAnalyzerData import OrgAnalyzerData
 
 class OrganizationAnalyzer(Analyzer):
     """ Анализатор организаций """
@@ -74,9 +74,9 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __attach_global_org(t : 'Token', attach_typ : 'AttachType', ext_geo : object=None) -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
-        from pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
-        from pullenti.ner.org.internal.OrgGlobal import OrgGlobal
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
+        from backend.pullenti.ner.org.internal.OrgGlobal import OrgGlobal
         if ((isinstance(t, TextToken)) and t.chars.is_latin_letter): 
             if (MiscHelper.is_eng_article(t)): 
                 res11 = OrganizationAnalyzer.__attach_global_org(t.next0_, attach_typ, ext_geo)
@@ -542,42 +542,42 @@ class OrganizationAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[Utils.enumToString(OrgProfile.UNIT)] = PullentiNerCoreInternalResourceHelper.get_bytes("dep.png")
-        res[Utils.enumToString(OrgProfile.UNION)] = PullentiNerCoreInternalResourceHelper.get_bytes("party.png")
-        res[Utils.enumToString(OrgProfile.COMPETITION)] = PullentiNerCoreInternalResourceHelper.get_bytes("festival.png")
-        res[Utils.enumToString(OrgProfile.HOLDING)] = PullentiNerCoreInternalResourceHelper.get_bytes("holding.png")
-        res[Utils.enumToString(OrgProfile.STATE)] = PullentiNerCoreInternalResourceHelper.get_bytes("gov.png")
-        res[Utils.enumToString(OrgProfile.FINANCE)] = PullentiNerCoreInternalResourceHelper.get_bytes("bank.png")
-        res[Utils.enumToString(OrgProfile.EDUCATION)] = PullentiNerCoreInternalResourceHelper.get_bytes("study.png")
-        res[Utils.enumToString(OrgProfile.SCIENCE)] = PullentiNerCoreInternalResourceHelper.get_bytes("science.png")
-        res[Utils.enumToString(OrgProfile.INDUSTRY)] = PullentiNerCoreInternalResourceHelper.get_bytes("factory.png")
-        res[Utils.enumToString(OrgProfile.TRADE)] = PullentiNerCoreInternalResourceHelper.get_bytes("trade.png")
-        res[Utils.enumToString(OrgProfile.POLICY)] = PullentiNerCoreInternalResourceHelper.get_bytes("politics.png")
-        res[Utils.enumToString(OrgProfile.JUSTICE)] = PullentiNerCoreInternalResourceHelper.get_bytes("justice.png")
-        res[Utils.enumToString(OrgProfile.ENFORCEMENT)] = PullentiNerCoreInternalResourceHelper.get_bytes("gov.png")
-        res[Utils.enumToString(OrgProfile.ARMY)] = PullentiNerCoreInternalResourceHelper.get_bytes("military.png")
-        res[Utils.enumToString(OrgProfile.SPORT)] = PullentiNerCoreInternalResourceHelper.get_bytes("sport.png")
-        res[Utils.enumToString(OrgProfile.RELIGION)] = PullentiNerCoreInternalResourceHelper.get_bytes("church.png")
-        res[Utils.enumToString(OrgProfile.MUSIC)] = PullentiNerCoreInternalResourceHelper.get_bytes("music.png")
-        res[Utils.enumToString(OrgProfile.MEDIA)] = PullentiNerCoreInternalResourceHelper.get_bytes("media.png")
-        res[Utils.enumToString(OrgProfile.PRESS)] = PullentiNerCoreInternalResourceHelper.get_bytes("press.png")
-        res[Utils.enumToString(OrgProfile.HOTEL)] = PullentiNerCoreInternalResourceHelper.get_bytes("hotel.png")
-        res[Utils.enumToString(OrgProfile.MEDICINE)] = PullentiNerCoreInternalResourceHelper.get_bytes("medicine.png")
-        res[Utils.enumToString(OrgProfile.TRANSPORT)] = PullentiNerCoreInternalResourceHelper.get_bytes("train.png")
-        res[Utils.enumToString(OrganizationKind.BANK)] = PullentiNerCoreInternalResourceHelper.get_bytes("bank.png")
-        res[Utils.enumToString(OrganizationKind.CULTURE)] = PullentiNerCoreInternalResourceHelper.get_bytes("culture.png")
-        res[Utils.enumToString(OrganizationKind.DEPARTMENT)] = PullentiNerCoreInternalResourceHelper.get_bytes("dep.png")
-        res[Utils.enumToString(OrganizationKind.FACTORY)] = PullentiNerCoreInternalResourceHelper.get_bytes("factory.png")
-        res[Utils.enumToString(OrganizationKind.GOVENMENT)] = PullentiNerCoreInternalResourceHelper.get_bytes("gov.png")
-        res[Utils.enumToString(OrganizationKind.MEDICAL)] = PullentiNerCoreInternalResourceHelper.get_bytes("medicine.png")
-        res[Utils.enumToString(OrganizationKind.PARTY)] = PullentiNerCoreInternalResourceHelper.get_bytes("party.png")
-        res[Utils.enumToString(OrganizationKind.STUDY)] = PullentiNerCoreInternalResourceHelper.get_bytes("study.png")
-        res[Utils.enumToString(OrganizationKind.FEDERATION)] = PullentiNerCoreInternalResourceHelper.get_bytes("federation.png")
-        res[Utils.enumToString(OrganizationKind.CHURCH)] = PullentiNerCoreInternalResourceHelper.get_bytes("church.png")
-        res[Utils.enumToString(OrganizationKind.MILITARY)] = PullentiNerCoreInternalResourceHelper.get_bytes("military.png")
-        res[Utils.enumToString(OrganizationKind.AIRPORT)] = PullentiNerCoreInternalResourceHelper.get_bytes("avia.png")
-        res[Utils.enumToString(OrganizationKind.FESTIVAL)] = PullentiNerCoreInternalResourceHelper.get_bytes("festival.png")
-        res[MetaOrganization.ORG_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("org.png")
+        res[Utils.enumToString(OrgProfile.UNIT)] = NerCoreInternalResourceHelper.get_bytes("dep.png")
+        res[Utils.enumToString(OrgProfile.UNION)] = NerCoreInternalResourceHelper.get_bytes("party.png")
+        res[Utils.enumToString(OrgProfile.COMPETITION)] = NerCoreInternalResourceHelper.get_bytes("festival.png")
+        res[Utils.enumToString(OrgProfile.HOLDING)] = NerCoreInternalResourceHelper.get_bytes("holding.png")
+        res[Utils.enumToString(OrgProfile.STATE)] = NerCoreInternalResourceHelper.get_bytes("gov.png")
+        res[Utils.enumToString(OrgProfile.FINANCE)] = NerCoreInternalResourceHelper.get_bytes("bank.png")
+        res[Utils.enumToString(OrgProfile.EDUCATION)] = NerCoreInternalResourceHelper.get_bytes("study.png")
+        res[Utils.enumToString(OrgProfile.SCIENCE)] = NerCoreInternalResourceHelper.get_bytes("science.png")
+        res[Utils.enumToString(OrgProfile.INDUSTRY)] = NerCoreInternalResourceHelper.get_bytes("factory.png")
+        res[Utils.enumToString(OrgProfile.TRADE)] = NerCoreInternalResourceHelper.get_bytes("trade.png")
+        res[Utils.enumToString(OrgProfile.POLICY)] = NerCoreInternalResourceHelper.get_bytes("politics.png")
+        res[Utils.enumToString(OrgProfile.JUSTICE)] = NerCoreInternalResourceHelper.get_bytes("justice.png")
+        res[Utils.enumToString(OrgProfile.ENFORCEMENT)] = NerCoreInternalResourceHelper.get_bytes("gov.png")
+        res[Utils.enumToString(OrgProfile.ARMY)] = NerCoreInternalResourceHelper.get_bytes("military.png")
+        res[Utils.enumToString(OrgProfile.SPORT)] = NerCoreInternalResourceHelper.get_bytes("sport.png")
+        res[Utils.enumToString(OrgProfile.RELIGION)] = NerCoreInternalResourceHelper.get_bytes("church.png")
+        res[Utils.enumToString(OrgProfile.MUSIC)] = NerCoreInternalResourceHelper.get_bytes("music.png")
+        res[Utils.enumToString(OrgProfile.MEDIA)] = NerCoreInternalResourceHelper.get_bytes("media.png")
+        res[Utils.enumToString(OrgProfile.PRESS)] = NerCoreInternalResourceHelper.get_bytes("press.png")
+        res[Utils.enumToString(OrgProfile.HOTEL)] = NerCoreInternalResourceHelper.get_bytes("hotel.png")
+        res[Utils.enumToString(OrgProfile.MEDICINE)] = NerCoreInternalResourceHelper.get_bytes("medicine.png")
+        res[Utils.enumToString(OrgProfile.TRANSPORT)] = NerCoreInternalResourceHelper.get_bytes("train.png")
+        res[Utils.enumToString(OrganizationKind.BANK)] = NerCoreInternalResourceHelper.get_bytes("bank.png")
+        res[Utils.enumToString(OrganizationKind.CULTURE)] = NerCoreInternalResourceHelper.get_bytes("culture.png")
+        res[Utils.enumToString(OrganizationKind.DEPARTMENT)] = NerCoreInternalResourceHelper.get_bytes("dep.png")
+        res[Utils.enumToString(OrganizationKind.FACTORY)] = NerCoreInternalResourceHelper.get_bytes("factory.png")
+        res[Utils.enumToString(OrganizationKind.GOVENMENT)] = NerCoreInternalResourceHelper.get_bytes("gov.png")
+        res[Utils.enumToString(OrganizationKind.MEDICAL)] = NerCoreInternalResourceHelper.get_bytes("medicine.png")
+        res[Utils.enumToString(OrganizationKind.PARTY)] = NerCoreInternalResourceHelper.get_bytes("party.png")
+        res[Utils.enumToString(OrganizationKind.STUDY)] = NerCoreInternalResourceHelper.get_bytes("study.png")
+        res[Utils.enumToString(OrganizationKind.FEDERATION)] = NerCoreInternalResourceHelper.get_bytes("federation.png")
+        res[Utils.enumToString(OrganizationKind.CHURCH)] = NerCoreInternalResourceHelper.get_bytes("church.png")
+        res[Utils.enumToString(OrganizationKind.MILITARY)] = NerCoreInternalResourceHelper.get_bytes("military.png")
+        res[Utils.enumToString(OrganizationKind.AIRPORT)] = NerCoreInternalResourceHelper.get_bytes("avia.png")
+        res[Utils.enumToString(OrganizationKind.FESTIVAL)] = NerCoreInternalResourceHelper.get_bytes("festival.png")
+        res[MetaOrganization.ORG_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("org.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':
@@ -603,7 +603,7 @@ class OrganizationAnalyzer(Analyzer):
         return Utils.asObjectOrNull(t.kit.get_analyzer_data_by_analyzer_name(OrganizationAnalyzer.ANALYZER_NAME), OrgAnalyzerData)
     
     def process(self, kit : 'AnalysisKit') -> None:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         OrgItemTypeToken.initialize()
         ad = Utils.asObjectOrNull(kit.get_analyzer_data(self), OrgAnalyzerData)
         tlen = len(kit.sofa.text)
@@ -1027,7 +1027,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def process_referent_stat(begin : 'Token', param : str=None) -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (begin is None): 
             return None
         ad = OrganizationAnalyzer._get_data(begin)
@@ -1068,8 +1068,8 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def _try_attach_orgs(t : 'Token', step : int) -> typing.List['ReferentToken']:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
-        from pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
         if (t is None): 
             return None
         if (t.chars.is_latin_letter and MiscHelper.is_eng_article(t)): 
@@ -1512,7 +1512,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __do_post_analyze(rt : 'ReferentToken') -> None:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (rt.morph.case_.is_undefined): 
             if (not rt.begin_token.chars.is_all_upper): 
                 npt1 = NounPhraseHelper.try_parse(rt.begin_token, NounPhraseParseAttr.NO, 0, None)
@@ -1694,7 +1694,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_org_by_alias(t : 'Token') -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (t is None): 
             return None
         t0 = t
@@ -1830,7 +1830,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __attach_tail_attributes(org0_ : 'OrganizationReferent', t : 'Token', attach_for_new_org : bool, attach_typ : 'AttachType', is_global : bool=False) -> 'Token':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         t1 = None
         ki = org0_.kind
         can_has_geo = True
@@ -2268,9 +2268,9 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
-        from pullenti.ner.org.internal.OrgGlobal import OrgGlobal
-        from pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgGlobal import OrgGlobal
+        from backend.pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
         if (OrganizationAnalyzer.M_INITED): 
             return
         OrganizationAnalyzer.M_INITED = True
@@ -2745,8 +2745,8 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_dep(typ : 'OrgItemTypeToken', attach_typ : 'AttachType', spec_word_before : bool) -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
-        from pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
         if (typ is None): 
             return None
         after_org = None
@@ -3228,7 +3228,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __correct_dep_attrs(res : 'ReferentToken', typ : 'OrgItemTypeToken', after_temp_org : bool=False) -> None:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         t0 = res.begin_token
         dep = Utils.asObjectOrNull(res.referent, OrganizationReferent)
         is_unit = False
@@ -3431,7 +3431,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_org_names(t : 'Token') -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
+        from backend.pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
         if (t is None): 
             return None
         t0 = t
@@ -3933,7 +3933,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_army(t : 'Token') -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (not (isinstance(t, NumberToken)) or t.whitespaces_after_count > 2): 
             return None
         typ = OrgItemTypeToken.try_attach(t.next0_, True)
@@ -3970,7 +3970,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_org_int(t : 'Token', attach_typ : 'AttachType', mult_typ : 'OrgItemTypeToken', is_additional_attach : bool, step : int) -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (t is None): 
             return None
         if (t.chars.is_latin_letter and MiscHelper.is_eng_article(t)): 
@@ -4600,7 +4600,7 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __correct_after(rt0 : 'ReferentToken') -> None:
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (rt0 is None): 
             return
         if (not rt0.is_newline_after and rt0.end_token.next0_ is not None and rt0.end_token.next0_.is_char('(')): 
@@ -4649,9 +4649,9 @@ class OrganizationAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_org_(t0 : 'Token', t : 'Token', types : typing.List['OrgItemTypeToken'], spec_word_before : bool, attach_typ : 'AttachType', mult_typ : 'OrgItemTypeToken', is_additional_attach : bool) -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
-        from pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
-        from pullenti.ner.org.internal.OrgGlobal import OrgGlobal
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemNameToken import OrgItemNameToken
+        from backend.pullenti.ner.org.internal.OrgGlobal import OrgGlobal
         if (t0 is None): 
             return None
         t1 = t
@@ -6300,7 +6300,7 @@ class OrganizationAnalyzer(Analyzer):
         return res
     
     def __try_attach_org_before(self, t : 'Token') -> 'ReferentToken':
-        from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+        from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
         if (t is None or t.previous is None or (isinstance(t.previous, ReferentToken))): 
             return None
         org0 = Utils.asObjectOrNull(t.get_referent(), OrganizationReferent)

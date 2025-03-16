@@ -1,18 +1,18 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
 
 class MetaDecreePart(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
         MetaDecreePart.GLOBAL_META = MetaDecreePart()
         MetaDecreePart.GLOBAL_META.add_feature(DecreePartReferent.ATTR_NAME, "Наименование", 0, 0)
         MetaDecreePart.GLOBAL_META.add_feature(DecreePartReferent.ATTR_OWNER, "Владелец", 0, 1)
@@ -55,7 +55,7 @@ class MetaDecreePart(ReferentClass):
     PART_LOC_IMAGE_ID = "partloc"
     
     def get_image_id(self, obj : 'Referent'=None) -> str:
-        from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+        from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
         dpr = Utils.asObjectOrNull(obj, DecreePartReferent)
         if (dpr is not None): 
             if (dpr.owner is None): 

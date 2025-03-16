@@ -1,51 +1,51 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.ComplexNumCompareType import ComplexNumCompareType
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.ComplexNumComparer import ComplexNumComparer
-from pullenti.ner.core.TerminToken import TerminToken
-from pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.decree.internal.DecreeChangeTokenTyp import DecreeChangeTokenTyp
-from pullenti.ner.decree.DecreeChangeValueKind import DecreeChangeValueKind
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
-from pullenti.ner.core.ComplexNumToken import ComplexNumToken
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
-from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.decree.internal.PartToken import PartToken
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.ComplexNumCompareType import ComplexNumCompareType
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.ComplexNumComparer import ComplexNumComparer
+from backend.pullenti.ner.core.TerminToken import TerminToken
+from backend.pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.decree.internal.DecreeChangeTokenTyp import DecreeChangeTokenTyp
+from backend.pullenti.ner.decree.DecreeChangeValueKind import DecreeChangeValueKind
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
+from backend.pullenti.ner.core.ComplexNumToken import ComplexNumToken
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
+from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.decree.internal.PartToken import PartToken
 
 class DecreeChangeToken(MetaToken):
     
     @staticmethod
     def attach_referents(dpr : 'Referent', tok0 : 'DecreeChangeToken') -> typing.List['ReferentToken']:
-        from pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
+        from backend.pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
         if (dpr is None or tok0 is None): 
             return None
         tt0 = tok0.end_token.next0_
@@ -254,7 +254,7 @@ class DecreeChangeToken(MetaToken):
     
     @staticmethod
     def split_value(rt_val : 'ReferentToken', own : 'Referent') -> typing.List['ReferentToken']:
-        from pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
+        from backend.pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
         res = list()
         t = rt_val.begin_token
         while t is not None and (t.end_char < rt_val.end_char): 
@@ -406,7 +406,7 @@ class DecreeChangeToken(MetaToken):
     
     @staticmethod
     def try_attach(t : 'Token', main : 'DecreeChangeReferent'=None, ignore_newlines : bool=False, change_stack : typing.List['Referent']=None, is_in_edition : bool=False, abzac_regime : bool=False) -> 'DecreeChangeToken':
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (t is None): 
             return None
         tt = t
@@ -1383,9 +1383,9 @@ class DecreeChangeToken(MetaToken):
     
     @staticmethod
     def _try_parse_text(xx1 : 'Token', abzac_regime : bool, word_regime : bool=False) -> 'DecreeChangeToken':
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
-        from pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
-        from pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
+        from backend.pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
         res = DecreeChangeToken._new1023(xx1, xx1, DecreeChangeTokenTyp.VALUE)
         res.change_val = DecreeChangeValueReferent._new1033(DecreeChangeValueKind.TEXT)
         t0 = xx1

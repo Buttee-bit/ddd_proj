@@ -1,18 +1,18 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
-from pullenti.ner.Referent import Referent
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
+from backend.pullenti.ner.Referent import Referent
 
 class MetaPersonProperty(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+        from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
         MetaPersonProperty._global_meta = MetaPersonProperty()
         MetaPersonProperty._global_meta.add_feature(PersonPropertyReferent.ATTR_NAME, "Наименование", 1, 1)
         MetaPersonProperty._global_meta.add_feature(PersonPropertyReferent.ATTR_HIGHER, "Вышестоящее свойство", 0, 0)
@@ -22,7 +22,7 @@ class MetaPersonProperty(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+        from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
         return PersonPropertyReferent.OBJ_TYPENAME
     
     @property
@@ -42,7 +42,7 @@ class MetaPersonProperty(ReferentClass):
     PERSON_PROP_NATION_ID = "nationality"
     
     def get_image_id(self, obj : 'Referent'=None) -> str:
-        from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+        from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
         ki = PersonPropertyKind.UNDEFINED
         if (isinstance(obj, PersonPropertyReferent)): 
             ki = obj.kind

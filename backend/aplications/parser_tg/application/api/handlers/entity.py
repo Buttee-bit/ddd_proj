@@ -36,14 +36,17 @@ router = APIRouter(
 async def create_channel_handler(
     schema: TestAddEntityPersonToDocumentRequestSchema,
     container: Container = Depends(init_conatainer),
-) -> CreateChannelResponseSchema:
+) -> TestAddEntityPersonToDocumentResponseSchema:
 
     mediator: Mediator = container.resolve(Mediator)
     try:
-        channel, *_ = await mediator.handle_command(AddNerPeopleToDocumentCommand(
+        entity, *_ = await mediator.handle_command(AddNerPeopleToDocumentCommand(
             document_oid=schema.document_oid,
         ))
+        logging.warning(f'entity: {entity}')
     except Exception as exception:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception})
 
-    return CreateChannelResponseSchema.from_entity(channel)
+    return TestAddEntityPersonToDocumentResponseSchema(
+        test='test'
+    )

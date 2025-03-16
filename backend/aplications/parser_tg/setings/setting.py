@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     mongodb_channels_collection_name: str = Field(..., alias='MONGODB_CHANNELS_COLLECTION_NAME')
 
 
+    mongodb_ner_database_name: str = Field(..., alias='MONGODB_NER_DATABASE_NAME')
+    mongodb_ner_collection_persones_name: str = Field(..., alias='MONGODB_NER_COLLECTION_PERSONES_NAME')
+
     pulenty_server: str = Field(..., alias='PULENTY_SERVER')
 
     class Config:

@@ -1,16 +1,16 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.semantic.SemObjectType import SemObjectType
-from pullenti.semantic.SemLinkType import SemLinkType
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.semantic.SemObjectType import SemObjectType
+from backend.pullenti.semantic.SemLinkType import SemLinkType
 
 class AnaforHelper:
     
@@ -32,9 +32,9 @@ class AnaforHelper:
         
         @staticmethod
         def try_create(src : 'SemObject', tgt : 'SemObject') -> 'AnaforLink':
-            from pullenti.morph.MorphGender import MorphGender
-            from pullenti.morph.MorphNumber import MorphNumber
-            from pullenti.semantic.SemObjectType import SemObjectType
+            from backend.pullenti.morph.MorphGender import MorphGender
+            from backend.pullenti.morph.MorphNumber import MorphNumber
+            from backend.pullenti.semantic.SemObjectType import SemObjectType
             if (tgt.typ != SemObjectType.NOUN): 
                 return None
             if (((src.morph.number) & (MorphNumber.PLURAL)) == (MorphNumber.PLURAL)): 
@@ -90,7 +90,7 @@ class AnaforHelper:
                 i += 1
         
         def correct(self) -> None:
-            from pullenti.semantic.SemLinkType import SemLinkType
+            from backend.pullenti.semantic.SemLinkType import SemLinkType
             for li in self.target.links_to: 
                 if (li.typ == SemLinkType.NAMING): 
                     self.coef = (0)

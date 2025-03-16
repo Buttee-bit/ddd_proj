@@ -1,30 +1,30 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
 import threading
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Referent import Referent
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.Token import Token
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.goods.GoodAttrType import GoodAttrType
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.goods.internal.AttrMeta import AttrMeta
-from pullenti.ner.goods.internal.GoodMeta import GoodMeta
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
-from pullenti.ner.goods.GoodAttributeReferent import GoodAttributeReferent
-from pullenti.ner.goods.internal.GoodAttrToken import GoodAttrToken
-from pullenti.ner.goods.GoodReferent import GoodReferent
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.goods.GoodAttrType import GoodAttrType
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.goods.internal.AttrMeta import AttrMeta
+from backend.pullenti.ner.goods.internal.GoodMeta import GoodMeta
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.core.AnalyzerDataWithOntology import AnalyzerDataWithOntology
+from backend.pullenti.ner.goods.GoodAttributeReferent import GoodAttributeReferent
+from backend.pullenti.ner.goods.internal.GoodAttrToken import GoodAttrToken
+from backend.pullenti.ner.goods.GoodReferent import GoodReferent
 
 class GoodsAnalyzer(Analyzer):
     """ Анализатор названий товаров (номенклатур) и выделение из них характеристик.
@@ -65,8 +65,8 @@ class GoodsAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[AttrMeta.ATTR_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("bullet_ball_glass_grey.png")
-        res[GoodMeta.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("shoppingcart.png")
+        res[AttrMeta.ATTR_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("bullet_ball_glass_grey.png")
+        res[GoodMeta.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("shoppingcart.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

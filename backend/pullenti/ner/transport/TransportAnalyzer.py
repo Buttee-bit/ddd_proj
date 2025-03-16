@@ -1,30 +1,30 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.transport.TransportKind import TransportKind
-from pullenti.ner.transport.internal.MetaTransport import MetaTransport
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.Referent import Referent
-from pullenti.ner.transport.internal.TransItemToken import TransItemToken
-from pullenti.ner.transport.TransportReferent import TransportReferent
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.transport.TransportKind import TransportKind
+from backend.pullenti.ner.transport.internal.MetaTransport import MetaTransport
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.transport.internal.TransItemToken import TransItemToken
+from backend.pullenti.ner.transport.TransportReferent import TransportReferent
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.Analyzer import Analyzer
 
 class TransportAnalyzer(Analyzer):
     """ Анализатор транспортных стредств """
@@ -54,12 +54,12 @@ class TransportAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[Utils.enumToString(TransportKind.FLY)] = PullentiNerCoreInternalResourceHelper.get_bytes("fly.png")
-        res[Utils.enumToString(TransportKind.SHIP)] = PullentiNerCoreInternalResourceHelper.get_bytes("ship.png")
-        res[Utils.enumToString(TransportKind.SPACE)] = PullentiNerCoreInternalResourceHelper.get_bytes("space.png")
-        res[Utils.enumToString(TransportKind.TRAIN)] = PullentiNerCoreInternalResourceHelper.get_bytes("train.png")
-        res[Utils.enumToString(TransportKind.AUTO)] = PullentiNerCoreInternalResourceHelper.get_bytes("auto.png")
-        res[MetaTransport.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("transport.png")
+        res[Utils.enumToString(TransportKind.FLY)] = NerCoreInternalResourceHelper.get_bytes("fly.png")
+        res[Utils.enumToString(TransportKind.SHIP)] = NerCoreInternalResourceHelper.get_bytes("ship.png")
+        res[Utils.enumToString(TransportKind.SPACE)] = NerCoreInternalResourceHelper.get_bytes("space.png")
+        res[Utils.enumToString(TransportKind.TRAIN)] = NerCoreInternalResourceHelper.get_bytes("train.png")
+        res[Utils.enumToString(TransportKind.AUTO)] = NerCoreInternalResourceHelper.get_bytes("auto.png")
+        res[MetaTransport.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("transport.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

@@ -1,38 +1,38 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.Token import Token
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.org.OrganizationKind import OrganizationKind
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.titlepage.internal.PersonRelations import PersonRelations
-from pullenti.ner.TextAnnotation import TextAnnotation
-from pullenti.ner.booklink.internal.PullentiNerBooklinkInternalResourceHelper import PullentiNerBooklinkInternalResourceHelper
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.titlepage.internal.MetaTitleInfo import MetaTitleInfo
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.titlepage.TitlePageReferent import TitlePageReferent
-from pullenti.ner.titlepage.internal.TitleItemToken import TitleItemToken
-from pullenti.ner.Referent import Referent
-from pullenti.ner.date.DateAnalyzer import DateAnalyzer
-from pullenti.ner.titlepage.internal.TitleNameToken import TitleNameToken
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.titlepage.internal.Line import Line
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.org.OrganizationKind import OrganizationKind
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.titlepage.internal.PersonRelations import PersonRelations
+from backend.pullenti.ner.TextAnnotation import TextAnnotation
+from backend.pullenti.ner.booklink.internal.backend.pullentiNerBooklinkInternalResourceHelper import backend.pullentiNerBooklinkInternalResourceHelper
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.titlepage.internal.MetaTitleInfo import MetaTitleInfo
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.titlepage.TitlePageReferent import TitlePageReferent
+from backend.pullenti.ner.titlepage.internal.TitleItemToken import TitleItemToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.date.DateAnalyzer import DateAnalyzer
+from backend.pullenti.ner.titlepage.internal.TitleNameToken import TitleNameToken
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.titlepage.internal.Line import Line
 
 class TitlePageAnalyzer(Analyzer):
     """ Анализатор титульной информации - название произведения, авторы, год и другие книжные атрибуты.
@@ -73,7 +73,7 @@ class TitlePageAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaTitleInfo.TITLE_INFO_IMAGE_ID] = PullentiNerBooklinkInternalResourceHelper.get_bytes("titleinfo.png")
+        res[MetaTitleInfo.TITLE_INFO_IMAGE_ID] = backend.pullentiNerBooklinkInternalResourceHelper.get_bytes("titleinfo.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

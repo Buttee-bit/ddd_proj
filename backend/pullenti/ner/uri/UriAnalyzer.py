@@ -1,35 +1,35 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.bank.internal.PullentiNerBankInternalResourceHelper import PullentiNerBankInternalResourceHelper
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.uri.internal.MetaUri import MetaUri
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.uri.internal.UriItemToken import UriItemToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.bank.internal.backend.pullentiNerBankInternalResourceHelper import backend.pullentiNerBankInternalResourceHelper
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.uri.internal.MetaUri import MetaUri
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.uri.internal.UriItemToken import UriItemToken
 
 class UriAnalyzer(Analyzer):
     """ Анализатор для выделения URI-объектов (схема:значение) """
@@ -63,8 +63,8 @@ class UriAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaUri.MAIL_IMAGE_ID] = PullentiNerBankInternalResourceHelper.get_bytes("email.png")
-        res[MetaUri.URI_IMAGE_ID] = PullentiNerBankInternalResourceHelper.get_bytes("uri.png")
+        res[MetaUri.MAIL_IMAGE_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("email.png")
+        res[MetaUri.URI_IMAGE_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("uri.png")
         return res
     
     @property
@@ -744,7 +744,7 @@ class UriAnalyzer(Analyzer):
         MetaUri.initialize()
         try: 
             UriAnalyzer._m_schemes = TerminCollection()
-            obj = PullentiNerBankInternalResourceHelper.get_string("UriSchemes.csv")
+            obj = backend.pullentiNerBankInternalResourceHelper.get_string("UriSchemes.csv")
             if (obj is None): 
                 raise Utils.newException("Can't file resource file {0} in Organization analyzer".format("UriSchemes.csv"), None)
             for line0 in Utils.splitString(obj, '\n', False): 

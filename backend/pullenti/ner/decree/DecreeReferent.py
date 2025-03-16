@@ -1,26 +1,26 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
 import datetime
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.date.DateRangeReferent import DateRangeReferent
-from pullenti.ner.core.IntOntologyItem import IntOntologyItem
-from pullenti.ner.Referent import Referent
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.decree.internal.MetaDecree import MetaDecree
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.date.DateRangeReferent import DateRangeReferent
+from backend.pullenti.ner.core.IntOntologyItem import IntOntologyItem
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.decree.internal.MetaDecree import MetaDecree
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.ner.date.DateReferent import DateReferent
 
 class DecreeReferent(Referent):
     """ Сущность - ссылка на НПА (закон, приказ, договор, постановление...)
@@ -174,7 +174,7 @@ class DecreeReferent(Referent):
     @property
     def date(self) -> datetime.datetime:
         """ Дата подписания (для законов дат может быть много - по редакциям) """
-        from pullenti.ner.decree.internal.DecreeHelper import DecreeHelper
+        from backend.pullenti.ner.decree.internal.DecreeHelper import DecreeHelper
         s = self.get_string_value(DecreeReferent.ATTR_DATE)
         if (s is None): 
             return None
@@ -261,14 +261,14 @@ class DecreeReferent(Referent):
     @property
     def kind(self) -> 'DecreeKind':
         """ Класс НПА """
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         return DecreeToken.get_kind(self.typ, self.name)
     
     @property
     def is_law(self) -> bool:
         """ Признак того, что это именно закон, а не подзаконный акт.
         Для законов возможны несколько номеров и дат (редакций) """
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         return DecreeToken.is_law(self.typ)
     
     @property
@@ -299,7 +299,7 @@ class DecreeReferent(Referent):
         return self.get_string_value(DecreeReferent.ATTR_CASENUMBER)
     
     def add_slot(self, attr_name : str, attr_value : object, clear_old_value : bool, stat_count : int=0) -> 'Slot':
-        from pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
         if (isinstance(attr_value, PartToken.PartValue)): 
             attr_value = (attr_value.value)
         s = super().add_slot(attr_name, attr_value, clear_old_value, stat_count)
@@ -308,7 +308,7 @@ class DecreeReferent(Referent):
         return s
     
     def add_number(self, dt : 'DecreeToken') -> None:
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (dt is None): 
             return
         if (dt.typ == DecreeToken.ItemType.NUMBER): 
@@ -377,7 +377,7 @@ class DecreeReferent(Referent):
         return res
     
     def __all_dates(self) -> typing.List[datetime.datetime]:
-        from pullenti.ner.decree.internal.DecreeHelper import DecreeHelper
+        from backend.pullenti.ner.decree.internal.DecreeHelper import DecreeHelper
         res = list()
         for s in self.slots: 
             if (s.type_name == DecreeReferent.ATTR_DATE): 
@@ -391,7 +391,7 @@ class DecreeReferent(Referent):
         return b
     
     def __can_be_equals(self, obj : 'Referent', typ_ : 'ReferentsEqualType', ignore_geo : bool) -> bool:
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         dr = Utils.asObjectOrNull(obj, DecreeReferent)
         if (dr is None): 
             return False
@@ -552,7 +552,7 @@ class DecreeReferent(Referent):
         return False
     
     def _check_correction(self, noun_is_doubtful : bool) -> bool:
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         typ_ = self.typ0
         if (typ_ is None): 
             return False

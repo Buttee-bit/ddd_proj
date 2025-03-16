@@ -1,39 +1,39 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
 import threading
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.vacance.internal.VacanceTokenType import VacanceTokenType
-from pullenti.ner.Referent import Referent
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.money.MoneyReferent import MoneyReferent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.resume.ResumeItemReferent import ResumeItemReferent
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.resume.MetaResume import MetaResume
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.vacance.internal.VacanceToken import VacanceToken
-from pullenti.ner.Token import Token
-from pullenti.ner.resume.ResumeItemType import ResumeItemType
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.vacance.internal.VacanceTokenType import VacanceTokenType
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.money.MoneyReferent import MoneyReferent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.resume.ResumeItemReferent import ResumeItemReferent
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.resume.MetaResume import MetaResume
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.vacance.internal.VacanceToken import VacanceToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.resume.ResumeItemType import ResumeItemType
 
 class ResumeAnalyzer(Analyzer):
     """ Анализатор резюме (специфический анализатор) """
@@ -68,7 +68,7 @@ class ResumeAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[str(MetaResume.IMAGE_ID)] = PullentiNerCoreInternalResourceHelper.get_bytes("resume.png")
+        res[str(MetaResume.IMAGE_ID)] = NerCoreInternalResourceHelper.get_bytes("resume.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

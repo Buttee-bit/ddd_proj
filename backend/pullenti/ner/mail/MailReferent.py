@@ -1,20 +1,20 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.mail.MailKind import MailKind
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.Referent import Referent
-from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.mail.internal.MetaLetter import MetaLetter
-from pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.mail.MailKind import MailKind
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.mail.internal.MetaLetter import MetaLetter
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
 
 class MailReferent(Referent):
     """ Сущность - блок письма

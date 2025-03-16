@@ -1,51 +1,51 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.mail.internal.MailLine import MailLine
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.core.AnalyzerData import AnalyzerData
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.ner.person.internal.PersonMorphCollection import PersonMorphCollection
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.person.internal.ShortNameHelper import ShortNameHelper
-from pullenti.ner.person.internal.FioTemplateType import FioTemplateType
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
-from pullenti.ner.person.PersonIdentityReferent import PersonIdentityReferent
-from pullenti.ner.person.internal.MetaPersonIdentity import MetaPersonIdentity
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.person.internal.MetaPersonProperty import MetaPersonProperty
-from pullenti.ner.person.internal.MetaPerson import MetaPerson
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.person.internal.PersonAttrTerminType import PersonAttrTerminType
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.person.internal.PersonItemToken import PersonItemToken
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.mail.internal.MailLine import MailLine
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.core.AnalyzerData import AnalyzerData
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.ner.person.internal.PersonMorphCollection import PersonMorphCollection
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.person.internal.ShortNameHelper import ShortNameHelper
+from backend.pullenti.ner.person.internal.FioTemplateType import FioTemplateType
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+from backend.pullenti.ner.person.PersonIdentityReferent import PersonIdentityReferent
+from backend.pullenti.ner.person.internal.MetaPersonIdentity import MetaPersonIdentity
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.person.internal.MetaPersonProperty import MetaPersonProperty
+from backend.pullenti.ner.person.internal.MetaPerson import MetaPerson
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.person.internal.PersonAttrTerminType import PersonAttrTerminType
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.person.internal.PersonItemToken import PersonItemToken
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.Analyzer import Analyzer
 
 class PersonAnalyzer(Analyzer):
     """ Анализатор выделения персон и их атрибутов (должности, звания и пр.) """
@@ -75,17 +75,17 @@ class PersonAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaPerson.MAN_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("man.png")
-        res[MetaPerson.WOMEN_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("women.png")
-        res[MetaPerson.PERSON_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("person.png")
-        res[MetaPerson.GENERAL_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("general.png")
-        res[MetaPersonProperty.PERSON_PROP_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("personproperty.png")
-        res[MetaPersonProperty.PERSON_PROP_BOSS_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("boss.png")
-        res[MetaPersonProperty.PERSON_PROP_KING_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("king.png")
-        res[MetaPersonProperty.PERSON_PROP_KIN_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("kin.png")
-        res[MetaPersonProperty.PERSON_PROP_MILITARY_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("militaryrank.png")
-        res[MetaPersonProperty.PERSON_PROP_NATION_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("nationality.png")
-        res[MetaPersonIdentity.IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("identity.png")
+        res[MetaPerson.MAN_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("man.png")
+        res[MetaPerson.WOMEN_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("women.png")
+        res[MetaPerson.PERSON_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("person.png")
+        res[MetaPerson.GENERAL_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("general.png")
+        res[MetaPersonProperty.PERSON_PROP_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("personproperty.png")
+        res[MetaPersonProperty.PERSON_PROP_BOSS_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("boss.png")
+        res[MetaPersonProperty.PERSON_PROP_KING_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("king.png")
+        res[MetaPersonProperty.PERSON_PROP_KIN_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("kin.png")
+        res[MetaPersonProperty.PERSON_PROP_MILITARY_ID] = NerCoreInternalResourceHelper.get_bytes("militaryrank.png")
+        res[MetaPersonProperty.PERSON_PROP_NATION_ID] = NerCoreInternalResourceHelper.get_bytes("nationality.png")
+        res[MetaPersonIdentity.IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("identity.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':
@@ -112,20 +112,20 @@ class PersonAnalyzer(Analyzer):
     """ При анализе считать, что текст начинается с Фамилии Имени Отчества """
     
     def create_analyzer_data(self) -> 'AnalyzerData':
-        from pullenti.ner.person.internal.PersonAnalyzerData import PersonAnalyzerData
+        from backend.pullenti.ner.person.internal.PersonAnalyzerData import PersonAnalyzerData
         return PersonAnalyzerData()
     
     @staticmethod
     def _get_data(t : 'Token') -> 'PersonAnalyzerData':
-        from pullenti.ner.person.internal.PersonAnalyzerData import PersonAnalyzerData
+        from backend.pullenti.ner.person.internal.PersonAnalyzerData import PersonAnalyzerData
         if (t is None): 
             return None
         return Utils.asObjectOrNull(t.kit.get_analyzer_data_by_analyzer_name(PersonAnalyzer.ANALYZER_NAME), PersonAnalyzerData)
     
     def process(self, kit : 'AnalysisKit') -> None:
-        from pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
-        from pullenti.ner.person.internal.PersonIdToken import PersonIdToken
-        from pullenti.ner.person.internal.PersonAnalyzerData import PersonAnalyzerData
+        from backend.pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
+        from backend.pullenti.ner.person.internal.PersonIdToken import PersonIdToken
+        from backend.pullenti.ner.person.internal.PersonAnalyzerData import PersonAnalyzerData
         ad = Utils.asObjectOrNull(kit.get_analyzer_data(self), PersonAnalyzerData)
         ad.nominative_case_always = PersonAnalyzer.NOMINATIVE_CASE_ALWAYS
         ad.text_starts_with_lastname_firstname_middlename = PersonAnalyzer.TEXT_STARTS_WITH_LASTNAME_FIRSTNAME_MIDDLENAME
@@ -395,7 +395,7 @@ class PersonAnalyzer(Analyzer):
     
     @staticmethod
     def process_referent_stat(begin : 'Token', param : str=None) -> 'ReferentToken':
-        from pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
+        from backend.pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
         if (begin is None): 
             return None
         ad = PersonAnalyzer._get_data(begin)
@@ -601,9 +601,9 @@ class PersonAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_person_int(t : 'Token', for_ext_ontos : bool, step : int, for_attribute : bool=False) -> 'ReferentToken':
-        from pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
-        from pullenti.ner.person.internal.PersonHelper import PersonHelper
-        from pullenti.ner.person.internal.PersonIdentityToken import PersonIdentityToken
+        from backend.pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
+        from backend.pullenti.ner.person.internal.PersonHelper import PersonHelper
+        from backend.pullenti.ner.person.internal.PersonIdentityToken import PersonIdentityToken
         attrs = None
         mi = MorphBaseInfo()
         ad = PersonAnalyzer._get_data(t)
@@ -1200,7 +1200,7 @@ class PersonAnalyzer(Analyzer):
         return None
     
     def process_ontology_item(self, begin : 'Token') -> 'ReferentToken':
-        from pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
+        from backend.pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
         if (begin is None): 
             return None
         rt = PersonAnalyzer._try_attach_person(begin, True, -1, False)
@@ -1226,9 +1226,9 @@ class PersonAnalyzer(Analyzer):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
-        from pullenti.ner.person.internal.PersonPropAnalyzer import PersonPropAnalyzer
-        from pullenti.ner.person.internal.PersonIdToken import PersonIdToken
+        from backend.pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
+        from backend.pullenti.ner.person.internal.PersonPropAnalyzer import PersonPropAnalyzer
+        from backend.pullenti.ner.person.internal.PersonIdToken import PersonIdToken
         if (PersonAnalyzer.__m_inited): 
             return
         PersonAnalyzer.__m_inited = True

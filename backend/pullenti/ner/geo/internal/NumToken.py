@@ -1,32 +1,32 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
-from pullenti.ner.address.internal.AddressItemToken import AddressItemToken
-from pullenti.ner.geo.internal.GeoTokenType import GeoTokenType
-from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
-from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.geo.internal.MiscLocationHelper import MiscLocationHelper
+from backend.pullenti.ner.address.internal.AddressItemToken import AddressItemToken
+from backend.pullenti.ner.geo.internal.GeoTokenType import GeoTokenType
+from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
 
 class NumToken(MetaToken):
     

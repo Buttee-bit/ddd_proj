@@ -1,15 +1,15 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.ner.core.PrepositionHelper import PrepositionHelper
-from pullenti.ner.Token import Token
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.TextToken import TextToken
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.ner.core.PrepositionHelper import PrepositionHelper
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.TextToken import TextToken
 
 class NounPhraseHelper:
     """ Выделение именных групп - это существительное с согласованными прилагательными (если они есть).
@@ -30,8 +30,8 @@ class NounPhraseHelper:
         Returns:
             NounPhraseToken: именная группа или null
         """
-        from pullenti.ner.core.internal.NounPhraseItem import NounPhraseItem
-        from pullenti.ner.core._NounPraseHelperInt import _NounPraseHelperInt
+        from backend.pullenti.ner.core.internal.NounPhraseItem import NounPhraseItem
+        from backend.pullenti.ner.core._NounPraseHelperInt import _NounPraseHelperInt
         if (t is None): 
             return None
         if (attrs == NounPhraseParseAttr.NO and (isinstance(t, TextToken))): 

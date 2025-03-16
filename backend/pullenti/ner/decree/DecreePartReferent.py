@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.decree.internal.MetaDecreePart import MetaDecreePart
 
 class DecreePartReferent(Referent):
     """ Сущность, представляющая ссылку на структурную часть НПА
@@ -217,7 +217,7 @@ class DecreePartReferent(Referent):
         return value
     
     def add_slot(self, attr_name : str, attr_value : object, clear_old_value : bool, stat_count : int=0) -> 'Slot':
-        from pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
         tag_ = None
         if (isinstance(attr_value, PartToken.PartValue)): 
             tag_ = attr_value.source_value
@@ -660,7 +660,7 @@ class DecreePartReferent(Referent):
         return True
     
     def _is_all_items_over_this_level(self, typ : 'ItemType') -> bool:
-        from pullenti.ner.decree.internal.PartToken import PartToken
+        from backend.pullenti.ner.decree.internal.PartToken import PartToken
         l0 = self.__get_level(PartToken._get_attr_name_by_typ(typ))
         if (l0 <= 0): 
             return False

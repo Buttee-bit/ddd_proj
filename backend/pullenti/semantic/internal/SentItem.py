@@ -1,47 +1,47 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.semantic.SemAttributeType import SemAttributeType
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.ner.core.PrepositionHelper import PrepositionHelper
-from pullenti.ner.core.ConjunctionType import ConjunctionType
-from pullenti.ner.measure.internal.NumberWithUnitParseAttr import NumberWithUnitParseAttr
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.semantic.internal.NGItem import NGItem
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.TextToken import TextToken
-from pullenti.semantic.internal.NGLink import NGLink
-from pullenti.morph.MorphMood import MorphMood
-from pullenti.semantic.SemQuantity import SemQuantity
-from pullenti.ner.core.VerbPhraseHelper import VerbPhraseHelper
-from pullenti.semantic.internal.SemAttributeEx import SemAttributeEx
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.semantic.utils.DerivateService import DerivateService
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
-from pullenti.semantic.internal.SentItemType import SentItemType
-from pullenti.ner.core.NounPhraseToken import NounPhraseToken
-from pullenti.semantic.internal.NGLinkType import NGLinkType
-from pullenti.semantic.internal.SentItemSubtype import SentItemSubtype
-from pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
-from pullenti.semantic.SemAttribute import SemAttribute
-from pullenti.semantic.internal.AdverbToken import AdverbToken
-from pullenti.ner.core.ConjunctionToken import ConjunctionToken
-from pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
-from pullenti.semantic.internal.DelimToken import DelimToken
-from pullenti.semantic.internal.Sentence import Sentence
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.semantic.SemAttributeType import SemAttributeType
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.ner.core.PrepositionHelper import PrepositionHelper
+from backend.pullenti.ner.core.ConjunctionType import ConjunctionType
+from backend.pullenti.ner.measure.internal.NumberWithUnitParseAttr import NumberWithUnitParseAttr
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.semantic.internal.NGItem import NGItem
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.semantic.internal.NGLink import NGLink
+from backend.pullenti.morph.MorphMood import MorphMood
+from backend.pullenti.semantic.SemQuantity import SemQuantity
+from backend.pullenti.ner.core.VerbPhraseHelper import VerbPhraseHelper
+from backend.pullenti.semantic.internal.SemAttributeEx import SemAttributeEx
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.semantic.utils.DerivateService import DerivateService
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
+from backend.pullenti.semantic.internal.SentItemType import SentItemType
+from backend.pullenti.ner.core.NounPhraseToken import NounPhraseToken
+from backend.pullenti.semantic.internal.NGLinkType import NGLinkType
+from backend.pullenti.semantic.internal.SentItemSubtype import SentItemSubtype
+from backend.pullenti.ner.core.ConjunctionHelper import ConjunctionHelper
+from backend.pullenti.semantic.SemAttribute import SemAttribute
+from backend.pullenti.semantic.internal.AdverbToken import AdverbToken
+from backend.pullenti.ner.core.ConjunctionToken import ConjunctionToken
+from backend.pullenti.ner.core.VerbPhraseToken import VerbPhraseToken
+from backend.pullenti.semantic.internal.DelimToken import DelimToken
+from backend.pullenti.semantic.internal.Sentence import Sentence
 
 class SentItem:
     

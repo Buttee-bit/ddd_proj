@@ -1,12 +1,12 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Streams import Stream
 
-class PullentiNerAddressInternalResourceHelper:
+class backend.pullentiNerAddressInternalResourceHelper:
     """ Это для поддержки получения встроенных ресурсов """
     
     @staticmethod
@@ -18,17 +18,17 @@ class PullentiNerAddressInternalResourceHelper:
         
         """
         
-        names = Utils.getResourcesNames('pullenti.ner.address.properties', '.dat;.png')
+        names = Utils.getResourcesNames('backend.pullenti.ner.address.properties', '.dat;.png')
         for n in names: 
             if (Utils.endsWithString(n, name, True)): 
                 if (len(name) < len(n)): 
                     if (n[len(n) - len(name) - 1] != '.'): 
                         continue
                 try: 
-                    inf = Utils.getResourceInfo('pullenti.ner.address.properties', n)
+                    inf = Utils.getResourceInfo('backend.pullenti.ner.address.properties', n)
                     if (inf is None): 
                         continue
-                    with Utils.getResourceStream('pullenti.ner.address.properties', n) as stream: 
+                    with Utils.getResourceStream('backend.pullenti.ner.address.properties', n) as stream: 
                         buf = Utils.newArrayOfBytes(stream.length, 0)
                         stream.read(buf, 0, len(buf))
                         return buf
@@ -38,7 +38,7 @@ class PullentiNerAddressInternalResourceHelper:
     
     @staticmethod
     def get_string(name : str) -> str:
-        arr = PullentiNerAddressInternalResourceHelper.get_bytes(name)
+        arr = backend.pullentiNerAddressInternalResourceHelper.get_bytes(name)
         if (arr is None): 
             return None
         if ((len(arr) > 3 and arr[0] == (0xEF) and arr[1] == (0xBB)) and arr[2] == (0xBF)): 

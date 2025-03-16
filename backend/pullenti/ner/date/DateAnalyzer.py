@@ -1,39 +1,39 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import datetime
 import math
 import threading
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.TextAnnotation import TextAnnotation
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.Referent import Referent
-from pullenti.ner.Token import Token
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.AnalyzerData import AnalyzerData
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.date.internal.MetaDateRange import MetaDateRange
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.date.internal.MetaDate import MetaDate
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.date.DatePointerType import DatePointerType
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.date.internal.DateAnalyzerData import DateAnalyzerData
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.date.DateRangeReferent import DateRangeReferent
+from backend.pullenti.ner.TextAnnotation import TextAnnotation
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.AnalyzerData import AnalyzerData
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.date.internal.MetaDateRange import MetaDateRange
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.date.internal.MetaDate import MetaDate
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.date.DatePointerType import DatePointerType
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.date.internal.DateAnalyzerData import DateAnalyzerData
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.date.DateRangeReferent import DateRangeReferent
 
 class DateAnalyzer(Analyzer):
     """ Анализатор для дат и их диапазонов """
@@ -67,11 +67,11 @@ class DateAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaDate.DATE_FULL_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("datefull.png")
-        res[MetaDate.DATE_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("date.png")
-        res[MetaDate.DATE_REL_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("daterel.png")
-        res[MetaDateRange.DATE_RANGE_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("daterange.png")
-        res[MetaDateRange.DATE_RANGE_REL_IMAGE_ID] = PullentiNerCoreInternalResourceHelper.get_bytes("daterangerel.png")
+        res[MetaDate.DATE_FULL_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("datefull.png")
+        res[MetaDate.DATE_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("date.png")
+        res[MetaDate.DATE_REL_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("daterel.png")
+        res[MetaDateRange.DATE_RANGE_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("daterange.png")
+        res[MetaDateRange.DATE_RANGE_REL_IMAGE_ID] = NerCoreInternalResourceHelper.get_bytes("daterangerel.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':
@@ -95,9 +95,9 @@ class DateAnalyzer(Analyzer):
         return Utils.asObjectOrNull(t.kit.get_analyzer_data_by_analyzer_name(DateAnalyzer.ANALYZER_NAME), DateAnalyzerData)
     
     def process(self, kit : 'AnalysisKit') -> None:
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
-        from pullenti.ner.date.internal.DateExToken import DateExToken
-        from pullenti.ner.date.internal.DateRelHelper import DateRelHelper
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateExToken import DateExToken
+        from backend.pullenti.ner.date.internal.DateRelHelper import DateRelHelper
         ad = Utils.asObjectOrNull(kit.get_analyzer_data(self), DateAnalyzerData)
         DateItemToken.SPEED_REGIME = False
         DateItemToken._prepare_all_data(kit.first_token)
@@ -310,7 +310,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def process_referent_stat(begin : 'Token', param : str=None) -> 'ReferentToken':
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         if (begin is None): 
             return None
         ad = DateAnalyzer._get_data(begin)
@@ -360,7 +360,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def try_attach(dts : typing.List['DateItemToken'], high : bool) -> typing.List['ReferentToken']:
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         if (dts is None or len(dts) == 0): 
             return None
         if (not dts[0].is_whitespace_before): 
@@ -1043,7 +1043,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_time(t : 'Token', after_date : bool) -> 'ReferentToken':
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         if (t is None): 
             return None
         if (DateAnalyzer.is_user_param_ignore_time(t)): 
@@ -1069,7 +1069,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __corr_time(t0 : 'Token', time : 'DateReferent') -> 'Token':
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         t1 = None
         t = t0
         first_pass3854 = True
@@ -1112,7 +1112,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __try_attach_time_li(dts : typing.List['DateItemToken'], after_date : bool) -> 'ReferentToken':
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         if (dts is None or (len(dts) < 1)): 
             return None
         t0 = dts[0].begin_token
@@ -1163,7 +1163,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __apply_rule_formal(its : typing.List['DateItemToken'], high : bool, year : 'DateItemToken', mon : 'DateItemToken', day : 'DateItemToken') -> bool:
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         year.value = (None)
         mon.value = (None)
         day.value = (None)
@@ -1303,7 +1303,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __apply_rule_with_month(its : typing.List['DateItemToken'], high : bool, year : 'DateItemToken', mon : 'DateItemToken', day : 'DateItemToken', year_is_diff : bool) -> bool:
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         year.value = (None)
         mon.value = (None)
         day.value = (None)
@@ -1469,7 +1469,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __apply_rule_year_only(its : typing.List['DateItemToken'], year : 'DateItemToken', mon : 'DateItemToken', day : 'DateItemToken') -> bool:
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         year.value = (None)
         mon.value = (None)
         day.value = (None)
@@ -1523,7 +1523,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __apply_date_range(ad : 'AnalyzerData', its : typing.List['DateItemToken'], lang : 'MorphLang') -> 'DateRangeReferent':
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         lang.value = MorphLang()
         if (its is None or (len(its) < 3)): 
             return None
@@ -1539,7 +1539,7 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def __apply_date_range0(kit : 'AnalysisKit', ad : 'AnalyzerData') -> None:
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
         t = kit.first_token
         first_pass3858 = True
         while True:
@@ -1710,8 +1710,8 @@ class DateAnalyzer(Analyzer):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.date.internal.DateItemToken import DateItemToken
-        from pullenti.ner.measure.MeasureAnalyzer import MeasureAnalyzer
+        from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
+        from backend.pullenti.ner.measure.MeasureAnalyzer import MeasureAnalyzer
         with DateAnalyzer.__m_lock: 
             if (DateAnalyzer.__m_inited): 
                 return

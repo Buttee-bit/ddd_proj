@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.instrument.InstrumentBlockReferent import InstrumentBlockReferent
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.instrument.InstrumentBlockReferent import InstrumentBlockReferent
 
 class MetaInstrument(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
+        from backend.pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
         MetaInstrument.GLOBAL_META = MetaInstrument()
         MetaInstrument.GLOBAL_META.add_feature(InstrumentReferent.ATTR_TYPE, "Тип", 0, 1)
         MetaInstrument.GLOBAL_META.add_feature(InstrumentBlockReferent.ATTR_NUMBER, "Номер", 0, 1)
@@ -29,7 +29,7 @@ class MetaInstrument(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
+        from backend.pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
         return InstrumentReferent.OBJ_TYPENAME
     
     @property

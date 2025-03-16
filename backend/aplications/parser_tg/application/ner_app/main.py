@@ -3,13 +3,14 @@ from punq import Container
 from faststream import FastStream, Logger, Depends
 from faststream.kafka import KafkaBroker
 from backend.aplications.parser_tg.application.scrapping.tg import MessageDTO
+from backend.aplications.parser_tg.logic.commands.ner_people import AddNerPeopleToDocumentCommand
 from backend.aplications.parser_tg.logic.commands.news import CreateNewsCommand
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
 
 def main() -> FastStream:
-    broker = KafkaBroker()
+    broker = KafkaBroker(bootstrap_servers=["kafka:29092"])
     app = FastStream(broker=broker)
     container = init_conatainer()
 
@@ -22,11 +23,8 @@ def main() -> FastStream:
 
         logger.warning(f"Получено сообщение из Kafka: {data}")
         await mediator.handle_command(
-            CreateNewsCommand(
-                text=data.message,
-                title=data.message[:50],
-                published_at=data.time_publish,
-                oid_channel=data.chat_oid
+            AddNerPeopleToDocumentCommand(
+                document_oid=data
             )
         )
 

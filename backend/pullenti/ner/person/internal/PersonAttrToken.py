@@ -1,59 +1,59 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import xml.etree
 import io
 import typing
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Streams import MemoryStream
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Streams import MemoryStream
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.Token import Token
-from pullenti.ner.mail.internal.MailLine import MailLine
-from pullenti.ner.core.TerminToken import TerminToken
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.person.internal.PersonAttrTerminType2 import PersonAttrTerminType2
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.morph.internal.MorphDeserializer import MorphDeserializer
-from pullenti.ner.person.internal.PersonAttrTermin import PersonAttrTermin
-from pullenti.ner.person.internal.PullentiNerPersonInternalResourceHelper import PullentiNerPersonInternalResourceHelper
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.person.internal.PersonAttrTerminType import PersonAttrTerminType
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.person.internal.PersonItemToken import PersonItemToken
-from pullenti.ner.person.internal.PersonTokenData import PersonTokenData
-from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.Referent import Referent
-from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
-from pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
-from pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.geo.internal.GeoOwnerHelper import GeoOwnerHelper
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.mail.internal.MailLine import MailLine
+from backend.pullenti.ner.core.TerminToken import TerminToken
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.person.internal.PersonAttrTerminType2 import PersonAttrTerminType2
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.morph.internal.MorphDeserializer import MorphDeserializer
+from backend.pullenti.ner.person.internal.PersonAttrTermin import PersonAttrTermin
+from backend.pullenti.ner.person.internal.PullentiNerPersonInternalResourceHelper import PullentiNerPersonInternalResourceHelper
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.person.internal.PersonAttrTerminType import PersonAttrTerminType
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.person.internal.PersonItemToken import PersonItemToken
+from backend.pullenti.ner.person.internal.PersonTokenData import PersonTokenData
+from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+from backend.pullenti.ner.person.PersonPropertyKind import PersonPropertyKind
+from backend.pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
 
 class PersonAttrToken(ReferentToken):
     
@@ -1294,7 +1294,7 @@ class PersonAttrToken(ReferentToken):
     
     @staticmethod
     def __create_attr_position(tok : 'TerminToken', attrs : 'PersonAttrAttachAttrs') -> 'PersonAttrToken':
-        from pullenti.ner.person.internal.PersonIdentityToken import PersonIdentityToken
+        from backend.pullenti.ner.person.internal.PersonIdentityToken import PersonIdentityToken
         ty2 = tok.termin.typ2
         if (ty2 == PersonAttrTerminType2.ABBR): 
             pr0 = PersonPropertyReferent()

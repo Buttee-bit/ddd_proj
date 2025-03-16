@@ -1,20 +1,20 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Referent import Referent
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.transport.internal.MetaTransport import MetaTransport
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.transport.TransportKind import TransportKind
-from pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.transport.internal.MetaTransport import MetaTransport
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.transport.TransportKind import TransportKind
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
 
 class TransportReferent(Referent):
     """ Сущность - транспортное средство

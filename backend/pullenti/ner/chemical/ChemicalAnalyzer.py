@@ -1,21 +1,21 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.chemical.ChemicalFormulaReferent import ChemicalFormulaReferent
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.Token import Token
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.chemical.MetaChemical import MetaChemical
-from pullenti.ner.chemical.internal.ChemicalToken import ChemicalToken
-from pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.chemical.ChemicalFormulaReferent import ChemicalFormulaReferent
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.chemical.MetaChemical import MetaChemical
+from backend.pullenti.ner.chemical.internal.ChemicalToken import ChemicalToken
+from backend.pullenti.ner.Analyzer import Analyzer
 
 class ChemicalAnalyzer(Analyzer):
     """ Анализатор химических формул (специфический анализатор) """
@@ -50,7 +50,7 @@ class ChemicalAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[str(MetaChemical.IMAGE_ID)] = PullentiNerCoreInternalResourceHelper.get_bytes("chemical.png")
+        res[str(MetaChemical.IMAGE_ID)] = NerCoreInternalResourceHelper.get_bytes("chemical.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

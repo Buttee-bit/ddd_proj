@@ -1,28 +1,28 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.ner.core.TerminToken import TerminToken
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.ner.core.TerminToken import TerminToken
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
 
 class Termin:
     """ Термин, понятие, система обозначений чего-либо и варианты его написания. Элемент словаря TerminCollection.
@@ -34,11 +34,11 @@ class Termin:
         # Элемент термина (слово или число)
         
         def __init__(self, src : 'TextToken', add_lemma_variant : bool=False, number : str=None) -> None:
-            from pullenti.ner.Token import Token
-            from pullenti.ner.NumberSpellingType import NumberSpellingType
-            from pullenti.morph.MorphGender import MorphGender
-            from pullenti.morph.MorphWordForm import MorphWordForm
-            from pullenti.ner.NumberToken import NumberToken
+            from backend.pullenti.ner.Token import Token
+            from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+            from backend.pullenti.morph.MorphGender import MorphGender
+            from backend.pullenti.morph.MorphWordForm import MorphWordForm
+            from backend.pullenti.ner.NumberToken import NumberToken
             self.__m_source = None;
             self.is_pattern_any = False
             self.__m_number = None;
@@ -98,8 +98,8 @@ class Termin:
         
         @property
         def gender(self) -> 'MorphGender':
-            from pullenti.morph.MorphGender import MorphGender
-            from pullenti.morph.MorphWordForm import MorphWordForm
+            from backend.pullenti.morph.MorphGender import MorphGender
+            from backend.pullenti.morph.MorphWordForm import MorphWordForm
             if (self.__m_gender != MorphGender.UNDEFINED): 
                 return self.__m_gender
             res = MorphGender.UNDEFINED
@@ -110,7 +110,7 @@ class Termin:
             return res
         @gender.setter
         def gender(self, value) -> 'MorphGender':
-            from pullenti.morph.MorphGender import MorphGender
+            from backend.pullenti.morph.MorphGender import MorphGender
             self.__m_gender = value
             if (self.__m_source is not None): 
                 for i in range(self.__m_source.morph.items_count - 1, -1, -1):
@@ -136,7 +136,7 @@ class Termin:
         
         @property
         def morph_word_forms(self) -> typing.List['MorphWordForm']:
-            from pullenti.morph.MorphWordForm import MorphWordForm
+            from backend.pullenti.morph.MorphWordForm import MorphWordForm
             res = list()
             if (self.__m_source is not None): 
                 for wf in self.__m_source.morph.items: 
@@ -157,9 +157,9 @@ class Termin:
             return self.__check(t, 0)
         
         def __check(self, t : 'Token', lev : int) -> bool:
-            from pullenti.ner.MetaToken import MetaToken
-            from pullenti.ner.TextToken import TextToken
-            from pullenti.ner.NumberToken import NumberToken
+            from backend.pullenti.ner.MetaToken import MetaToken
+            from backend.pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.NumberToken import NumberToken
             if (lev > 10): 
                 return False
             if (self.is_pattern_any): 
@@ -232,12 +232,12 @@ class Termin:
             return Utils.toStringStringIO(res)
         
         def try_attach(self, t0 : 'Token') -> 'TerminToken':
-            from pullenti.morph.LanguageHelper import LanguageHelper
-            from pullenti.ner.MorphCollection import MorphCollection
-            from pullenti.ner.Token import Token
-            from pullenti.ner.MetaToken import MetaToken
-            from pullenti.ner.TextToken import TextToken
-            from pullenti.ner.core.TerminToken import TerminToken
+            from backend.pullenti.morph.LanguageHelper import LanguageHelper
+            from backend.pullenti.ner.MorphCollection import MorphCollection
+            from backend.pullenti.ner.Token import Token
+            from backend.pullenti.ner.MetaToken import MetaToken
+            from backend.pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.core.TerminToken import TerminToken
             t1 = Utils.asObjectOrNull(t0, TextToken)
             if (t1 is None): 
                 return None
@@ -715,8 +715,8 @@ class Termin:
         Returns:
             TerminToken: метатокен привязки или null
         """
-        from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-        from pullenti.ner.core.BracketHelper import BracketHelper
+        from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+        from backend.pullenti.ner.core.BracketHelper import BracketHelper
         if (t0 is None): 
             return None
         term = None

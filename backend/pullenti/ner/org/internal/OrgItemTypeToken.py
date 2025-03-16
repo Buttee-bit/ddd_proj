@@ -1,53 +1,53 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
 import xml.etree
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Streams import MemoryStream
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Streams import MemoryStream
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.org.OrganizationKind import OrganizationKind
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.org.internal.OrgItemNumberToken import OrgItemNumberToken
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.org.internal.OrgItemTypeTermin import OrgItemTypeTermin
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.ner.org.internal.PullentiNerOrgInternalResourceHelper import PullentiNerOrgInternalResourceHelper
-from pullenti.morph.internal.MorphDeserializer import MorphDeserializer
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.core.IntOntologyCollection import IntOntologyCollection
-from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.morph.CharsInfo import CharsInfo
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.org.internal.OrgTokenData import OrgTokenData
-from pullenti.ner.org.OrgProfile import OrgProfile
-from pullenti.ner.Token import Token
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.org.internal.OrgItemTypeTyp import OrgItemTypeTyp
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.org.OrganizationKind import OrganizationKind
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.org.internal.OrgItemNumberToken import OrgItemNumberToken
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.org.internal.OrgItemTypeTermin import OrgItemTypeTermin
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.ner.org.internal.backend.pullentiNerOrgInternalResourceHelper import backend.pullentiNerOrgInternalResourceHelper
+from backend.pullenti.morph.internal.MorphDeserializer import MorphDeserializer
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.core.IntOntologyCollection import IntOntologyCollection
+from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.morph.CharsInfo import CharsInfo
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.org.internal.OrgTokenData import OrgTokenData
+from backend.pullenti.ner.org.OrgProfile import OrgProfile
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.org.internal.OrgItemTypeTyp import OrgItemTypeTyp
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.ProcessorService import ProcessorService
 
 class OrgItemTypeToken(MetaToken):
     
@@ -169,7 +169,7 @@ class OrgItemTypeToken(MetaToken):
     
     @staticmethod
     def _prepare_all_data(t0 : 'Token') -> None:
-        from pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
+        from backend.pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
         if (not OrgItemTypeToken.SPEED_REGIME): 
             return
         ad = OrganizationAnalyzer._get_data(t0)
@@ -198,7 +198,7 @@ class OrgItemTypeToken(MetaToken):
     
     @staticmethod
     def _recalc_data(t : 'Token') -> None:
-        from pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
+        from backend.pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
         if (not OrgItemTypeToken.SPEED_REGIME): 
             return
         ad = OrganizationAnalyzer._get_data(t)
@@ -217,7 +217,7 @@ class OrgItemTypeToken(MetaToken):
     
     @staticmethod
     def try_attach(t : 'Token', can_be_first_letter_lower : bool=False) -> 'OrgItemTypeToken':
-        from pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
+        from backend.pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
         if (t is None): 
             return None
         ad = OrganizationAnalyzer._get_data(t)
@@ -255,7 +255,7 @@ class OrgItemTypeToken(MetaToken):
     
     @staticmethod
     def __try_attach_int(t : 'Token', can_be_first_letter_lower : bool) -> 'OrgItemTypeToken':
-        from pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
+        from backend.pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
         if (isinstance(t, ReferentToken)): 
             if (t.chars.is_latin_letter): 
                 pass
@@ -1578,7 +1578,7 @@ class OrgItemTypeToken(MetaToken):
         if (OrgItemTypeToken.__m_global is not None): 
             return
         OrgItemTypeToken.__m_global = IntOntologyCollection()
-        tdat = PullentiNerOrgInternalResourceHelper.get_bytes("OrgTypes.dat")
+        tdat = backend.pullentiNerOrgInternalResourceHelper.get_bytes("OrgTypes.dat")
         if (tdat is None): 
             raise Utils.newException("Can't file resource file OrgTypes.dat in Organization analyzer", None)
         tdat = OrgItemTypeToken._deflate(tdat)
@@ -2807,7 +2807,7 @@ class OrgItemTypeToken(MetaToken):
             OrgItemTypeToken._m_pref_words.add(Termin._new90(s, s, MorphLang.UA))
         for k in range(3):
             name_ = ("pattrs_ru.dat" if k == 0 else ("pattrs_ua.dat" if k == 1 else "pattrs_en.dat"))
-            dat = PullentiNerOrgInternalResourceHelper.get_bytes(name_)
+            dat = backend.pullentiNerOrgInternalResourceHelper.get_bytes(name_)
             if (dat is None): 
                 raise Utils.newException("Can't file resource file {0} in Organization analyzer".format(name_), None)
             with MemoryStream(OrgItemTypeToken._deflate(dat)) as tmp: 

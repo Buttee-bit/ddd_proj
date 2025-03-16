@@ -1,26 +1,26 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
 
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.NumberExType import NumberExType
-from pullenti.ner.Referent import Referent
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.NumberParseAttr import NumberParseAttr
-from pullenti.ner.money.internal.MoneyMeta import MoneyMeta
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.bank.internal.PullentiNerBankInternalResourceHelper import PullentiNerBankInternalResourceHelper
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.money.MoneyReferent import MoneyReferent
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.NumberExType import NumberExType
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.ReferentsEqualType import ReferentsEqualType
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.NumberParseAttr import NumberParseAttr
+from backend.pullenti.ner.money.internal.MoneyMeta import MoneyMeta
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.bank.internal.backend.pullentiNerBankInternalResourceHelper import backend.pullentiNerBankInternalResourceHelper
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.money.MoneyReferent import MoneyReferent
 
 class MoneyAnalyzer(Analyzer):
     """ Анализатор для денежных сумм """
@@ -54,8 +54,8 @@ class MoneyAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MoneyMeta.IMAGE_ID] = PullentiNerBankInternalResourceHelper.get_bytes("money2.png")
-        res[MoneyMeta.IMAGE2ID] = PullentiNerBankInternalResourceHelper.get_bytes("moneyerr.png")
+        res[MoneyMeta.IMAGE_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("money2.png")
+        res[MoneyMeta.IMAGE2ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("moneyerr.png")
         return res
     
     @property

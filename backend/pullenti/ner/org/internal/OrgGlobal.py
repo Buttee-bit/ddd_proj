@@ -1,25 +1,25 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import xml.etree
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Streams import MemoryStream
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Streams import MemoryStream
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.org.internal.PullentiNerOrgInternalResourceHelper import PullentiNerOrgInternalResourceHelper
-from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
-from pullenti.ner.core.IntOntologyCollection import IntOntologyCollection
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
-from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.org.internal.backend.pullentiNerOrgInternalResourceHelper import backend.pullentiNerOrgInternalResourceHelper
+from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+from backend.pullenti.ner.core.IntOntologyCollection import IntOntologyCollection
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
 
 class OrgGlobal:
     
@@ -40,7 +40,7 @@ class OrgGlobal:
             for k in range(3):
                 lang = (MorphLang.RU if k == 0 else (MorphLang.EN if k == 1 else MorphLang.UA))
                 name = ("Orgs_ru.dat" if k == 0 else ("Orgs_en.dat" if k == 1 else "Orgs_ua.dat"))
-                dat = PullentiNerOrgInternalResourceHelper.get_bytes(name)
+                dat = backend.pullentiNerOrgInternalResourceHelper.get_bytes(name)
                 if (dat is None): 
                     raise Utils.newException("Can't file resource file {0} in Organization analyzer".format(name), None)
                 with MemoryStream(OrgItemTypeToken._deflate(dat)) as tmp: 

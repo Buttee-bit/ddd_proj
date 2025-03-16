@@ -1,28 +1,28 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import math
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import PullentiNerCoreInternalResourceHelper
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.NumberParseAttr import NumberParseAttr
-from pullenti.ner.core.TerminToken import TerminToken
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.Token import Token
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.core.NumberExType import NumberExType
-from pullenti.ner.core.NumberExToken import NumberExToken
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.internal.PullentiNerCoreInternalResourceHelper import NerCoreInternalResourceHelper
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.NumberParseAttr import NumberParseAttr
+from backend.pullenti.ner.core.TerminToken import TerminToken
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.core.NumberExType import NumberExType
+from backend.pullenti.ner.core.NumberExToken import NumberExToken
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
 
 class NumberExHelper:
     
@@ -641,7 +641,7 @@ class NumberExHelper:
         bb = Termin.ASSIGN_ALL_TEXTS_AS_NORMAL
         Termin.ASSIGN_ALL_TEXTS_AS_NORMAL = False
         for k in range(3):
-            str0_ = PullentiNerCoreInternalResourceHelper.get_string(("Money.csv" if k == 0 else ("MoneyUA.csv" if k == 1 else "MoneyEN.csv")))
+            str0_ = NerCoreInternalResourceHelper.get_string(("Money.csv" if k == 0 else ("MoneyUA.csv" if k == 1 else "MoneyEN.csv")))
             if (str0_ is None): 
                 continue
             lang = (MorphLang.RU if k == 0 else (MorphLang.UA if k == 1 else MorphLang.EN))

@@ -1,27 +1,27 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Streams import MemoryStream
-from pullenti.unisharp.Streams import Stream
-from pullenti.unisharp.Misc import WebClient
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Streams import MemoryStream
+from backend.pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Misc import WebClient
 
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.core.internal.SerializerHelper import SerializerHelper
-from pullenti.ner.core.AnalysisKit import AnalysisKit
-from pullenti.ner.AnalysisResult import AnalysisResult
-from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.core.internal.SerializerHelper import SerializerHelper
+from backend.pullenti.ner.core.AnalysisKit import AnalysisKit
+from backend.pullenti.ner.AnalysisResult import AnalysisResult
+from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
 
 class ServerService:
     """ Поддержка проведения анализа текста на внешнем сервере """
     
     @staticmethod
     def get_server_version(address_ : str) -> str:
-        """ Проверить работоспособность сервера Pullenti.Server.
+        """ Проверить работоспособность сервера backend.pullenti.Server.
         Отправляется GET-запрос на сервер, возвращает ASCII-строку с версией SDK.
         
         Args:

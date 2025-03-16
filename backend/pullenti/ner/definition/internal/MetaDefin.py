@@ -1,18 +1,18 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.definition.DefinitionKind import DefinitionKind
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.definition.DefinitionKind import DefinitionKind
 
 class MetaDefin(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.definition.DefinitionReferent import DefinitionReferent
+        from backend.pullenti.ner.definition.DefinitionReferent import DefinitionReferent
         MetaDefin._global_meta = MetaDefin()
         MetaDefin._global_meta.add_feature(DefinitionReferent.ATTR_TERMIN, "Термин", 1, 0)
         MetaDefin._global_meta.add_feature(DefinitionReferent.ATTR_TERMIN_ADD, "Дополнение термина", 0, 0)
@@ -26,7 +26,7 @@ class MetaDefin(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.definition.DefinitionReferent import DefinitionReferent
+        from backend.pullenti.ner.definition.DefinitionReferent import DefinitionReferent
         return DefinitionReferent.OBJ_TYPENAME
     
     @property
@@ -38,7 +38,7 @@ class MetaDefin(ReferentClass):
     IMAGE_ASS_ID = "assert"
     
     def get_image_id(self, obj : 'Referent'=None) -> str:
-        from pullenti.ner.definition.DefinitionReferent import DefinitionReferent
+        from backend.pullenti.ner.definition.DefinitionReferent import DefinitionReferent
         if (isinstance(obj, DefinitionReferent)): 
             ki = obj.kind
             if (ki == DefinitionKind.DEFINITION): 

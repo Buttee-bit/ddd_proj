@@ -1,13 +1,13 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.NumberExType import NumberExType
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.NumberExType import NumberExType
 
 class NumberExToken(NumberToken):
     # Число с стандартный постфиксом (мерой длины, вес, деньги и т.п.)
@@ -125,7 +125,7 @@ class NumberExToken(NumberToken):
     
     @staticmethod
     def ex_typ_to_string(ty : 'NumberExType', ty2 : 'NumberExType'=NumberExType.UNDEFINED) -> str:
-        from pullenti.ner.core.internal.NumberExHelper import NumberExHelper
+        from backend.pullenti.ner.core.internal.NumberExHelper import NumberExHelper
         if (ty2 != NumberExType.UNDEFINED): 
             return "{0}/{1}".format(NumberExToken.ex_typ_to_string(ty, NumberExType.UNDEFINED), NumberExToken.ex_typ_to_string(ty2, NumberExType.UNDEFINED))
         res = None

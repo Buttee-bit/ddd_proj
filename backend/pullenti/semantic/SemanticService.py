@@ -1,19 +1,19 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.money.MoneyAnalyzer import MoneyAnalyzer
-from pullenti.semantic.SemProcessParams import SemProcessParams
-from pullenti.semantic.internal.AlgoParams import AlgoParams
-from pullenti.semantic.internal.DelimToken import DelimToken
-from pullenti.semantic.internal.AdverbToken import AdverbToken
-from pullenti.ner.measure.MeasureAnalyzer import MeasureAnalyzer
+from backend.pullenti.ner.money.MoneyAnalyzer import MoneyAnalyzer
+from backend.pullenti.semantic.SemProcessParams import SemProcessParams
+from backend.pullenti.semantic.internal.AlgoParams import AlgoParams
+from backend.pullenti.semantic.internal.DelimToken import DelimToken
+from backend.pullenti.semantic.internal.AdverbToken import AdverbToken
+from backend.pullenti.ner.measure.MeasureAnalyzer import MeasureAnalyzer
 
 class SemanticService:
-    """ Сервис семантического анализа. Основная концепция изложена в документе Pullenti.Semantic.
+    """ Сервис семантического анализа. Основная концепция изложена в документе backend.pullenti.Semantic.
     В реальных проектах не использовался, слабо отлажен, но ведется доработка данной функциональности.
     
     Сервис семантики
@@ -50,7 +50,7 @@ class SemanticService:
             SemDocument: результат анализа текста
         
         """
-        from pullenti.semantic.internal.AnalyzeHelper import AnalyzeHelper
+        from backend.pullenti.semantic.internal.AnalyzeHelper import AnalyzeHelper
         return AnalyzeHelper.process(ar, Utils.ifNotNull(pars, SemProcessParams()))
     
     PARAMS = None

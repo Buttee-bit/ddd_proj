@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 
-from pullenti.ner.core.SingleNumValueType import SingleNumValueType
-from pullenti.ner.core.ComplexNumCompareType import ComplexNumCompareType
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.SingleNumComparer import SingleNumComparer
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.SingleNumToken import SingleNumToken
+from backend.pullenti.ner.core.SingleNumValueType import SingleNumValueType
+from backend.pullenti.ner.core.ComplexNumCompareType import ComplexNumCompareType
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.SingleNumComparer import SingleNumComparer
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.SingleNumToken import SingleNumToken
 
 class ComplexNumToken(MetaToken):
     """ Поддержка сложной нумерации разделов, пунктов, формул и т.п.

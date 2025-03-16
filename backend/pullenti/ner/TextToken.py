@@ -1,25 +1,25 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.core.internal.SerializerHelper import SerializerHelper
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.MorphCollection import MorphCollection
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.core.internal.SerializerHelper import SerializerHelper
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.MorphCollection import MorphCollection
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
 
 class TextToken(Token):
     """ Входной токен (после морфанализа)
@@ -176,7 +176,7 @@ class TextToken(Token):
         return res
     
     def get_normal_case_text(self, mc : 'MorphClass'=None, num : 'MorphNumber'=MorphNumber.UNDEFINED, gender : 'MorphGender'=MorphGender.UNDEFINED, keep_chars : bool=False) -> str:
-        from pullenti.ner.core.MiscHelper import MiscHelper
+        from backend.pullenti.ner.core.MiscHelper import MiscHelper
         empty = True
         if (mc is not None and mc.is_preposition): 
             return LanguageHelper.normalize_preposition(self.term)

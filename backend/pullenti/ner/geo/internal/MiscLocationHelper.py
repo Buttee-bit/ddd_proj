@@ -1,37 +1,37 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Streams import MemoryStream
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Streams import MemoryStream
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.geo.internal.GeoTokenData import GeoTokenData
-from pullenti.ner.address.internal.StreetItemType import StreetItemType
-from pullenti.ner.address.internal.AddressItemType import AddressItemType
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.Termin import Termin
-from pullenti.morph.internal.MorphDeserializer import MorphDeserializer
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.Token import Token
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.geo.internal.GeoTokenData import GeoTokenData
+from backend.pullenti.ner.address.internal.StreetItemType import StreetItemType
+from backend.pullenti.ner.address.internal.AddressItemType import AddressItemType
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.morph.internal.MorphDeserializer import MorphDeserializer
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
 
 class MiscLocationHelper:
     
@@ -66,9 +66,9 @@ class MiscLocationHelper:
     
     @staticmethod
     def check_name_long(mt : 'MetaToken') -> 'Token':
-        from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
-        from pullenti.ner.address.internal.StreetItemToken import StreetItemToken
-        from pullenti.ner.geo.internal.CityItemToken import CityItemToken
+        from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+        from backend.pullenti.ner.address.internal.StreetItemToken import StreetItemToken
+        from backend.pullenti.ner.geo.internal.CityItemToken import CityItemToken
         if (mt is None or mt.whitespaces_after_count > 2): 
             return None
         if (not MiscLocationHelper.is_user_param_address(mt)): 
@@ -142,8 +142,8 @@ class MiscLocationHelper:
     
     @staticmethod
     def check_territory(t : 'Token') -> 'Token':
-        from pullenti.ner.address.internal.AddressItemToken import AddressItemToken
-        from pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
+        from backend.pullenti.ner.address.internal.AddressItemToken import AddressItemToken
+        from backend.pullenti.ner.geo.internal.OrgTypToken import OrgTypToken
         if (not (isinstance(t, TextToken))): 
             return None
         tok = MiscLocationHelper.__m_terrs.try_parse(t, TerminParseAttr.NO)
@@ -211,7 +211,7 @@ class MiscLocationHelper:
     
     @staticmethod
     def check_geo_object_before_brief(t : 'Token', ad : 'GeoAnalyzerData'=None) -> bool:
-        from pullenti.ner.geo.internal.CityItemToken import CityItemToken
+        from backend.pullenti.ner.geo.internal.CityItemToken import CityItemToken
         if (t is None): 
             return False
         if (ad is None): 
@@ -251,7 +251,7 @@ class MiscLocationHelper:
     
     @staticmethod
     def check_geo_object_after_brief(t : 'Token', ad : 'GeoAnalyzerData'=None) -> bool:
-        from pullenti.ner.geo.internal.CityItemToken import CityItemToken
+        from backend.pullenti.ner.geo.internal.CityItemToken import CityItemToken
         if (t is None): 
             return False
         if (ad is None): 
@@ -296,9 +296,9 @@ class MiscLocationHelper:
     
     @staticmethod
     def check_geo_object_after(t : 'Token', dont_check_city : bool=False, check_terr : bool=False) -> bool:
-        from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
-        from pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
-        from pullenti.ner.geo.internal.CityItemToken import CityItemToken
+        from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+        from backend.pullenti.ner.geo.internal.OrgItemToken import OrgItemToken
+        from backend.pullenti.ner.geo.internal.CityItemToken import CityItemToken
         if (t is None): 
             return False
         cou = 0
@@ -358,7 +358,7 @@ class MiscLocationHelper:
     
     @staticmethod
     def check_near_before(t : 'Token', ad : 'GeoAnalyzerData') -> 'Token':
-        from pullenti.ner.address.internal.AddressItemToken import AddressItemToken
+        from backend.pullenti.ner.address.internal.AddressItemToken import AddressItemToken
         if (t is None or t.previous is None): 
             return None
         cou = 0
@@ -375,7 +375,7 @@ class MiscLocationHelper:
     
     @staticmethod
     def check_unknown_region(t : 'Token') -> 'Token':
-        from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+        from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
         if (not (isinstance(t, TextToken))): 
             return None
         npt = MiscLocationHelper._try_parse_npt(t)
@@ -570,7 +570,7 @@ class MiscLocationHelper:
     
     @staticmethod
     def get_geo_referent_by_name(name : str) -> 'GeoReferent':
-        from pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
+        from backend.pullenti.ner.geo.internal.TerrItemToken import TerrItemToken
         res = None
         wrapres1475 = RefOutArgWrapper(None)
         inoutres1476 = Utils.tryGetValue(MiscLocationHelper.__m_geo_ref_by_name, name, wrapres1475)

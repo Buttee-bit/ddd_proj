@@ -1,36 +1,36 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import datetime
 import typing
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.measure.internal.NumberWithUnitParseAttr import NumberWithUnitParseAttr
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.NumberExType import NumberExType
-from pullenti.ner.date.DateRangeReferent import DateRangeReferent
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.date.internal.DateTokenData import DateTokenData
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.Token import Token
-from pullenti.ner.date.DatePointerType import DatePointerType
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.date.DateAnalyzer import DateAnalyzer
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.measure.internal.NumberWithUnitParseAttr import NumberWithUnitParseAttr
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.NumberExType import NumberExType
+from backend.pullenti.ner.date.DateRangeReferent import DateRangeReferent
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.date.internal.DateTokenData import DateTokenData
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.date.DatePointerType import DatePointerType
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.date.DateAnalyzer import DateAnalyzer
 
 class DateItemToken(MetaToken):
     # Примитив, из которых состоит дата
@@ -342,7 +342,7 @@ class DateItemToken(MetaToken):
     
     @staticmethod
     def __try_attach(t : 'Token', prev : typing.List['DateItemToken'], detail_regime : bool) -> 'DateItemToken':
-        from pullenti.ner.measure.internal.MeasureToken import MeasureToken
+        from backend.pullenti.ner.measure.internal.MeasureToken import MeasureToken
         if (t is None): 
             return None
         nt = Utils.asObjectOrNull(t, NumberToken)

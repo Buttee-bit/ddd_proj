@@ -1,35 +1,35 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
 from enum import IntEnum
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.instrument.InstrumentKind import InstrumentKind
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
-from pullenti.ner.Token import Token
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.decree.DecreeAnalyzer import DecreeAnalyzer
+from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.instrument.InstrumentKind import InstrumentKind
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.decree.DecreeAnalyzer import DecreeAnalyzer
 
 class PartToken(MetaToken):
     # Примитив, из которых состоит часть декрета (статья, пункт и часть)
@@ -75,7 +75,7 @@ class PartToken(MetaToken):
         
         @property
         def source_value(self) -> str:
-            from pullenti.ner.MetaToken import MetaToken
+            from backend.pullenti.ner.MetaToken import MetaToken
             t0 = self.begin_token
             t1 = self.end_token
             if (t1.is_char('.')): 
@@ -102,10 +102,10 @@ class PartToken(MetaToken):
             return self.value
         
         def correct_value(self) -> None:
-            from pullenti.ner.decree.DecreeReferent import DecreeReferent
-            from pullenti.ner.TextToken import TextToken
-            from pullenti.ner.NumberToken import NumberToken
-            from pullenti.ner.core.BracketHelper import BracketHelper
+            from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+            from backend.pullenti.ner.TextToken import TextToken
+            from backend.pullenti.ner.NumberToken import NumberToken
+            from backend.pullenti.ner.core.BracketHelper import BracketHelper
             if ((isinstance(self.end_token.next0_, TextToken)) and self.end_token.next0_.length_char == 1 and self.end_token.next0_.chars.is_letter): 
                 if (not self.end_token.is_whitespace_after): 
                     self.value += self.end_token.next0_.term
@@ -268,8 +268,8 @@ class PartToken(MetaToken):
     
     @staticmethod
     def try_attach(t : 'Token', prev : 'PartToken', in_bracket : bool=False, ignore_number : bool=False) -> 'PartToken':
-        from pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
-        from pullenti.ner.decree.internal.DecreeToken import DecreeToken
+        from backend.pullenti.ner.decree.internal.DecreeChangeToken import DecreeChangeToken
+        from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
         if (t is None): 
             return None
         res = None
@@ -1271,7 +1271,7 @@ class PartToken(MetaToken):
     
     @staticmethod
     def try_create_between(p1 : 'DecreePartReferent', p2 : 'DecreePartReferent') -> typing.List['DecreePartReferent']:
-        from pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
+        from backend.pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
         not_eq_attr = None
         val1 = None
         val2 = None

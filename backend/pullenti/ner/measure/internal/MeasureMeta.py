@@ -1,16 +1,16 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
 
 class MeasureMeta(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.measure.MeasureReferent import MeasureReferent
+        from backend.pullenti.ner.measure.MeasureReferent import MeasureReferent
         MeasureMeta.GLOBAL_META = MeasureMeta()
         MeasureMeta.GLOBAL_META.add_feature(MeasureReferent.ATTR_TEMPLATE, "Шаблон", 1, 1)
         MeasureMeta.GLOBAL_META.add_feature(MeasureReferent.ATTR_VALUE, "Значение", 1, 0)
@@ -21,7 +21,7 @@ class MeasureMeta(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.measure.MeasureReferent import MeasureReferent
+        from backend.pullenti.ner.measure.MeasureReferent import MeasureReferent
         return MeasureReferent.OBJ_TYPENAME
     
     @property

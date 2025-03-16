@@ -1,18 +1,18 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.resume.ResumeItemType import ResumeItemType
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.resume.ResumeItemType import ResumeItemType
 
 class MetaResume(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.resume.ResumeItemReferent import ResumeItemReferent
+        from backend.pullenti.ner.resume.ResumeItemReferent import ResumeItemReferent
         MetaResume.GLOBAL_META = MetaResume()
         MetaResume.TYPES = MetaResume.GLOBAL_META.add_feature(ResumeItemReferent.ATTR_TYPE, "Тип", 1, 1)
         MetaResume.TYPES.add_value(Utils.enumToString(ResumeItemType.POSITION).lower(), "Позиция", None, None)
@@ -36,7 +36,7 @@ class MetaResume(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.resume.ResumeItemReferent import ResumeItemReferent
+        from backend.pullenti.ner.resume.ResumeItemReferent import ResumeItemReferent
         return ResumeItemReferent.OBJ_TYPENAME
     
     @property

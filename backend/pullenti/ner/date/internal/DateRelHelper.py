@@ -1,23 +1,23 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import operator
 import datetime
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.date.internal.DateExToken import DateExToken
-from pullenti.ner.Token import Token
-from pullenti.ner.date.DatePointerType import DatePointerType
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.Referent import Referent
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.date.DateRangeReferent import DateRangeReferent
+from backend.pullenti.ner.date.internal.DateExToken import DateExToken
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.date.DatePointerType import DatePointerType
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.date.DateRangeReferent import DateRangeReferent
 
 class DateRelHelper:
     

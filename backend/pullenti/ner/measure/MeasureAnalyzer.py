@@ -1,30 +1,30 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import threading
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.measure.internal.UnitToken import UnitToken
-from pullenti.ner.Referent import Referent
-from pullenti.ner.measure.internal.UnitsHelper import UnitsHelper
-from pullenti.ner.measure.UnitReferent import UnitReferent
-from pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.measure.MeasureReferent import MeasureReferent
-from pullenti.ner.measure.internal.UnitMeta import UnitMeta
-from pullenti.ner.measure.internal.MeasureMeta import MeasureMeta
-from pullenti.ner.bank.internal.PullentiNerBankInternalResourceHelper import PullentiNerBankInternalResourceHelper
-from pullenti.ner.measure.internal.MeasureToken import MeasureToken
-from pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.measure.internal.UnitToken import UnitToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.measure.internal.UnitsHelper import UnitsHelper
+from backend.pullenti.ner.measure.UnitReferent import UnitReferent
+from backend.pullenti.ner.measure.internal.NumbersWithUnitToken import NumbersWithUnitToken
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.measure.MeasureReferent import MeasureReferent
+from backend.pullenti.ner.measure.internal.UnitMeta import UnitMeta
+from backend.pullenti.ner.measure.internal.MeasureMeta import MeasureMeta
+from backend.pullenti.ner.bank.internal.backend.pullentiNerBankInternalResourceHelper import backend.pullentiNerBankInternalResourceHelper
+from backend.pullenti.ner.measure.internal.MeasureToken import MeasureToken
+from backend.pullenti.ner.Analyzer import Analyzer
 
 class MeasureAnalyzer(Analyzer):
     """ Анализатор для измеряемых величин.
@@ -60,8 +60,8 @@ class MeasureAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MeasureMeta.IMAGE_ID] = PullentiNerBankInternalResourceHelper.get_bytes("measure.png")
-        res[UnitMeta.IMAGE_ID] = PullentiNerBankInternalResourceHelper.get_bytes("munit.png")
+        res[MeasureMeta.IMAGE_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("measure.png")
+        res[UnitMeta.IMAGE_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("munit.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

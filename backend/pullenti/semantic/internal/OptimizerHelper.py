@@ -1,19 +1,19 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.semantic.SemObject import SemObject
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.semantic.SemObjectType import SemObjectType
-from pullenti.semantic.SemLinkType import SemLinkType
-from pullenti.morph.MorphWordForm import MorphWordForm
-from pullenti.semantic.internal.AnaforHelper import AnaforHelper
-from pullenti.ner.Token import Token
-from pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.semantic.SemObject import SemObject
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.semantic.SemObjectType import SemObjectType
+from backend.pullenti.semantic.SemLinkType import SemLinkType
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.semantic.internal.AnaforHelper import AnaforHelper
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.MetaToken import MetaToken
 
 class OptimizerHelper:
     

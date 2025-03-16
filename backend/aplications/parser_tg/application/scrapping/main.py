@@ -10,15 +10,21 @@ from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
 
 
-broker = KafkaBroker()
-app = FastStream(broker=broker)
+def main() -> FastStream:
+    broker = KafkaBroker(bootstrap_servers=["kafka:29092"])
+    app = FastStream(broker=broker)
 
-@app.after_startup
-async def start_telegram_listener(
-    container: Container = Depends(init_conatainer),
-):
-    mediator: Mediator = container.resolve(Mediator)
-    tg_services: TgParsServices = container.resolve(TgParsServices)
-    channels = await mediator.handle_query(GetChannelsQuery())
-    channelsDTO = ListChannelDTO(channels=[ChannelDTO(oid=chat.oid, url=chat.url) for chat in channels])
-    await tg_services.start_listening(channels=channelsDTO)
+
+    @app.after_startup
+    async def start_telegram_listener(
+        logger: Logger,
+        container: Container = Depends(init_conatainer),
+    ):
+        mediator: Mediator = container.resolve(Mediator)
+        tg_services: TgParsServices = container.resolve(TgParsServices)
+        channels = await mediator.handle_query(GetChannelsQuery())
+        channelsDTO = ListChannelDTO(channels=[ChannelDTO(oid=chat.oid, url=chat.url) for chat in channels])
+        logger.warning(f"Начато прослушивание !")
+        await tg_services.start_listening(channels=channelsDTO)
+
+    return app

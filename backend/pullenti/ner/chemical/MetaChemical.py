@@ -1,16 +1,16 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
 
 class MetaChemical(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.chemical.ChemicalFormulaReferent import ChemicalFormulaReferent
+        from backend.pullenti.ner.chemical.ChemicalFormulaReferent import ChemicalFormulaReferent
         MetaChemical.GLOBAL_META = MetaChemical()
         MetaChemical.GLOBAL_META.add_feature(ChemicalFormulaReferent.ATTR_VALUE, "Формула", 0, 1)
         MetaChemical.GLOBAL_META.add_feature(ChemicalFormulaReferent.ATTR_NAME, "Текстовое определение", 0, 0)
@@ -19,7 +19,7 @@ class MetaChemical(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.chemical.ChemicalFormulaReferent import ChemicalFormulaReferent
+        from backend.pullenti.ner.chemical.ChemicalFormulaReferent import ChemicalFormulaReferent
         return ChemicalFormulaReferent.OBJ_TYPENAME
     
     @property

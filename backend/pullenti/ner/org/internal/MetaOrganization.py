@@ -1,19 +1,19 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.org.OrgProfile import OrgProfile
-from pullenti.ner.Referent import Referent
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.org.OrgProfile import OrgProfile
+from backend.pullenti.ner.Referent import Referent
 
 class MetaOrganization(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.org.OrganizationReferent import OrganizationReferent
+        from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
         MetaOrganization._global_meta = MetaOrganization()
         MetaOrganization._global_meta.add_feature(OrganizationReferent.ATTR_NAME, "Название", 0, 0)
         MetaOrganization._global_meta.add_feature(OrganizationReferent.ATTR_TYPE, "Тип", 0, 0)
@@ -29,7 +29,7 @@ class MetaOrganization(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.org.OrganizationReferent import OrganizationReferent
+        from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
         return OrganizationReferent.OBJ_TYPENAME
     
     @property
@@ -39,7 +39,7 @@ class MetaOrganization(ReferentClass):
     ORG_IMAGE_ID = "org"
     
     def get_image_id(self, obj : 'Referent'=None) -> str:
-        from pullenti.ner.org.OrganizationReferent import OrganizationReferent
+        from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
         if (isinstance(obj, OrganizationReferent)): 
             prs = obj.profiles
             if (prs is not None and len(prs) > 0): 

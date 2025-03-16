@@ -1,18 +1,18 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.date.DatePointerType import DatePointerType
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.date.DatePointerType import DatePointerType
 
 class MetaDate(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.date.DateReferent import DateReferent
+        from backend.pullenti.ner.date.DateReferent import DateReferent
         MetaDate.GLOBAL_META = MetaDate()
         MetaDate.GLOBAL_META.add_feature(DateReferent.ATTR_ISRELATIVE, "Относительность", 0, 1)
         MetaDate.GLOBAL_META.add_feature(DateReferent.ATTR_CENTURY, "Век", 0, 1)
@@ -46,7 +46,7 @@ class MetaDate(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.date.DateReferent import DateReferent
+        from backend.pullenti.ner.date.DateReferent import DateReferent
         return DateReferent.OBJ_TYPENAME
     
     @property
@@ -60,7 +60,7 @@ class MetaDate(ReferentClass):
     DATE_IMAGE_ID = "date"
     
     def get_image_id(self, obj : 'Referent'=None) -> str:
-        from pullenti.ner.date.DateReferent import DateReferent
+        from backend.pullenti.ner.date.DateReferent import DateReferent
         dat = Utils.asObjectOrNull(obj, DateReferent)
         if (dat is not None and dat.is_relative): 
             return MetaDate.DATE_REL_IMAGE_ID

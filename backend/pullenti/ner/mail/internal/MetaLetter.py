@@ -1,16 +1,16 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 
-from pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
 
 class MetaLetter(ReferentClass):
     
     @staticmethod
     def initialize() -> None:
-        from pullenti.ner.mail.MailReferent import MailReferent
+        from backend.pullenti.ner.mail.MailReferent import MailReferent
         MetaLetter._global_meta = MetaLetter()
         MetaLetter._global_meta.add_feature(MailReferent.ATTR_KIND, "Тип блока", 1, 1)
         MetaLetter._global_meta.add_feature(MailReferent.ATTR_TEXT, "Текст блока", 1, 1)
@@ -18,7 +18,7 @@ class MetaLetter(ReferentClass):
     
     @property
     def name(self) -> str:
-        from pullenti.ner.mail.MailReferent import MailReferent
+        from backend.pullenti.ner.mail.MailReferent import MailReferent
         return MailReferent.OBJ_TYPENAME
     
     @property

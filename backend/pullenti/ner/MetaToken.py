@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import typing
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.CharsInfo import CharsInfo
-from pullenti.ner.Token import Token
-from pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.CharsInfo import CharsInfo
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
 
 class MetaToken(Token):
     """ Метатокен - надстройка над диапазоном других токенов. Базовый класс для подавляющего числа всех токенов:
@@ -192,7 +192,7 @@ class MetaToken(Token):
         return True
     
     def get_normal_case_text(self, mc : 'MorphClass'=None, num : 'MorphNumber'=MorphNumber.UNDEFINED, gender : 'MorphGender'=MorphGender.UNDEFINED, keep_chars : bool=False) -> str:
-        from pullenti.ner.core.MiscHelper import MiscHelper
+        from backend.pullenti.ner.core.MiscHelper import MiscHelper
         attr = GetTextAttr.NO
         if (num == MorphNumber.SINGULAR): 
             attr = (Utils.valToEnum((attr) | (GetTextAttr.FIRSTNOUNGROUPTONOMINATIVESINGLE), GetTextAttr))

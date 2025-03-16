@@ -1,30 +1,30 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import math
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
 
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.instrument.internal.EditionHelper import EditionHelper
-from pullenti.ner.instrument.internal.NumberTypes import NumberTypes
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.instrument.InstrumentKind import InstrumentKind
-from pullenti.ner.instrument.internal.ContractHelper import ContractHelper
-from pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
-from pullenti.ner.instrument.internal.FragToken import FragToken
-from pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.instrument.internal.EditionHelper import EditionHelper
+from backend.pullenti.ner.instrument.internal.NumberTypes import NumberTypes
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.instrument.InstrumentKind import InstrumentKind
+from backend.pullenti.ner.instrument.internal.ContractHelper import ContractHelper
+from backend.pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
+from backend.pullenti.ner.instrument.internal.FragToken import FragToken
+from backend.pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
 
 class ContentAnalyzeWhapper:
     
@@ -35,7 +35,7 @@ class ContentAnalyzeWhapper:
         self.cit_kind = InstrumentKind.UNDEFINED
     
     def analyze(self, root : 'FragToken', top_doc_ : 'FragToken', is_citat : bool, root_kind : 'InstrumentKind') -> None:
-        from pullenti.ner.instrument.internal.ListHelper import ListHelper
+        from backend.pullenti.ner.instrument.internal.ListHelper import ListHelper
         self.top_doc = top_doc_
         self.cit_kind = root_kind
         lines_ = list()

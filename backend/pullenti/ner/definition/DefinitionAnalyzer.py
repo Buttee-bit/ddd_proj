@@ -1,45 +1,45 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import typing
 import io
 import math
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.definition.DefinitionKind import DefinitionKind
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.ner.definition.internal.ParenthesisToken import ParenthesisToken
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
-from pullenti.semantic.utils.DerivateService import DerivateService
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.ner.core.NumberHelper import NumberHelper
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.ner.core.AnalyzerData import AnalyzerData
-from pullenti.ner.Analyzer import Analyzer
-from pullenti.ner.definition.internal.MetaDefin import MetaDefin
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.bank.internal.PullentiNerBankInternalResourceHelper import PullentiNerBankInternalResourceHelper
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.definition.DefinitionReferent import DefinitionReferent
-from pullenti.ner.definition.internal.DefinitionAnalyzerEn import DefinitionAnalyzerEn
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.Referent import Referent
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.core.Termin import Termin
-from pullenti.ner.core.TerminCollection import TerminCollection
-from pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.definition.DefinitionKind import DefinitionKind
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.ner.definition.internal.ParenthesisToken import ParenthesisToken
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.SourceOfAnalysis import SourceOfAnalysis
+from backend.pullenti.semantic.utils.DerivateService import DerivateService
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.ner.core.NumberHelper import NumberHelper
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.ner.core.AnalyzerData import AnalyzerData
+from backend.pullenti.ner.Analyzer import Analyzer
+from backend.pullenti.ner.definition.internal.MetaDefin import MetaDefin
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.bank.internal.backend.pullentiNerBankInternalResourceHelper import backend.pullentiNerBankInternalResourceHelper
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.definition.DefinitionReferent import DefinitionReferent
+from backend.pullenti.ner.definition.internal.DefinitionAnalyzerEn import DefinitionAnalyzerEn
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.core.Termin import Termin
+from backend.pullenti.ner.core.TerminCollection import TerminCollection
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
 
 class DefinitionAnalyzer(Analyzer):
     """ Анализатор определений.
@@ -75,8 +75,8 @@ class DefinitionAnalyzer(Analyzer):
     @property
     def images(self) -> typing.List[tuple]:
         res = dict()
-        res[MetaDefin.IMAGE_DEF_ID] = PullentiNerBankInternalResourceHelper.get_bytes("defin.png")
-        res[MetaDefin.IMAGE_ASS_ID] = PullentiNerBankInternalResourceHelper.get_bytes("assert.png")
+        res[MetaDefin.IMAGE_DEF_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("defin.png")
+        res[MetaDefin.IMAGE_ASS_ID] = backend.pullentiNerBankInternalResourceHelper.get_bytes("assert.png")
         return res
     
     def create_referent(self, type0_ : str) -> 'Referent':

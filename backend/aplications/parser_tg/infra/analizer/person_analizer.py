@@ -3,14 +3,15 @@ from dataclasses import dataclass
 
 from backend.aplications.parser_tg.infra.analizer.base import BaseAnalazer
 from backend.pullenti.ner.person import PersonAnalyzer
-from pullenti.ner.ProcessorService import ProcessorService
-from pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.ner.AnalysisResult import AnalysisResult
+from backend.pullenti.ner.ProcessorService import ProcessorService
+from backend.pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.ner.AnalysisResult import AnalysisResult
 
 
-@dataclass
+@dataclass(frozen=True)
 class PersonAnalizer(BaseAnalazer):
+
 
     def get_result(self, text) -> AnalysisResult:
         LANGUAGE = MorphLang.UA

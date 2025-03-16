@@ -1,74 +1,74 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import io
 import math
 import typing
 import datetime
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.ner.decree.DecreeChangeValueKind import DecreeChangeValueKind
-from pullenti.ner.bank.BankDataReferent import BankDataReferent
-from pullenti.ner.geo.GeoReferent import GeoReferent
-from pullenti.ner.address.StreetReferent import StreetReferent
-from pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
-from pullenti.ner.person.PersonIdentityReferent import PersonIdentityReferent
-from pullenti.ner.date.internal.DateItemToken import DateItemToken
-from pullenti.ner.core.TableHelper import TableHelper
-from pullenti.ner.core.BracketParseAttr import BracketParseAttr
-from pullenti.ner.uri.UriReferent import UriReferent
-from pullenti.ner.phone.PhoneReferent import PhoneReferent
-from pullenti.ner.address.AddressReferent import AddressReferent
-from pullenti.ner.core.internal.BlkTyps import BlkTyps
-from pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
-from pullenti.ner.instrument.InstrumentArtefactReferent import InstrumentArtefactReferent
-from pullenti.ner.NumberSpellingType import NumberSpellingType
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.ner.org.OrganizationReferent import OrganizationReferent
-from pullenti.ner.core.internal.BlockTitleToken import BlockTitleToken
-from pullenti.ner.instrument.InstrumentParticipantReferent import InstrumentParticipantReferent
-from pullenti.ner.core.TerminParseAttr import TerminParseAttr
-from pullenti.ner.org.OrganizationKind import OrganizationKind
-from pullenti.ner.core.ComplexNumToken import ComplexNumToken
-from pullenti.ner.money.MoneyReferent import MoneyReferent
-from pullenti.ner.Token import Token
-from pullenti.morph.MorphologyService import MorphologyService
-from pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
-from pullenti.ner.Referent import Referent
-from pullenti.ner.instrument.InstrumentBlockReferent import InstrumentBlockReferent
-from pullenti.ner.core.GetTextAttr import GetTextAttr
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
-from pullenti.ner.ReferentToken import ReferentToken
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.ner.TextToken import TextToken
-from pullenti.ner.instrument.InstrumentKind import InstrumentKind
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.ner.MetaToken import MetaToken
-from pullenti.ner.instrument.internal.NumberTypes import NumberTypes
-from pullenti.ner.NumberToken import NumberToken
-from pullenti.ner.decree.DecreeReferent import DecreeReferent
-from pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
-from pullenti.ner.core.MiscHelper import MiscHelper
-from pullenti.ner.instrument.internal.ILTypes import ILTypes
-from pullenti.ner.person.PersonReferent import PersonReferent
-from pullenti.ner.core.BracketHelper import BracketHelper
-from pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
-from pullenti.ner.decree.internal.PartToken import PartToken
-from pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
-from pullenti.ner.decree.DecreePartReferent import DecreePartReferent
-from pullenti.ner.decree.DecreeKind import DecreeKind
-from pullenti.ner.mail.internal.MailLine import MailLine
-from pullenti.ner.decree.internal.DecreeToken import DecreeToken
-from pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
-from pullenti.ner.decree.internal.DecreeHelper import DecreeHelper
-from pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
-from pullenti.ner.instrument.internal.InstrToken import InstrToken
-from pullenti.ner.instrument.InstrumentAnalyzer import InstrumentAnalyzer
-from pullenti.ner.instrument.internal.ParticipantToken import ParticipantToken
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.ner.decree.DecreeChangeValueKind import DecreeChangeValueKind
+from backend.pullenti.ner.bank.BankDataReferent import BankDataReferent
+from backend.pullenti.ner.geo.GeoReferent import GeoReferent
+from backend.pullenti.ner.address.StreetReferent import StreetReferent
+from backend.pullenti.ner.decree.DecreeChangeValueReferent import DecreeChangeValueReferent
+from backend.pullenti.ner.person.PersonIdentityReferent import PersonIdentityReferent
+from backend.pullenti.ner.date.internal.DateItemToken import DateItemToken
+from backend.pullenti.ner.core.TableHelper import TableHelper
+from backend.pullenti.ner.core.BracketParseAttr import BracketParseAttr
+from backend.pullenti.ner.uri.UriReferent import UriReferent
+from backend.pullenti.ner.phone.PhoneReferent import PhoneReferent
+from backend.pullenti.ner.address.AddressReferent import AddressReferent
+from backend.pullenti.ner.core.internal.BlkTyps import BlkTyps
+from backend.pullenti.ner.decree.DecreeChangeKind import DecreeChangeKind
+from backend.pullenti.ner.instrument.InstrumentArtefactReferent import InstrumentArtefactReferent
+from backend.pullenti.ner.NumberSpellingType import NumberSpellingType
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.ner.org.OrganizationReferent import OrganizationReferent
+from backend.pullenti.ner.core.internal.BlockTitleToken import BlockTitleToken
+from backend.pullenti.ner.instrument.InstrumentParticipantReferent import InstrumentParticipantReferent
+from backend.pullenti.ner.core.TerminParseAttr import TerminParseAttr
+from backend.pullenti.ner.org.OrganizationKind import OrganizationKind
+from backend.pullenti.ner.core.ComplexNumToken import ComplexNumToken
+from backend.pullenti.ner.money.MoneyReferent import MoneyReferent
+from backend.pullenti.ner.Token import Token
+from backend.pullenti.morph.MorphologyService import MorphologyService
+from backend.pullenti.ner.person.PersonPropertyReferent import PersonPropertyReferent
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.instrument.InstrumentBlockReferent import InstrumentBlockReferent
+from backend.pullenti.ner.core.GetTextAttr import GetTextAttr
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.decree.DecreeChangeReferent import DecreeChangeReferent
+from backend.pullenti.ner.ReferentToken import ReferentToken
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.ner.TextToken import TextToken
+from backend.pullenti.ner.instrument.InstrumentKind import InstrumentKind
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.ner.MetaToken import MetaToken
+from backend.pullenti.ner.instrument.internal.NumberTypes import NumberTypes
+from backend.pullenti.ner.NumberToken import NumberToken
+from backend.pullenti.ner.decree.DecreeReferent import DecreeReferent
+from backend.pullenti.ner.core.NounPhraseParseAttr import NounPhraseParseAttr
+from backend.pullenti.ner.core.MiscHelper import MiscHelper
+from backend.pullenti.ner.instrument.internal.ILTypes import ILTypes
+from backend.pullenti.ner.person.PersonReferent import PersonReferent
+from backend.pullenti.ner.core.BracketHelper import BracketHelper
+from backend.pullenti.ner.core.NounPhraseHelper import NounPhraseHelper
+from backend.pullenti.ner.decree.internal.PartToken import PartToken
+from backend.pullenti.ner.org.internal.OrgItemTypeToken import OrgItemTypeToken
+from backend.pullenti.ner.decree.DecreePartReferent import DecreePartReferent
+from backend.pullenti.ner.decree.DecreeKind import DecreeKind
+from backend.pullenti.ner.mail.internal.MailLine import MailLine
+from backend.pullenti.ner.decree.internal.DecreeToken import DecreeToken
+from backend.pullenti.ner.instrument.internal.InstrToken1 import InstrToken1
+from backend.pullenti.ner.decree.internal.DecreeHelper import DecreeHelper
+from backend.pullenti.ner.instrument.InstrumentReferent import InstrumentReferent
+from backend.pullenti.ner.instrument.internal.InstrToken import InstrToken
+from backend.pullenti.ner.instrument.InstrumentAnalyzer import InstrumentAnalyzer
+from backend.pullenti.ner.instrument.internal.ParticipantToken import ParticipantToken
 
 class FragToken(MetaToken):
     
@@ -352,7 +352,7 @@ class FragToken(MetaToken):
     
     @staticmethod
     def create_document(t : 'Token', max_char : int, root_kind : 'InstrumentKind'=InstrumentKind.UNDEFINED) -> 'FragToken':
-        from pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
+        from backend.pullenti.ner.instrument.internal.NumberingHelper import NumberingHelper
         if (t is None): 
             return None
         DecreeHelper.remove_psevdo_decreeparts(t.kit)
@@ -1649,7 +1649,7 @@ class FragToken(MetaToken):
         return tabs
     
     def _analize_content(self, top_doc : 'FragToken', is_citat : bool, root_kind : 'InstrumentKind'=InstrumentKind.UNDEFINED) -> None:
-        from pullenti.ner.instrument.internal.ContentAnalyzeWhapper import ContentAnalyzeWhapper
+        from backend.pullenti.ner.instrument.internal.ContentAnalyzeWhapper import ContentAnalyzeWhapper
         self.kind = InstrumentKind.CONTENT
         if (self.begin_token.previous is not None and self.begin_token.previous.is_char(chr(0x1E))): 
             self.begin_token = self.begin_token.previous

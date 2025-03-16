@@ -6,14 +6,14 @@ from backend.aplications.parser_tg.application.scrapping.tg import MessageDTO
 from backend.aplications.parser_tg.logic.commands.news import CreateNewsCommand
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
-from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
 
 def main() -> FastStream:
-    broker = KafkaBroker()
+    broker = KafkaBroker(bootstrap_servers=["kafka:29092"])
     app = FastStream(broker=broker)
     container = init_conatainer()
 
     @broker.subscriber("telegram_messages")
+    @broker.publisher("recive_news")
     async def handle_telegram_message(
         data: MessageDTO,
         logger: Logger,
@@ -30,11 +30,3 @@ def main() -> FastStream:
         )
 
     return app
-
-# broker = KafkaBroker()
-# app = FastStream(broker=broker)
-
-
-# @broker.subscriber("telegram_messages")
-# async def handle_telegram_message(data:MessageDTO, logger: Logger):
-#     logger.warning(f"Получено сообщение из Kafka: {data}")

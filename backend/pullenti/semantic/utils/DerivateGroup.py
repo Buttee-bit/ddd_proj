@@ -1,17 +1,17 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.morph.MorphAspect import MorphAspect
-from pullenti.morph.MorphTense import MorphTense
-from pullenti.morph.MorphVoice import MorphVoice
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.semantic.utils.ControlModel import ControlModel
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.semantic.utils.DerivateWord import DerivateWord
+from backend.pullenti.morph.MorphAspect import MorphAspect
+from backend.pullenti.morph.MorphTense import MorphTense
+from backend.pullenti.morph.MorphVoice import MorphVoice
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.semantic.utils.ControlModel import ControlModel
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.semantic.utils.DerivateWord import DerivateWord
 
 class DerivateGroup:
     """ Дериватная группа - группа, содержащая однокоренные слова разных частей речи и языков,

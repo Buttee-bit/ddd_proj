@@ -1,33 +1,33 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import threading
 import typing
 import io
-from pullenti.unisharp.Utils import Utils
-from pullenti.unisharp.Misc import RefOutArgWrapper
-from pullenti.unisharp.Streams import MemoryStream
-from pullenti.unisharp.Streams import Stream
+from backend.pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Misc import RefOutArgWrapper
+from backend.pullenti.unisharp.Streams import MemoryStream
+from backend.pullenti.unisharp.Streams import Stream
 
-from pullenti.morph.MorphTense import MorphTense
-from pullenti.morph.MorphVoice import MorphVoice
-from pullenti.morph.MorphMood import MorphMood
-from pullenti.morph.MorphPerson import MorphPerson
-from pullenti.morph.MorphCase import MorphCase
-from pullenti.morph.internal.ByteArrayWrapper import ByteArrayWrapper
-from pullenti.morph.internal.MorphDeserializer import MorphDeserializer
-from pullenti.morph.MorphMiscInfo import MorphMiscInfo
-from pullenti.morph.MorphClass import MorphClass
-from pullenti.morph.MorphLang import MorphLang
-from pullenti.morph.LanguageHelper import LanguageHelper
-from pullenti.morph.MorphGender import MorphGender
-from pullenti.morph.MorphNumber import MorphNumber
-from pullenti.morph.MorphBaseInfo import MorphBaseInfo
-from pullenti.morph.internal.MorphRule import MorphRule
-from pullenti.morph.internal.MorphTreeNode import MorphTreeNode
-from pullenti.morph.MorphWordForm import MorphWordForm
+from backend.pullenti.morph.MorphTense import MorphTense
+from backend.pullenti.morph.MorphVoice import MorphVoice
+from backend.pullenti.morph.MorphMood import MorphMood
+from backend.pullenti.morph.MorphPerson import MorphPerson
+from backend.pullenti.morph.MorphCase import MorphCase
+from backend.pullenti.morph.internal.ByteArrayWrapper import ByteArrayWrapper
+from backend.pullenti.morph.internal.MorphDeserializer import MorphDeserializer
+from backend.pullenti.morph.MorphMiscInfo import MorphMiscInfo
+from backend.pullenti.morph.MorphClass import MorphClass
+from backend.pullenti.morph.MorphLang import MorphLang
+from backend.pullenti.morph.LanguageHelper import LanguageHelper
+from backend.pullenti.morph.MorphGender import MorphGender
+from backend.pullenti.morph.MorphNumber import MorphNumber
+from backend.pullenti.morph.MorphBaseInfo import MorphBaseInfo
+from backend.pullenti.morph.internal.MorphRule import MorphRule
+from backend.pullenti.morph.internal.MorphTreeNode import MorphTreeNode
+from backend.pullenti.morph.MorphWordForm import MorphWordForm
 
 class MorphEngine:
     
@@ -81,13 +81,13 @@ class MorphEngine:
             self.language = lang
             
             rsname = "m_{0}.dat".format(str(lang))
-            names = Utils.getResourcesNames('pullenti.morph.internal.properties', '.dat')
+            names = Utils.getResourcesNames('backend.pullenti.morph.internal.properties', '.dat')
             for n in names: 
                 if (Utils.endsWithString(n, rsname, True)): 
-                    inf = Utils.getResourceInfo('pullenti.morph.internal.properties', n)
+                    inf = Utils.getResourceInfo('backend.pullenti.morph.internal.properties', n)
                     if (inf is None): 
                         continue
-                    with Utils.getResourceStream('pullenti.morph.internal.properties', n) as stream: 
+                    with Utils.getResourceStream('backend.pullenti.morph.internal.properties', n) as stream: 
                         stream.position = 0
                         self.deserialize(stream, False, lazy_load)
                     return True

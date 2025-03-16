@@ -1,16 +1,16 @@
-﻿# SDK Pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, Pullenti. All rights reserved.
+﻿# SDK backend.pullenti Lingvo, version 4.28, february 2025. Copyright (c) 2013-2025, backend.pullenti. All rights reserved.
 # Non-Commercial Freeware and Commercial Software.
-# This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
-# The latest version of the code is available on the site www.pullenti.ru
+# This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
+# The latest version of the code is available on the site www.backend.pullenti.ru
 
 import datetime
 import io
-from pullenti.unisharp.Utils import Utils
+from backend.pullenti.unisharp.Utils import Utils
 
-from pullenti.ner.Referent import Referent
-from pullenti.ner.metadata.ReferentClass import ReferentClass
-from pullenti.ner.date.DateReferent import DateReferent
-from pullenti.ner.date.internal.MetaDateRange import MetaDateRange
+from backend.pullenti.ner.Referent import Referent
+from backend.pullenti.ner.metadata.ReferentClass import ReferentClass
+from backend.pullenti.ner.date.DateReferent import DateReferent
+from backend.pullenti.ner.date.internal.MetaDateRange import MetaDateRange
 
 class DateRangeReferent(Referent):
     """ Сущность, представляющая диапазон дат
@@ -71,12 +71,12 @@ class DateRangeReferent(Referent):
         Returns:
             bool: признак корректности
         """
-        from pullenti.ner.date.internal.DateRelHelper import DateRelHelper
+        from backend.pullenti.ner.date.internal.DateRelHelper import DateRelHelper
         inoutres1006 = DateRelHelper.calculate_date_range2(self, now, from0_, to, tense)
         return inoutres1006
     
     def to_string_ex(self, short_variant : bool, lang : 'MorphLang'=None, lev : int=0) -> str:
-        from pullenti.ner.date.internal.DateRelHelper import DateRelHelper
+        from backend.pullenti.ner.date.internal.DateRelHelper import DateRelHelper
         if (self.is_relative and not short_variant): 
             res = io.StringIO()
             print(self.to_string_ex(True, lang, lev), end="", file=res)
