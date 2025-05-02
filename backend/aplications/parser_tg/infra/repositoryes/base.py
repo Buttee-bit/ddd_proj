@@ -16,6 +16,11 @@ class BaseNerPeopleRepository(ABC):
     @abstractmethod
     async def add_ner_by_id_document(self, id_document: str, ner: NerPeople) -> None: ...
 
+
+    @abstractmethod
+    async def add_unique_ner(self, ner: Iterable[NerPeople]) -> None:
+        ...
+
 class BaseChannelRepository(ABC):
     @abstractmethod
     async def add_channel(self, channel: Channel) -> None: ...
@@ -27,6 +32,7 @@ class BaseChannelRepository(ABC):
     async def get_all_channels_with_filter(
         self, limit: int, offset: int
     ) -> Iterable[Channel]: ...
+
     @abstractmethod
     async def get_all_channels(self) -> Iterable[Channel]: ...
 

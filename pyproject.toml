@@ -1,0 +1,30 @@
+[project]
+name = "ddd-proj"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi (>=0.115.12,<0.116.0)",
+    "faststream (>=0.5.39,<0.6.0)",
+    "opentelemetry-api (>=1.32.1,<2.0.0)",
+    "opentelemetry-sdk (>=1.32.1,<2.0.0)",
+    "opentelemetry-exporter-otlp (>=1.32.1,<2.0.0)",
+    "uvicorn (>=0.34.2,<0.35.0)",
+    "opentelemetry-instrumentation-fastapi (>=0.53b1,<0.54)",
+    "opentelemetry-exporter-jaeger (>=1.21.0,<2.0.0)",
+    "motor (>=3.7.0,<4.0.0)",
+    "telethon (>=1.40.0,<2.0.0)",
+    "aiokafka (>=0.12.0,<0.13.0)",
+    "pytz (>=2025.2,<2026.0)",
+    "pydantic-settings (>=2.9.1,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+

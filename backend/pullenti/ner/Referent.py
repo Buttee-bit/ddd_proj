@@ -3,6 +3,7 @@
 # This class is generated using the converter Unisharping (www.unisharping.ru) from backend.pullenti C# project.
 # The latest version of the code is available on the site www.backend.pullenti.ru
 
+import logging
 import typing
 from backend.pullenti.unisharp.Utils import Utils
 from backend.pullenti.unisharp.Misc import RefOutArgWrapper
@@ -205,12 +206,13 @@ class Referent:
         
         """
         res = list()
-        for v in self.slots: 
+        for v in self.slots:
+            # logging.warning(f'v: {v}')
             if (v.type_name == attr_name and v.value is not None): 
                 if (isinstance(v.value, str)): 
                     res.append(Utils.asObjectOrNull(v.value, str))
                 else: 
-                    res.append(str(v))
+                    res.append(str(v.value))
         return res
     
     def get_int_value(self, attr_name : str, def_value : int) -> int:

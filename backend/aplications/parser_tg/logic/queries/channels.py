@@ -5,6 +5,7 @@ from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
 
 from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository
 from backend.aplications.parser_tg.infra.repositoryes.filters.channels import GetAllChannelsFilters
+from backend.aplications.parser_tg.infra.tracing.handler import trace_custom
 from backend.aplications.parser_tg.logic.queries.base import BaseQuery, BaseQueryHandler
 
 # from domain.entities.messages import (
@@ -38,6 +39,7 @@ class GetChannelsQueryWithFilter(BaseQuery):
 class GetChannelQueryWithilterHandler(BaseQueryHandler):
     channels_repository: BaseChannelRepository
 
+    @trace_custom(name="GetChannelQueryWithilterHandler")
     async def handle(self, query: GetChannelsQueryWithFilter) -> Iterable[Channel]:
         channels = await self.channels_repository.get_all_channels_with_filter(filters=query.filters)
         return channels
@@ -52,6 +54,7 @@ class GetChannelsQuery(BaseQuery):
 class GetChannelQueryHandler(BaseQueryHandler):
     channels_repository: BaseChannelRepository
 
+    @trace_custom(name="GetChannelQueryHandler")
     async def handle(self, query: GetChannelsQuery) -> Iterable[Channel]:
         channels = await self.channels_repository.get_all_channels()
         return channels

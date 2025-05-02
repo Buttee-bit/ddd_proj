@@ -11,11 +11,14 @@ def convert_analysis_result_to_ners(result: AnalysisResult) -> Iterable[NerPeopl
     for entity in result.entities:
         entity: Referent
         if entity.type_name == "PERSON":
+            value = entity
+            for slot in entity.slots:
+                slot: Slot
+                props = entity.get_string_values(attr_name="ATTRIBUTE")
+                logging.warning(f'props: {props}')
             ner = NerPeople(
-                value=entity.get_compare_strings()[0],
-                props=[str(value.value) for value in entity.slots],
+                value=value.__str__(),
+                props=props,
                 index=[(i.begin_char, i.end_char) for i in entity.occurrence],
             )
-            logging.warning(f'ner: {ner}')
-            list_ner.append(ner)
     return list_ner

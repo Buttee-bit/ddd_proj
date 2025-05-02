@@ -1,5 +1,6 @@
 from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
 from backend.aplications.parser_tg.domain.entity.news.news import News
+from backend.aplications.parser_tg.infra.tracing.handler import trace_custom
 
 
 def convert_channel_entity_to_document(channel: Channel) -> dict:
@@ -9,7 +10,7 @@ def convert_channel_entity_to_document(channel: Channel) -> dict:
         'url': channel.url,
     }
 
-
+@trace_custom(name="convert_channel_document_to_entity")
 def convert_channel_document_to_entity(document: dict) -> Channel:
     return Channel(
         oid=document['oid'],

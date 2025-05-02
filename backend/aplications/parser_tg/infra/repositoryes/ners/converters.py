@@ -15,3 +15,10 @@ def convert_ner_people_to_document(list_ner:list[NerPeople]) -> dict:
             "index": ner.index
         } for ner in list_ner
     ]
+
+
+def convert_one_ner_to_document(ner:NerPeople) -> dict:
+    return {
+        "value": ner.value,
+        "props": ner.props,
+    }

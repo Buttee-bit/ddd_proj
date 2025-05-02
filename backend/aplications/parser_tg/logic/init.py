@@ -22,6 +22,7 @@ from backend.aplications.parser_tg.infra.repositoryes.channels_repo import (
 )
 from backend.aplications.parser_tg.infra.repositoryes.ners.peoples import (
     NerPeoplesRepository,
+    NerPeoplesUniqueRepository,
 )
 from backend.aplications.parser_tg.infra.repositoryes.news_repo import NewsRepository
 
@@ -111,9 +112,23 @@ def _init_container() -> Container:
             mongo_db_collection_name=settings.mongodb_ner_collection_persones_name,
         )
 
+    def init_unique_ner_repository() -> BaseNerPeopleRepository:
+        return NerPeoplesUniqueRepository(
+            mongo_db_client=client,
+            mongo_db_db_name=settings.mongodb_ner_database_name,
+            mongo_db_collection_name=settings.mongodb_ner_collection_unique_persones_name,
+        )
+
     container.register(
         BaseNewsRepository, factory=init_news_repository, scope=Scope.singleton
     )
+
+    container.register(
+        NerPeoplesUniqueRepository,
+        factory=init_unique_ner_repository,
+        scope=Scope.singleton,
+    )
+
 
     container.register(
         BaseChannelRepository, factory=init_channels_repository, scope=Scope.singleton
@@ -146,6 +161,7 @@ def _init_container() -> Container:
             _mediator=mediator,
             ner_people_repository=container.resolve(BaseNerPeopleRepository),
             news_repository=container.resolve(BaseNewsRepository),
+            unique_ner_repository=container.resolve(NerPeoplesUniqueRepository),
             analizer=container.resolve(BaseAnalazer),
         )
 
