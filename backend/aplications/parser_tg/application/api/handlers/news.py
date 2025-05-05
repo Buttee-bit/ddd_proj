@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, WebSocket, status
 from fastapi.exceptions import HTTPException
 
 from backend.aplications.parser_tg.application.api.handlers.filters import GetNewsFilters
-from backend.aplications.parser_tg.application.api.handlers.schemas import GetLastNewsResponseSchema, GetNewsResponseSchema
+from backend.aplications.parser_tg.application.api.handlers.schemas import ErrorSchema, GetLastNewsResponseSchema, GetNewsResponseSchema
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.news import GetNewslatestHandler, GetNewsLatestQuery
@@ -18,7 +18,11 @@ async def test_websocket():
     ...
 
 @router.get('/',
-    status_code=status.HTTP_201_CREATED,
+    status_code=status.HTTP_200_OK,
+    responses={
+        status.HTTP_200_OK: {'model': GetLastNewsResponseSchema},
+        status.HTTP_400_BAD_REQUEST: {'model': ErrorSchema},
+    },
     description='Показывает последние новости'
 )
 async def test_get_news(
