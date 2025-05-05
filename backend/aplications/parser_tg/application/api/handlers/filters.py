@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 
-
-from backend.aplications.parser_tg.infra.repositoryes.filters.channels import GetAllChannelsFilters
+from backend.aplications.parser_tg.infra.repositoryes.filters.channels import GetAllChannelsFilters, GetNewsFilters
 
 
 class GetChannelsFilters(BaseModel):
@@ -10,3 +9,7 @@ class GetChannelsFilters(BaseModel):
 
     def to_infra(self) -> GetAllChannelsFilters:
         return GetAllChannelsFilters(limit=self.limit, offset=self.offset)
+
+class GetNewsFilters(GetChannelsFilters):
+    def to_infra(self) -> GetNewsFilters:
+        return GetNewsFilters(limit=self.limit, offset=self.offset)

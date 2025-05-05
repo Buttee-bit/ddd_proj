@@ -47,6 +47,7 @@ from backend.aplications.parser_tg.logic.queries.channels import (
     GetChannelQueryHandler,
     GetChannelsQuery,
 )
+from backend.aplications.parser_tg.logic.queries.news import GetNewslatestHandler, GetNewsLatestQuery
 from backend.aplications.parser_tg.setings.setting import Settings
 
 
@@ -188,18 +189,25 @@ def _init_container() -> Container:
 
         # Queries
         mediator.register_query(
-            GetChannelsQueryWithFilter,
-            container.resolve(GetChannelQueryWithilterHandler),
+            query=GetChannelsQueryWithFilter,
+            query_handler=container.resolve(GetChannelQueryWithilterHandler),
         )
 
         mediator.register_query(
-            GetChannelsQuery, container.resolve(GetChannelQueryHandler)
+            query=GetChannelsQuery,
+            query_handler=container.resolve(GetChannelQueryHandler)
+        )
+
+        mediator.register_query(
+            query=GetNewsLatestQuery,
+            query_handler=container.resolve(GetNewslatestHandler)
         )
 
         return mediator
 
     container.register(GetChannelQueryWithilterHandler)
     container.register(GetChannelQueryHandler)
+    container.register(GetNewslatestHandler)
     container.register(Mediator, factory=init_mediator)
 
     return container

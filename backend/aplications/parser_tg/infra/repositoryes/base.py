@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
-from typing import Iterable
+from typing import Iterable, Tuple
 from motor.core import AgnosticClient
 
 from backend.aplications.parser_tg.domain.entity.ner.person import NerPeople
@@ -44,6 +44,8 @@ class BaseNewsRepository(ABC):
     @abstractmethod
     async def get_one_news(self, oid: str) -> News: ...
 
+    @abstractmethod
+    async def get_news(offset:int, limit:int) -> tuple[Iterable[News], int]: ...
 
 @dataclass
 class BaseMongoDBRepository(ABC):

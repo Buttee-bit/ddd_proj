@@ -1,0 +1,24 @@
+from dataclasses import dataclass
+from typing import Iterable
+
+from backend.aplications.parser_tg.domain.entity.news.news import News
+from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository, BaseNewsRepository
+from backend.aplications.parser_tg.logic.queries.base import BaseQuery, BaseQueryHandler
+
+
+@dataclass(frozen=True)
+class GetNewsLatestQuery(BaseQuery):
+    offset: int
+    limit: int
+    ...
+
+
+@dataclass(frozen=True)
+class GetNewslatestHandler(BaseQueryHandler):
+    channels_repository: BaseChannelRepository
+    news_repository: BaseNewsRepository
+
+    async def handle(self, query: GetNewsLatestQuery) -> tuple[Iterable[News], int]:
+        return await self.news_repository.get_news(
+            offset=query.offset,
+            limit=query.limit)

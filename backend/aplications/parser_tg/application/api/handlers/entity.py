@@ -1,5 +1,5 @@
 import logging
-from typing import Container
+from punq import Container
 from fastapi import (
     Depends,
     status,
@@ -27,7 +27,7 @@ router = APIRouter(
 @router.post(
     '/',
     status_code=status.HTTP_201_CREATED,
-    description='Добавляет канал в бд',
+    description='AddNerPeopleToDocumentCommand',
     responses={
         status.HTTP_201_CREATED: {'model': TestAddEntityPersonToDocumentResponseSchema},
         status.HTTP_400_BAD_REQUEST: {'model': ErrorSchema},

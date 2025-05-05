@@ -8,27 +8,6 @@ from backend.aplications.parser_tg.infra.repositoryes.filters.channels import Ge
 from backend.aplications.parser_tg.infra.tracing.handler import trace_custom
 from backend.aplications.parser_tg.logic.queries.base import BaseQuery, BaseQueryHandler
 
-# from domain.entities.messages import (
-#     Chat,
-#     ChatListener,
-#     Message,
-# )
-# from infra.repositories.filters.messages import (
-#     GetAllChatsFilters,
-#     GetMessagesFilters,
-# )
-# from infra.repositories.messages.base import (
-#     BaseChatsRepository,
-#     BaseMessagesRepository,
-# )
-# from logic.exceptions.messages import ChatNotFoundException
-# from logic.queries.base import (
-#     BaseQuery,
-#     BaseQueryHandler,
-# )
-
-
-
 
 @dataclass(frozen=True)
 class GetChannelsQueryWithFilter(BaseQuery):

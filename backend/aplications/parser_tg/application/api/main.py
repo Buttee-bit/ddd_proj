@@ -6,7 +6,7 @@ from punq import Container
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.application.api.handlers.channels import router as channel_router
 from backend.aplications.parser_tg.application.api.handlers.entity import router as entity_router
-
+from backend.aplications.parser_tg.application.api.handlers.news import router as news_router
 from opentelemetry import trace
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
@@ -42,5 +42,6 @@ def create_app() -> FastAPI:
     FastAPIInstrumentor.instrument_app(app)
     app.include_router(channel_router)
     app.include_router(entity_router)
+    app.include_router(news_router)
 
     return app
