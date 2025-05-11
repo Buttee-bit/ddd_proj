@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     pulenty_server: str = Field(..., alias='PULENTY_SERVER')
 
 
+    kafka_url: str = Field(..., alias='KAFKA_URL')
+
 
     class Config:
         env_file = ".env"

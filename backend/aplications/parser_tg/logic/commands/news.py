@@ -26,4 +26,4 @@ class CreateNewsCommandHandler(CommandHandler[CreateNewsCommand, News]):
             oid_channel=command.oid_channel,
         )
         await self.news_repository.add_news(news=news)
-        return News
+        return news

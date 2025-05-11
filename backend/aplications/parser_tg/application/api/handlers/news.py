@@ -6,6 +6,8 @@ from fastapi.exceptions import HTTPException
 
 from backend.aplications.parser_tg.application.api.handlers.filters import GetNewsFilters
 from backend.aplications.parser_tg.application.api.handlers.schemas import ErrorSchema, GetLastNewsResponseSchema, GetNewsResponseSchema
+from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
+from backend.aplications.parser_tg.infra.brokers.message_broker.kafka import NewsKafkaBroker
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.news import GetNewslatestHandler, GetNewsLatestQuery
@@ -16,6 +18,25 @@ router = APIRouter(tags=['news'])
 @router.websocket("/{user_id}/")
 async def test_websocket():
     ...
+
+@router.websocket("/ws")
+async def websocket_endpoint(
+    websocket: WebSocket,
+    container: Container = Depends(init_conatainer),
+    ):
+    news_broker: NewsKafkaBroker = container.resolve(NewsKafkaBroker)
+    logging.warning(f'news_broker: {news_broker}')
+    try:
+        async for message in news_broker.start_consuming(topic='telegram_messages'):
+            logging.warning(f'message: {message}')
+    except Exception as e:
+        ...
+
+    await websocket.accept()
+    while True:
+        data = await websocket.receive_text()
+        await websocket.send_text(f"Message text was: {data}")
+
 
 @router.get('/',
     status_code=status.HTTP_200_OK,
@@ -34,7 +55,6 @@ async def test_get_news(
         news, count = await mediator.handle_query(
             GetNewsLatestQuery(limit=schema.limit, offset=schema.offset)
         )
-        logging.warning(f'news: {news}')
     except Exception as exception:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -46,5 +66,5 @@ async def test_get_news(
         offset=schema.offset,
         limit=schema.limit,
         count=count,
-        items=[GetNewsResponseSchema.from_entity(one_news) for one_news in news],
+        items=[GetNewsResponseSchema.from_entity(news=one_news) for one_news in news],
     )

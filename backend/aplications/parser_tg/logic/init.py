@@ -12,6 +12,8 @@ from faststream.kafka import KafkaBroker
 from backend.aplications.parser_tg.application.scrapping.tg import TgParsServices
 from backend.aplications.parser_tg.infra.analizer.base import BaseAnalazer
 from backend.aplications.parser_tg.infra.analizer.person_analizer import PersonAnalizer
+from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
+from backend.aplications.parser_tg.infra.brokers.message_broker.kafka import NewsKafkaBroker
 from backend.aplications.parser_tg.infra.repositoryes.base import (
     BaseChannelRepository,
     BaseNerPeopleRepository,
@@ -60,9 +62,7 @@ def _init_container() -> Container:
     container = Container()
 
     container.register(Settings, instance=Settings(), scope=Scope.singleton)
-
     settings: Settings = container.resolve(Settings)
-    logging.warning(f"settings: {settings}")
 
     def create_mongodb_client():
         return AsyncIOMotorClient(
@@ -74,6 +74,15 @@ def _init_container() -> Container:
         AsyncIOMotorClient, factory=create_mongodb_client, scope=Scope.singleton
     )
     client = container.resolve(AsyncIOMotorClient)
+
+    def create_news_broker() -> NewsKafkaBroker:
+        return NewsKafkaBroker(
+            broker=KafkaBroker(bootstrap_servers=settings.kafka_url),
+        )
+
+    container.register(
+        service=NewsKafkaBroker, factory=create_news_broker, scope=Scope.singleton
+    )
 
     def _init_TgServices() -> TgParsServices:
         return TgParsServices(

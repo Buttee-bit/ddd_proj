@@ -1,12 +1,8 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from punq import Container
+from faststream.kafka import KafkaBroker
 
-
-from backend.aplications.parser_tg.logic.init import init_conatainer
-from backend.aplications.parser_tg.application.api.handlers.channels import router as channel_router
-from backend.aplications.parser_tg.application.api.handlers.entity import router as entity_router
-from backend.aplications.parser_tg.application.api.handlers.news import router as news_router
 from opentelemetry import trace
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
@@ -14,11 +10,12 @@ from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
+from backend.aplications.parser_tg.application.api.lifespan import lifespan
+from backend.aplications.parser_tg.application.api.handlers.channels import router as channel_router
+from backend.aplications.parser_tg.application.api.handlers.entity import router as entity_router
+from backend.aplications.parser_tg.application.api.handlers.news import router as news_router
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    container: Container = init_conatainer()
-    yield
+
 
 def configure_tracer() -> None:
     trace.set_tracer_provider(
