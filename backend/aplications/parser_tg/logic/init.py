@@ -7,7 +7,7 @@ from punq import (
     Scope,
 )
 from telethon import TelegramClient
-from faststream.kafka import KafkaBroker
+from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
 
 from backend.aplications.parser_tg.application.scrapping.tg import TgParsServices
 from backend.aplications.parser_tg.infra.analizer.base import BaseAnalazer
@@ -75,13 +75,14 @@ def _init_container() -> Container:
     )
     client = container.resolve(AsyncIOMotorClient)
 
-    def create_news_broker() -> NewsKafkaBroker:
+    def create_news_broker() -> BaseBroker:
         return NewsKafkaBroker(
-            broker=KafkaBroker(bootstrap_servers=settings.kafka_url),
+            consumer=AIOKafkaConsumer(bootstrap_servers=settings.kafka_url),
+            produser=AIOKafkaProducer(bootstrap_servers=settings.kafka_url)
         )
 
     container.register(
-        service=NewsKafkaBroker, factory=create_news_broker, scope=Scope.singleton
+        service=BaseBroker, factory=create_news_broker, scope=Scope.singleton
     )
 
     def _init_TgServices() -> TgParsServices:

@@ -7,7 +7,6 @@ from fastapi.exceptions import HTTPException
 from backend.aplications.parser_tg.application.api.handlers.filters import GetNewsFilters
 from backend.aplications.parser_tg.application.api.handlers.schemas import ErrorSchema, GetLastNewsResponseSchema, GetNewsResponseSchema
 from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
-from backend.aplications.parser_tg.infra.brokers.message_broker.kafka import NewsKafkaBroker
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.news import GetNewslatestHandler, GetNewsLatestQuery
@@ -19,23 +18,25 @@ router = APIRouter(tags=['news'])
 async def test_websocket():
     ...
 
+
 @router.websocket("/ws")
 async def websocket_endpoint(
     websocket: WebSocket,
     container: Container = Depends(init_conatainer),
-    ):
-    news_broker: NewsKafkaBroker = container.resolve(NewsKafkaBroker)
-    logging.warning(f'news_broker: {news_broker}')
+):
+    await websocket.accept()
+    news_broker: BaseBroker = container.resolve(BaseBroker)
+
     try:
         async for message in news_broker.start_consuming(topic='telegram_messages'):
             logging.warning(f'message: {message}')
-    except Exception as e:
-        ...
 
-    await websocket.accept()
-    while True:
-        data = await websocket.receive_text()
-        await websocket.send_text(f"Message text was: {data}")
+    except Exception as e:
+        logging.error(f"Kafka consumer error: {e}")
+
+    finally:
+        await news_broker.stop_consuming()
+        await websocket.close()
 
 
 @router.get('/',
