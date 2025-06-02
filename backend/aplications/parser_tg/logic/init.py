@@ -7,7 +7,6 @@ from punq import (
     Scope,
 )
 from telethon import TelegramClient
-from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
 
 from backend.aplications.parser_tg.application.scrapping.tg import TgParsServices
 from backend.aplications.parser_tg.infra.analizer.base import BaseAnalazer
@@ -51,7 +50,7 @@ from backend.aplications.parser_tg.logic.queries.channels import (
 )
 from backend.aplications.parser_tg.logic.queries.news import GetNewslatestHandler, GetNewsLatestQuery
 from backend.aplications.parser_tg.setings.setting import Settings
-
+from faststream.kafka import KafkaBroker
 
 @lru_cache(1)
 def init_conatainer() -> Container:
@@ -77,8 +76,7 @@ def _init_container() -> Container:
 
     def create_news_broker() -> BaseBroker:
         return NewsKafkaBroker(
-            consumer=AIOKafkaConsumer(bootstrap_servers=settings.kafka_url),
-            produser=AIOKafkaProducer(bootstrap_servers=settings.kafka_url)
+            broker=KafkaBroker(bootstrap_servers=settings.kafka_url)
         )
 
     container.register(
@@ -95,8 +93,7 @@ def _init_container() -> Container:
                 device_model="Desktop",
                 system_version="4.17.30-vxCUSTOM",
             ),
-            broker=KafkaBroker(bootstrap_servers=["kafka:29092"]),
-            topic="telegram_messages",
+            broker=container.resolve(BaseBroker),
         )
 
     container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)

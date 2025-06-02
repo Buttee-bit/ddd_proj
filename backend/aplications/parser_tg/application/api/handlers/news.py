@@ -14,29 +14,29 @@ from backend.aplications.parser_tg.logic.queries.news import GetNewslatestHandle
 router = APIRouter(tags=['news'])
 
 
-@router.websocket("/{user_id}/")
-async def test_websocket():
-    ...
+# @router.websocket("/{user_id}/")
+# async def test_websocket():
+#     ...
 
 
-@router.websocket("/ws")
-async def websocket_endpoint(
-    websocket: WebSocket,
-    container: Container = Depends(init_conatainer),
-):
-    await websocket.accept()
-    news_broker: BaseBroker = container.resolve(BaseBroker)
+# @router.websocket("/ws")
+# async def websocket_endpoint(
+#     websocket: WebSocket,
+#     container: Container = Depends(init_conatainer),
+# ):
+#     await websocket.accept()
+#     news_broker: BaseBroker = container.resolve(BaseBroker)
 
-    try:
-        async for message in news_broker.start_consuming(topic='telegram_messages'):
-            logging.warning(f'message: {message}')
+#     try:
+#         async for message in news_broker.start_consuming(topic='telegram_messages'):
+#             logging.warning(f'message: {message}')
 
-    except Exception as e:
-        logging.error(f"Kafka consumer error: {e}")
+#     except Exception as e:
+#         logging.error(f"Kafka consumer error: {e}")
 
-    finally:
-        await news_broker.stop_consuming()
-        await websocket.close()
+#     finally:
+#         await news_broker.stop_consuming()
+#         await websocket.close()
 
 
 @router.get('/',

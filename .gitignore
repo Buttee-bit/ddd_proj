@@ -4,3 +4,4 @@ __pycache__/
 MyApp*
 .env
 *.session
+node_modules/

@@ -15,7 +15,7 @@ CR = TypeVar("CR", bound=Any)
 
 @dataclass(frozen=True)
 class CommandHandler(ABC, Generic[CT, CR]):
-    _mediator: []
+    _mediator: list
 
     @abstractmethod
     def handle(self, command: CT) -> CR:

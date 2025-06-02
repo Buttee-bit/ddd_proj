@@ -37,16 +37,14 @@ async def create_channel_handler(
     schema: CreateChannelRequestSchema,
     container: Container = Depends(init_conatainer),
 ) -> CreateChannelResponseSchema:
-    tracer = trace.get_tracer(__name__)
-    with tracer.start_as_current_span("create_channel_handler") as span:
-        mediator: Mediator = container.resolve(Mediator)
-        logging.warning(f'mediator: Mediator: {mediator}')
-        try:
-            channel, *_ = await mediator.handle_command(CreateChannelsCommand(url=schema.url))
-        except Exception as exception:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception})
+    mediator: Mediator = container.resolve(Mediator)
+    logging.warning(f'mediator: Mediator: {mediator}')
+    try:
+        channel, *_ = await mediator.handle_command(CreateChannelsCommand(url=schema.url))
+    except Exception as exception:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception})
 
-        return CreateChannelResponseSchema.from_entity(channel)
+    return CreateChannelResponseSchema.from_entity(channel)
 
 
 @router.get(

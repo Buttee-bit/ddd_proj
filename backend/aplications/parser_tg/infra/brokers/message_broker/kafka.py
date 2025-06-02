@@ -1,36 +1,24 @@
-import logging
-import orjson
 from dataclasses import dataclass
-from typing import AsyncIterable
-from aiokafka import AIOKafkaConsumer,AIOKafkaProducer
 from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
+from faststream.kafka import KafkaBroker
 
 @dataclass
 class NewsKafkaBroker(BaseBroker):
-    consumer: AIOKafkaConsumer
-    produser: AIOKafkaProducer
+    broker: KafkaBroker
+
 
     async def start(self) -> None:
-        await self.consumer.start()
-        await self.produser.start()
+        await self.broker.start()
 
     async def stop(self) -> None:
-        await self.consumer.stop()
-        await self.produser.stop()
+        await self.broker.close()
 
-    async def start_consuming(self, topic: str):
-        self.consumer.subscribe(topics=[topic])
+    async def start_consuming(self, topic: str): ...
 
-        async for message in self.consumer:
-            logging.warning(f'message.value: {message.value}')
-            yield orjson.loads(message.value)
+    async def stop_consuming(self) -> None: ...
 
-    async def stop_consuming(self) -> None:
-        self.consumer.unsubscribe()
-
-    async def send_message(self, topic: str, message: bytes, key:bytes):
-        await self.produser.send(
-            topic=topic,
-            value=message,
-            key=key
+    async def send_message(self, topic: str, message):
+        await self.broker.publish(
+            message=message,
+            topic=topic
         )
