@@ -163,6 +163,7 @@ def _init_container() -> Container:
         create_channel_handler = CreateChannelCommandHandler(
             _mediator=mediator,
             channels_repository=container.resolve(BaseChannelRepository),
+            broker=container.resolve(BaseBroker)
         )
 
         create_find_people_command = FindPeopleHandler(

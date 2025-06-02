@@ -38,7 +38,6 @@ class Mediator(CommandMediator, EventMediator, QueryMediator):
         self.queries_map[query] = query_handler
 
 
-    @trace_custom(name="publish")
     async def publish(self, events: Iterable[BaseEvent]) -> Iterable[ER]:
         result = []
 
@@ -48,7 +47,6 @@ class Mediator(CommandMediator, EventMediator, QueryMediator):
 
         return result
 
-    @trace_custom(name="handle_command")
     async def handle_command(self, command: BaseCommand) -> Iterable[CR]:
         command_type = command.__class__
         handlers = self.commands_map.get(command_type)
@@ -57,6 +55,5 @@ class Mediator(CommandMediator, EventMediator, QueryMediator):
 
         return [await handler.handle(command) for handler in handlers]
 
-    @trace_custom(name="handle_query")
     async def handle_query(self, query: BaseQuery) -> QR:
         return await self.queries_map[query.__class__].handle(query=query)

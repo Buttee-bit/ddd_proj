@@ -24,5 +24,4 @@ def create_app() -> FastAPI:
     app.include_router(channel_router)
     app.include_router(entity_router)
     app.include_router(news_router)
-
     return app

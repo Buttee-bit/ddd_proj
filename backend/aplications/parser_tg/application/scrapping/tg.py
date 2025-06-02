@@ -11,6 +11,7 @@ from backend.aplications.parser_tg.domain.entity.news.news import News
 from dataclasses import dataclass
 
 from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
+from telethon.tl.functions.channels import JoinChannelRequest
 
 
 class MessageDTO(BaseModel):
@@ -33,7 +34,6 @@ class TgParsServices:
 
         @self.tg_client.on(events.NewMessage(chats=chats))
         async def handler(event: events.NewMessage.Event):
-            logging.warning(f'event: {event}')
             chat = await event.get_chat()
             moscow_tz = pytz.timezone("Europe/Moscow")
             time_publish = event.date.astimezone(moscow_tz)
@@ -51,4 +51,6 @@ class TgParsServices:
 
         await self.tg_client.run_until_disconnected()
 
-    async def subscribe_to_channel(self): ...
+    async def subscribe_to_channel(self, channel_url):
+        entity = await self.tg_client.get_entity(channel_url)
+        await self.tg_client(JoinChannelRequest(channel=entity))

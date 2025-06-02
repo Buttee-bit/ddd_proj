@@ -9,18 +9,19 @@ from backend.aplications.parser_tg.application.scrapping.tg import (
     TgParsServices,
 )
 from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
-from backend.aplications.parser_tg.infra.brokers.message_broker.kafka import NewsKafkaBroker
+from backend.aplications.parser_tg.infra.brokers.message_broker.kafka import (
+    NewsKafkaBroker,
+)
 
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
 from backend.aplications.parser_tg.application.scrapping.lifespan import lifespan
+from backend.aplications.parser_tg.domain.events.channels import NewChannelReceivedEvent
 
 
 async def run_telegram_listener(
-    logger: Logger,
-    container: Container,
-    tg_services: TgParsServices
+    logger: Logger, container: Container, tg_services: TgParsServices
 ):
     try:
         await tg_services.tg_client.connect()
@@ -40,10 +41,8 @@ def main() -> FastStream:
     container: Container = init_conatainer()
     news_broker: NewsKafkaBroker = container.resolve(BaseBroker)
     tg_services: TgParsServices = container.resolve(TgParsServices)
-    app = FastStream(
-        lifespan=lifespan,
-        broker=news_broker.broker
-    )
+
+    app = FastStream(lifespan=lifespan, broker=news_broker.broker)
 
     @app.after_startup
     async def on_startup(logger: Logger):
@@ -51,8 +50,10 @@ def main() -> FastStream:
             run_telegram_listener(logger, container, tg_services)
         )
 
-    @news_broker.broker.subscriber("update-channels")
-    async def hasndle_update_channels(logger: Logger):
-        ...
-
+    @news_broker.broker.subscriber("update-channels-telegramm")
+    async def hasndle_update_channels(msg: NewChannelReceivedEvent, logger: Logger):
+        container: Container = init_conatainer()
+        tg_services: TgParsServices = container.resolve(TgParsServices)
+        await tg_services.subscribe_to_channel(channel_url=msg.link_channel)
+    
     return app

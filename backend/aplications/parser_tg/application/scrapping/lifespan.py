@@ -11,6 +11,5 @@ async def lifespan(context: ContextRepo):
     container: Container = init_conatainer()
     broker: NewsKafkaBroker = container.resolve(BaseBroker)
     await broker.start()
-    
     yield
     await broker.stop()

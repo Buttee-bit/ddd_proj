@@ -6,10 +6,11 @@ services:
       dockerfile: backend/aplications/parser_tg/application/api/Dockerfile
     env_file:
       - ../.env
+    volumes:
+      - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
     ports:
       - 7980:7980
     command: uvicorn --factory backend.aplications.parser_tg.application.api.main:create_app --host 0.0.0.0 --port 7980
-
 
   scrap_tg:
     build:
