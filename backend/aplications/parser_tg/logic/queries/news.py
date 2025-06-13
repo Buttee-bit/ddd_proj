@@ -2,7 +2,8 @@ from dataclasses import dataclass
 from typing import Iterable
 
 from backend.aplications.parser_tg.domain.entity.news.news import News
-from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository, BaseNewsRepository
+from backend.aplications.parser_tg.infra.repositoryes.base import BaseNewsRepository
+from backend.aplications.parser_tg.infra.repositoryes.channels.base import BaseChannelRepository
 from backend.aplications.parser_tg.logic.queries.base import BaseQuery, BaseQueryHandler
 
 

@@ -8,7 +8,6 @@ from fastapi.exceptions import HTTPException
 from fastapi.routing import APIRouter
 
 from opentelemetry import trace
-from opentelemetry.trace import Status, StatusCode
 
 
 from backend.aplications.parser_tg.application.api.handlers.filters import GetChannelsFilters
@@ -38,11 +37,10 @@ async def create_channel_handler(
     container: Container = Depends(init_conatainer),
 ) -> CreateChannelResponseSchema:
     mediator: Mediator = container.resolve(Mediator)
-    logging.warning(f'mediator: Mediator: {mediator}')
     try:
         channel, *_ = await mediator.handle_command(CreateChannelsCommand(url=schema.url))
     except Exception as exception:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception})
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception.message})
 
     return CreateChannelResponseSchema.from_entity(channel)
 
@@ -61,21 +59,19 @@ async def get_channels_handler(
     filters: GetChannelsFilters = Depends(),
 ) -> GetMessagesQueryResponseSchema:  # Changed return type
     mediator: Mediator = container.resolve(Mediator)
-    tracer = trace.get_tracer(__name__)
-    with tracer.start_as_current_span("get_channels_handler") as span:
-        try:
-            channels = await mediator.handle_query(
-                GetChannelsQueryWithFilter(filters=filters.to_infra()),
-            )
-        except Exception as exception:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail={'error': str(exception)}  # Ensure error is string
-            )
+    try:
+        channels = await mediator.handle_query(
+            GetChannelsQueryWithFilter(filters=filters.to_infra()),
+        )
+        return GetMessagesQueryResponseSchema(
+            count=len(channels),
+            limit=filters.limit,
+            offset=filters.offset,
+            items=[CreateChannelResponseSchema.from_entity(channel) for channel in channels]
+        )
 
-    return GetMessagesQueryResponseSchema(
-        count=len(channels),
-        limit=filters.limit,
-        offset=filters.offset,
-        items=[CreateChannelResponseSchema.from_entity(channel) for channel in channels]
-    )
+    except Exception as exception:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={'error': str(exception)}  # Ensure error is string
+        )

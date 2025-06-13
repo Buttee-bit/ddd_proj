@@ -10,7 +10,6 @@ def convert_channel_entity_to_document(channel: Channel) -> dict:
         'url': channel.url,
     }
 
-@trace_custom(name="convert_channel_document_to_entity")
 def convert_channel_document_to_entity(document: dict) -> Channel:
     return Channel(
         oid=document['oid'],

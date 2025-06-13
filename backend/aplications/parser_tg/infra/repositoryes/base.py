@@ -21,21 +21,6 @@ class BaseNerPeopleRepository(ABC):
     async def add_unique_ner(self, ner: Iterable[NerPeople]) -> None:
         ...
 
-class BaseChannelRepository(ABC):
-    @abstractmethod
-    async def add_channel(self, channel: Channel) -> None: ...
-
-    @abstractmethod
-    async def get_channel(self) -> Channel: ...
-
-    @abstractmethod
-    async def get_all_channels_with_filter(
-        self, limit: int, offset: int
-    ) -> Iterable[Channel]: ...
-
-    @abstractmethod
-    async def get_all_channels(self) -> Iterable[Channel]: ...
-
 
 class BaseNewsRepository(ABC):
     @abstractmethod
@@ -46,6 +31,7 @@ class BaseNewsRepository(ABC):
 
     @abstractmethod
     async def get_news(offset:int, limit:int) -> tuple[Iterable[News], int]: ...
+
 
 @dataclass
 class BaseMongoDBRepository(ABC):

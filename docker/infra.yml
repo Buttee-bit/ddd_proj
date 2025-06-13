@@ -71,15 +71,6 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
       ME_CONFIG_BASICAUTH: false
 
-  jaeger:
-    image: jaegertracing/all-in-one:latest
-    container_name: jaeger
-    ports:
-      - 16686:16686
-      - 14268:14268
-      - 6831:6831
-    environment:
-      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
 
 volumes:
   mongodb_data:

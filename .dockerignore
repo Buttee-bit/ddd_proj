@@ -1,0 +1,7 @@
+node_modules
+.git
+.DS_Store
+dist
+*.md
+**/node_modules
+**/.pnpm-store

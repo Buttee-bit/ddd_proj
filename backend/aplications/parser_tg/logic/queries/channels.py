@@ -3,7 +3,7 @@ from typing import Iterable
 
 from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
 
-from backend.aplications.parser_tg.infra.repositoryes.base import BaseChannelRepository
+from backend.aplications.parser_tg.infra.repositoryes.channels.base import BaseChannelRepository
 from backend.aplications.parser_tg.infra.repositoryes.filters.channels import GetAllChannelsFilters
 from backend.aplications.parser_tg.infra.tracing.handler import trace_custom
 from backend.aplications.parser_tg.logic.queries.base import BaseQuery, BaseQueryHandler

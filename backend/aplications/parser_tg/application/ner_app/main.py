@@ -10,7 +10,7 @@ from backend.aplications.parser_tg.logic.mediator.base import Mediator
 def main() -> FastStream:
     broker = KafkaBroker(bootstrap_servers=["kafka:29092"])
     app = FastStream(broker=broker)
-    container:Container = init_conatainer()
+    container: Container = init_conatainer()
 
     @broker.subscriber("Recive_messsages")
     async def handle_telegram_message(

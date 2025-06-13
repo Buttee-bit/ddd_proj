@@ -10,7 +10,17 @@ services:
       - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
     ports:
       - 7980:7980
-    command: uvicorn --factory backend.aplications.parser_tg.application.api.main:create_app --host 0.0.0.0 --port 7980
+    command: uvicorn --factory backend.aplications.parser_tg.application.api.main:create_app --host 0.0.0.0 --port 7980 --reload
+
+  bot:
+    build:
+      context: ..
+      dockerfile: backend/aplications/parser_tg/application/bot/Dockerfile
+    env_file:
+      - ../.env
+    working_dir: /app
+    command: python -m backend.aplications.parser_tg.application.bot.main
+
 
   scrap_tg:
     build:

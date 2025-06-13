@@ -2,10 +2,12 @@ from pydantic_settings import BaseSettings
 from pydantic import Field
 
 
-class Settings(BaseSettings):
+class Setings(BaseSettings):
     session_file: str = Field(..., alias='SESSION_FILE')
     tg_api_id: str = Field(..., alias='TG_API_ID')
     tg_api_hash: str = Field(..., alias='TG_API_HASH')
+
+    BOT_TOKEN: str = Field(..., alias='BOT_TOKEN')
 
     mongodb_connection_uri: str = Field(..., alias='MONGODB_CONNECTION')
 
