@@ -6,11 +6,9 @@ services:
       dockerfile: backend/aplications/parser_tg/application/api/Dockerfile
     env_file:
       - ../.env
-    volumes:
-      - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
     ports:
       - 7980:7980
-    command: uvicorn --factory backend.aplications.parser_tg.application.api.main:create_app --host 0.0.0.0 --port 7980 --reload
+    command: uvicorn --factory backend.aplications.parser_tg.application.api.main:create_app --host 0.0.0.0 --port 7980
 
   bot:
     build:
@@ -30,9 +28,6 @@ services:
       - ../.env
     volumes:
       - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
-    # depends_on:
-    #   kafka:
-    #     condition: service_healthy
     command: faststream run --factory backend.aplications.parser_tg.application.scrapping.main:main --reload
 
 
@@ -42,9 +37,6 @@ services:
       dockerfile: backend/aplications/parser_tg/application/writen/Dockerfile
     env_file:
       - ../.env
-    # depends_on:
-    #   kafka:
-    #     condition: service_healthy
     command: faststream run --factory backend.aplications.parser_tg.application.writen.main:main
 
   ner_app:
@@ -53,7 +45,4 @@ services:
       dockerfile: backend/aplications/parser_tg/application/ner_app/Dockerfile
     env_file:
       - ../.env
-    # depends_on:
-    #   kafka:
-    #     condition: service_healthy
     command: faststream run --factory backend.aplications.parser_tg.application.ner_app.main:main

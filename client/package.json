@@ -17,6 +17,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@tailwindcss/vite": "^4.1.8",
+    "axios": "^1.10.0",
     "element-plus": "^2.10.1",
     "icons-vue": "link:@element-plus\\icons-vue",
     "pinia": "^3.0.1",
@@ -41,6 +42,7 @@
     "eslint-plugin-vue": "~10.0.0",
     "jiti": "^2.4.2",
     "jsdom": "^26.0.0",
+    "naive-ui": "^2.41.1",
     "npm-run-all2": "^7.0.2",
     "postcss": "^8.5.4",
     "prettier": "3.5.3",

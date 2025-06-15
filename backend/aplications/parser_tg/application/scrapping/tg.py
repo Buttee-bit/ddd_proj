@@ -11,8 +11,8 @@ from backend.aplications.parser_tg.domain.entity.news.news import News
 from dataclasses import dataclass
 
 from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
-from telethon.tl.functions.channels import JoinChannelRequest
-
+from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
+from telethon.tl.types.messages import ChatFull
 
 class MessageDTO(BaseModel):
     message: str
@@ -51,6 +51,11 @@ class TgParsServices:
 
         await self.tg_client.run_until_disconnected()
 
-    async def subscribe_to_channel(self, channel_url):
+    async def subscribe_to_channel(self, channel_url) -> ChatFull:
         entity = await self.tg_client.get_entity(channel_url)
-        await self.tg_client(JoinChannelRequest(channel=entity))
+        try:
+            await self.tg_client(JoinChannelRequest(channel=entity))
+            full_info: ChatFull = await self.tg_client(GetFullChannelRequest(channel=entity))
+        except Exception as e:
+            ...
+        return full_info

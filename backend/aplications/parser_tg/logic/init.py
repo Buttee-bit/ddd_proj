@@ -37,6 +37,8 @@ from backend.aplications.parser_tg.logic.commands.news import (
 from backend.aplications.parser_tg.logic.commands.channels import (
     CreateChannelCommandHandler,
     CreateChannelsCommand,
+    UpdateChannelInfoCommand,
+    UpdateChannelInfoCommandHandler,
 )
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.channels import (
@@ -174,6 +176,15 @@ def _init_container() -> Container:
         create_news_handler = CreateNewsCommandHandler(
             _mediator=mediator, news_repository=container.resolve(BaseNewsRepository)
         )
+
+        update_channel_info = UpdateChannelInfoCommandHandler(
+            _mediator=mediator,
+            telegram_service=container.resolve(TgParsServices),
+            channel_repo=container.resolve(BaseChannelRepository)
+        )
+
+        mediator.register_command(UpdateChannelInfoCommand, [update_channel_info])
+
         mediator.register_command(CreateNewsCommand, [create_news_handler])
         mediator.register_command(
             AddNerPeopleToDocumentCommand, [add_ner_people_to_documenthandler]

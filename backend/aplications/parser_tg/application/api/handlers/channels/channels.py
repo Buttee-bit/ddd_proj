@@ -7,14 +7,14 @@ from fastapi import (
 from fastapi.exceptions import HTTPException
 from fastapi.routing import APIRouter
 
-from opentelemetry import trace
 
 
 from backend.aplications.parser_tg.application.api.handlers.filters import GetChannelsFilters
+from backend.aplications.parser_tg.application.api.schemas import ErrorSchema
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.commands.channels import CreateChannelsCommand
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
-from backend.aplications.parser_tg.application.api.handlers.schemas import CreateChannelRequestSchema, CreateChannelResponseSchema, ErrorSchema, GetMessagesQueryResponseSchema
+from backend.aplications.parser_tg.application.api.handlers.channels.schemas import CreateChannelRequestSchema, CreateChannelResponseSchema, GetMessagesQueryResponseSchema
 from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQueryWithFilter
 
 
@@ -39,6 +39,7 @@ async def create_channel_handler(
     mediator: Mediator = container.resolve(Mediator)
     try:
         channel, *_ = await mediator.handle_command(CreateChannelsCommand(url=schema.url))
+        logging.warning(f'channel: {channel}')
     except Exception as exception:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception.message})
 

@@ -4,7 +4,7 @@ from backend.aplications.parser_tg.domain.entity.channel.channel import Channel
 from backend.aplications.parser_tg.domain.entity.news.news import News
 from backend.aplications.parser_tg.infra.repositoryes.base import BaseMongoDBRepository
 from backend.aplications.parser_tg.infra.repositoryes.channels.base import BaseChannelRepository
-from backend.aplications.parser_tg.infra.repositoryes.converters import convert_channel_document_to_entity, convert_channel_entity_to_document
+from backend.aplications.parser_tg.infra.repositoryes.channels.converter import convert_channel_document_to_entity, convert_channel_entity_to_document
 from backend.aplications.parser_tg.infra.repositoryes.errors.exist import ExisInDBError
 from backend.aplications.parser_tg.infra.repositoryes.filters.channels import GetAllChannelsFilters
 from backend.aplications.parser_tg.infra.repositoryes.errors.exist import ExisInDBError
@@ -45,3 +45,12 @@ class ChannelsRepository(BaseChannelRepository, BaseMongoDBRepository):
     async def get_all_channels(self) -> list[Channel]:
         documents = self._collection.find()
         return [convert_channel_document_to_entity(document) async for document in documents]
+
+    async def update_channel_info(self, url_channel: str, data:dict):
+        filter = {
+            'url':url_channel
+        }
+        await self._collection.update_one(
+            filter=filter,
+            update={'$set': data}
+        )

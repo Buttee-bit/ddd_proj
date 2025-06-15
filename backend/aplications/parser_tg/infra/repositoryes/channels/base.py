@@ -22,3 +22,6 @@ class BaseChannelRepository(ABC):
 
     @abstractmethod
     async def get_all_channels(self) -> Iterable[Channel]: ...
+
+    @abstractmethod
+    async def update_channel_info(self, url_channel: str, data: dict) -> Channel: ...

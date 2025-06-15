@@ -12,21 +12,6 @@ class ErrorSchema(BaseModel):
     error: str
 
 
-class CreateChannelRequestSchema(BaseModel):
-    url: str
-
-
-class CreateChannelResponseSchema(BaseModel):
-    oid: str
-    url: str
-
-    @classmethod
-    def from_entity(cls, Chanel: Channel) -> "CreateChannelResponseSchema":
-        return cls(
-            oid=Chanel.oid,
-            url=Chanel.url,
-        )
-
 
 class TestAddEntityPersonToDocumentRequestSchema(BaseModel):
     document_oid: str
@@ -36,9 +21,6 @@ class TestAddEntityPersonToDocumentResponseSchema(BaseModel):
     test: str
 
 
-class GetMessagesQueryResponseSchema(
-    BaseQueryResponseSchema[list[CreateChannelResponseSchema]]
-): ...
 
 
 class GetNewsResponseSchema(BaseModel):

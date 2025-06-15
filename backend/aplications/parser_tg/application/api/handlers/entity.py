@@ -7,14 +7,12 @@ from fastapi import (
 from fastapi.exceptions import HTTPException
 from fastapi.routing import APIRouter
 
-from backend.aplications.parser_tg.application.api.handlers.filters import GetChannelsFilters
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.commands.ner_people import AddNerPeopleToDocumentCommand
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 
 from backend.aplications.parser_tg.application.api.handlers.schemas import (
     TestAddEntityPersonToDocumentRequestSchema,
-    CreateChannelResponseSchema,
     TestAddEntityPersonToDocumentResponseSchema,
     ErrorSchema,
 )

@@ -13,6 +13,7 @@ from backend.aplications.parser_tg.infra.brokers.message_broker.kafka import (
     NewsKafkaBroker,
 )
 
+from backend.aplications.parser_tg.logic.commands.channels import UpdateChannelInfoCommand
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.channels import GetChannelsQuery
@@ -53,7 +54,11 @@ def main() -> FastStream:
     @news_broker.broker.subscriber("update-channels-telegramm")
     async def hasndle_update_channels(msg: NewChannelReceivedEvent, logger: Logger):
         container: Container = init_conatainer()
-        tg_services: TgParsServices = container.resolve(TgParsServices)
-        await tg_services.subscribe_to_channel(channel_url=msg.link_channel)
-    
+        mediator: Mediator = container.resolve(Mediator)
+        try:
+            await mediator.handle_command(UpdateChannelInfoCommand(url=msg.link_channel))
+        except Exception as exception:
+            logger.warning(f'exception: {exception}')
+            # raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception.message})
+
     return app

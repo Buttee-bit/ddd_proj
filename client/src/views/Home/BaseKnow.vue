@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    HelloWorld
+    BaseKnow
   </Layout>
 </template>
 

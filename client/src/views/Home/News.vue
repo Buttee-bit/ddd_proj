@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    HelloWorld
+    News
   </Layout>
 </template>
 
