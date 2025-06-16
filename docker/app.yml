@@ -4,6 +4,7 @@ services:
     build:
       context: ..
       dockerfile: backend/aplications/parser_tg/application/api/Dockerfile
+    container_name: backend
     env_file:
       - ../.env
     ports:
@@ -14,6 +15,7 @@ services:
     build:
       context: ..
       dockerfile: backend/aplications/parser_tg/application/bot/Dockerfile
+    container_name: bot
     env_file:
       - ../.env
     working_dir: /app
@@ -24,6 +26,7 @@ services:
     build:
       context: ..
       dockerfile: backend/aplications/parser_tg/application/scrapping/Dockerfile
+    container_name: scrap_tg
     env_file:
       - ../.env
     volumes:
@@ -35,6 +38,7 @@ services:
     build:
       context: ..
       dockerfile: backend/aplications/parser_tg/application/writen/Dockerfile
+    container_name: writen
     env_file:
       - ../.env
     command: faststream run --factory backend.aplications.parser_tg.application.writen.main:main
@@ -43,6 +47,7 @@ services:
     build:
       context: ..
       dockerfile: backend/aplications/parser_tg/application/ner_app/Dockerfile
+    container_name: ner_app
     env_file:
       - ../.env
     command: faststream run --factory backend.aplications.parser_tg.application.ner_app.main:main
