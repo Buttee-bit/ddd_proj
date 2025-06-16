@@ -13,12 +13,12 @@ from backend.aplications.parser_tg.infra.repositoryes.errors.exist import ExisIn
 @dataclass
 class ChannelsRepository(BaseChannelRepository, BaseMongoDBRepository):
 
-    async def add_channel(self, url: str) -> Channel:
+    async def add_channel(self, url: str, subscribers:int, title:str, id_channel:int) -> Channel:
         channel = await self.chek_exis_channel(url=url)
         if channel:
             raise ExisInDBError(value=channel.url)
         else:
-            channel = Channel(url=url)
+            channel = Channel(url=url, id_channel=id_channel, subscribers=subscribers, title=title)
             await self._collection.insert_one(convert_channel_entity_to_document(channel))
             return channel
 

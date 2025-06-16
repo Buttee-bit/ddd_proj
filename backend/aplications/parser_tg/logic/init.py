@@ -6,7 +6,7 @@ from punq import (
     Scope,
 )
 from telethon import TelegramClient
-from backend.aplications.parser_tg.application.scrapping.tg import TgParsServices
+from backend.aplications.parser_tg.infra.telegram.tg import TgParsServices
 from backend.aplications.parser_tg.infra.analizer.base import BaseAnalazer
 from backend.aplications.parser_tg.infra.analizer.person_analizer import PersonAnalizer
 from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
@@ -37,8 +37,8 @@ from backend.aplications.parser_tg.logic.commands.news import (
 from backend.aplications.parser_tg.logic.commands.channels import (
     CreateChannelCommandHandler,
     CreateChannelsCommand,
-    UpdateChannelInfoCommand,
-    UpdateChannelInfoCommandHandler,
+    SubscribeChannelCommand,
+    SubscribeChannelInfoCommandHandler,
 )
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
 from backend.aplications.parser_tg.logic.queries.channels import (
@@ -94,6 +94,7 @@ def _init_container() -> Container:
                 system_version="4.17.30-vxCUSTOM",
             ),
             broker=container.resolve(BaseBroker),
+            channels_repo=container.resolve(BaseChannelRepository)
         )
 
     container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)
@@ -158,6 +159,7 @@ def _init_container() -> Container:
         create_channel_handler = CreateChannelCommandHandler(
             _mediator=mediator,
             channels_repository=container.resolve(BaseChannelRepository),
+            tg_services=container.resolve(TgParsServices),
             broker=container.resolve(BaseBroker),
         )
         create_find_people_command = FindPeopleHandler(
@@ -177,13 +179,13 @@ def _init_container() -> Container:
             _mediator=mediator, news_repository=container.resolve(BaseNewsRepository)
         )
 
-        update_channel_info = UpdateChannelInfoCommandHandler(
+        update_channel_info = SubscribeChannelInfoCommandHandler(
             _mediator=mediator,
             telegram_service=container.resolve(TgParsServices),
             channel_repo=container.resolve(BaseChannelRepository)
         )
 
-        mediator.register_command(UpdateChannelInfoCommand, [update_channel_info])
+        mediator.register_command(SubscribeChannelCommand, [update_channel_info])
 
         mediator.register_command(CreateNewsCommand, [create_news_handler])
         mediator.register_command(

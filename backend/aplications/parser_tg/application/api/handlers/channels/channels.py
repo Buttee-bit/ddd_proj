@@ -39,9 +39,8 @@ async def create_channel_handler(
     mediator: Mediator = container.resolve(Mediator)
     try:
         channel, *_ = await mediator.handle_command(CreateChannelsCommand(url=schema.url))
-        logging.warning(f'channel: {channel}')
     except Exception as exception:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail={'error': exception.message})
+        raise HTTPException(status_code=status.HTTP_208_ALREADY_REPORTED, detail={'error': exception.message})
 
     return CreateChannelResponseSchema.from_entity(channel)
 

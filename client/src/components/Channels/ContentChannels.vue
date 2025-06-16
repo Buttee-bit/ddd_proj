@@ -7,7 +7,7 @@ import ListChannels from "@/components/Channels/ListChannels.vue"
 </script>
 
 <template>
-  <div class="w-11/12">
+  <div class="w-11/12 overflow-y-auto">
     <SearchChannels/>
     <ListChannels/>
   </div>

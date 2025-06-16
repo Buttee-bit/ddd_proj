@@ -25,7 +25,7 @@ function getIcon(name: string) {
 }
 
 const isActive = computed(() => {
-  return route.path === props.href
+  return route.path.includes(props.href)
 })
 </script>
 

@@ -23,7 +23,7 @@ class CreateNewsCommandHandler(CommandHandler[CreateNewsCommand, News]):
             title=command.title,
             text=command.text,
             published_at=command.published_at,
-            oid_channel=command.oid_channel,
+            id_channel=command.oid_channel,
         )
         await self.news_repository.add_news(news=news)
         return news

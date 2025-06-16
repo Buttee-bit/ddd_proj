@@ -8,11 +8,13 @@ from pydantic import BaseModel, Field
 
 from backend.aplications.parser_tg.application.scrapping.dto import ListChannelDTO
 from backend.aplications.parser_tg.domain.entity.news.news import News
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from backend.aplications.parser_tg.infra.brokers.base import BaseBroker
 from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
 from telethon.tl.types.messages import ChatFull
+
+from backend.aplications.parser_tg.infra.repositoryes.channels.base import BaseChannelRepository
 
 class MessageDTO(BaseModel):
     message: str
@@ -25,37 +27,46 @@ class MessageDTO(BaseModel):
 class TgParsServices:
     tg_client: TelegramClient
     broker: BaseBroker
+    channels_repo: BaseChannelRepository
+    _list_channels: list = field(default_factory=list, kw_only=True)
+    _handler: events.NewMessage.Event | None = field(default=None, kw_only=True)  # Track the current handler
 
-    async def start_listening(self, channels: ListChannelDTO):
-        chats = [chat.url for chat in channels.channels]
-        url_to_oid = {
-            channel.url.split("/")[-1]: channel.oid for channel in channels.channels
-        }
+    async def start_listening(self):
+        await self._update_list_channels()
+        await self._register_handler()
+        await self.tg_client.run_until_disconnected()
 
-        @self.tg_client.on(events.NewMessage(chats=chats))
+    async def _register_handler(self):
+        if self._handler:
+            self.tg_client.remove_event_handler(self._handler)
+
+        @self.tg_client.on(events.NewMessage(chats=self._list_channels))
         async def handler(event: events.NewMessage.Event):
-            chat = await event.get_chat()
             moscow_tz = pytz.timezone("Europe/Moscow")
             time_publish = event.date.astimezone(moscow_tz)
-            oid = url_to_oid.get(chat.username, "unknown")
             news = News(
                 title=event.text[:50],
                 text=event.text,
                 published_at=time_publish,
-                oid_channel=oid,
+                id_channel=event._chat_peer.channel_id,
             )
             await self.broker.send_message(
-                topic='telegram_messages',
                 message=news,
+                topic='telegram_messages',
             )
 
-        await self.tg_client.run_until_disconnected()
+        self._handler = handler
 
     async def subscribe_to_channel(self, channel_url) -> ChatFull:
         entity = await self.tg_client.get_entity(channel_url)
         try:
             await self.tg_client(JoinChannelRequest(channel=entity))
-            full_info: ChatFull = await self.tg_client(GetFullChannelRequest(channel=entity))
+            await self._update_list_channels()
+            await self._register_handler()
         except Exception as e:
-            ...
-        return full_info
+            logging.error(e)
+
+    async def _update_list_channels(self) -> None:
+        list_channels = await self.channels_repo.get_all_channels()
+        self._list_channels = [await self.tg_client.get_entity(channel.url) for channel in list_channels]
+        logging.warning(f'Updated channels: {len(self._list_channels)}')

@@ -6,11 +6,13 @@ from backend.aplications.parser_tg.domain.entity.news.news import News
 from backend.aplications.parser_tg.logic.commands.ner_people import FindPeopleCommand
 from backend.aplications.parser_tg.logic.init import init_conatainer
 from backend.aplications.parser_tg.logic.mediator.base import Mediator
+from backend.aplications.parser_tg.setings.setting import Setings
 
 def main() -> FastStream:
-    broker = KafkaBroker(bootstrap_servers=["kafka:29092"])
-    app = FastStream(broker=broker)
     container: Container = init_conatainer()
+    setting: Setings = container.resolve(Setings)
+    broker = KafkaBroker(bootstrap_servers=setting.kafka_url)
+    app = FastStream(broker=broker)
 
     @broker.subscriber("Recive_messsages")
     async def handle_telegram_message(

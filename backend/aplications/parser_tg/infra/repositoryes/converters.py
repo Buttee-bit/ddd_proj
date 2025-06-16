@@ -11,7 +11,7 @@ def convert_news_entity_to_document(news: News) -> dict:
         'title': news.title,
         'text': news.text,
         'published_at': news.published_at,
-        'oid_channel': news.oid_channel
+        'oid_channel': news.id_channel
    }
 
 def convert_news_document_to_entity(document: dict) -> News:
@@ -21,5 +21,5 @@ def convert_news_document_to_entity(document: dict) -> News:
         title=document['title'],
         text=document['text'],
         published_at=document['published_at'],
-        oid_channel=document['oid_channel'],
+        id_channel=document['oid_channel'],
     )

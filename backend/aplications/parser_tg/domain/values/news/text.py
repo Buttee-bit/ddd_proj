@@ -1,10 +1,11 @@
+
 from dataclasses import dataclass
 from backend.aplications.parser_tg.domain.values.base import BaseValueObject
-from backend.aplications.parser_tg.domain.errors.title import TitleError
+from backend.aplications.parser_tg.domain.errors.news.title import TitleError
 
 
 @dataclass(frozen=True)
-class Title(BaseValueObject):
+class Text(BaseValueObject):
     value: str
 
     def validate(self):
