@@ -24,7 +24,7 @@ async def run_telegram_listener(logger: Logger, tg_services: TgParsServices):
         await tg_services.start_listening()
     except Exception as e:
         logger.error(f"Ошибка в Telegram listener: {e}")
-        raise
+        raise e
 
 
 def main() -> FastStream:

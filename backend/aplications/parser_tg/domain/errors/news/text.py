@@ -3,7 +3,7 @@ from backend.aplications.parser_tg.domain.errors.base import ApplicationError
 
 
 
-class TextNotExistError(ApplicationError):
+class TextValidationError(ApplicationError):
     oid_news: str
 
     @property

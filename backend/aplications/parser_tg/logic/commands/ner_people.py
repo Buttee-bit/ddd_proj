@@ -67,7 +67,6 @@ class FindPeopleHandler(
     async def handle(self, command: FindPeopleCommand) -> None:
         analis_result = self.analizer.get_result(text=command.text)
         list_ners = convert_analysis_result_to_ners(result=analis_result)
-        logging.warning(f'list_ners: {list_ners}')
         # await self.ner_people_repository.add_ner_by_id_document(
         #     id_document=command.oid,
         #     ner=[
@@ -78,7 +77,5 @@ class FindPeopleHandler(
         #         ) for ner in list_ners
         #     ]
         # )
-        logging.warning(f'Заебись:')
         await self.unique_ner_repository.add_unique_ner(ner=list_ners)
-        logging.warning(f'Типо сделано')
         return list_ners
