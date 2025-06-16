@@ -11,7 +11,7 @@ from backend.aplications.parser_tg.setings.setting import Setings
 def main() -> FastStream:
     container = init_conatainer()
     setting: Setings = container.resolve(Setings)
-    broker = KafkaBroker(bootstrap_servers=setting.kafka_url)
+    broker = KafkaBroker(bootstrap_servers='kafka:9092')
     app = FastStream(broker=broker)
 
     @broker.subscriber("telegram_messages")
@@ -27,9 +27,5 @@ def main() -> FastStream:
                 published_at=data.published_at,
                 oid_channel=data.id_channel,
             )
-        )
-        await broker.publish(
-            topic="Recive_messsages",
-            message=data
         )
     return app

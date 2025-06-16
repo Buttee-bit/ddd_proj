@@ -77,7 +77,7 @@ def _init_container() -> Container:
     client = container.resolve(AsyncIOMotorClient)
 
     def create_news_broker() -> BaseBroker:
-        return NewsKafkaBroker(broker=KafkaBroker(bootstrap_servers=settings.kafka_url))
+        return NewsKafkaBroker(broker=KafkaBroker(bootstrap_servers='kafka:9092'))
 
     container.register(
         service=BaseBroker, factory=create_news_broker, scope=Scope.singleton

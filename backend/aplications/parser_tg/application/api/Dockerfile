@@ -1,4 +1,4 @@
-FROM python:3.11-slim-buster as backend
+FROM python:3.11-slim-buster AS backend
 
 RUN apt-get update
 RUN pip install --upgrade pip

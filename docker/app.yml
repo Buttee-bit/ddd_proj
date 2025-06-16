@@ -31,7 +31,7 @@ services:
       - ../.env
     volumes:
       - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
-    command: faststream run --factory backend.aplications.parser_tg.application.scrapping.main:main --reload
+    command: faststream run --factory backend.aplications.parser_tg.application.scrapping.main:main
 
 
   writen:
