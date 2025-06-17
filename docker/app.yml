@@ -3,51 +3,51 @@ services:
   backend:
     build:
       context: ..
-      dockerfile: backend/aplications/parser_tg/application/api/Dockerfile
+      dockerfile: app/applications/api/Dockerfile
     container_name: backend
     env_file:
       - ../.env
     ports:
       - 7980:7980
-    command: uvicorn --factory backend.aplications.parser_tg.application.api.main:create_app --host 0.0.0.0 --port 7980
+    command: uvicorn --factory app.applications.api.main:create_app --host 0.0.0.0 --port 7980
 
-  bot:
-    build:
-      context: ..
-      dockerfile: backend/aplications/parser_tg/application/bot/Dockerfile
-    container_name: bot
-    env_file:
-      - ../.env
-    working_dir: /app
-    command: python -m backend.aplications.parser_tg.application.bot.main
-
-
-  scrap_tg:
-    build:
-      context: ..
-      dockerfile: backend/aplications/parser_tg/application/scrapping/Dockerfile
-    container_name: scrap_tg
-    env_file:
-      - ../.env
-    volumes:
-      - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
-    command: faststream run --factory backend.aplications.parser_tg.application.scrapping.main:main
+  # bot:
+  #   build:
+  #     context: ..
+  #     dockerfile: backend/aplications/parser_tg/application/bot/Dockerfile
+  #   container_name: bot
+  #   env_file:
+  #     - ../.env
+  #   working_dir: /app
+  #   command: python -m application.bot.main
 
 
-  writen:
-    build:
-      context: ..
-      dockerfile: backend/aplications/parser_tg/application/writen/Dockerfile
-    container_name: writen
-    env_file:
-      - ../.env
-    command: faststream run --factory backend.aplications.parser_tg.application.writen.main:main
+  # scrap_tg:
+  #   build:
+  #     context: ..
+  #     dockerfile: backend/aplications/parser_tg/application/scrapping/Dockerfile
+  #   container_name: scrap_tg
+  #   env_file:
+  #     - ../.env
+  #   volumes:
+  #     - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
+  #   command: faststream run --factory application.scrapping.main:main
 
-  ner_app:
-    build:
-      context: ..
-      dockerfile: backend/aplications/parser_tg/application/ner_app/Dockerfile
-    container_name: ner_app
-    env_file:
-      - ../.env
-    command: faststream run --factory backend.aplications.parser_tg.application.ner_app.main:main
+
+  # writen:
+  #   build:
+  #     context: ..
+  #     dockerfile: backend/aplications/parser_tg/application/writen/Dockerfile
+  #   container_name: writen
+  #   env_file:
+  #     - ../.env
+  #   command: faststream run --factory application.writen.main:main
+
+  # ner_app:
+  #   build:
+  #     context: ..
+  #     dockerfile: backend/aplications/parser_tg/application/ner_app/Dockerfile
+  #   container_name: ner_app
+  #   env_file:
+  #     - ../.env
+  #   command: faststream run --factory application.ner_main:main
