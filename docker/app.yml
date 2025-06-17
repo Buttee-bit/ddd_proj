@@ -11,15 +11,14 @@ services:
       - 7980:7980
     command: uvicorn --factory app.applications.api.main:create_app --host 0.0.0.0 --port 7980
 
-  # bot:
-  #   build:
-  #     context: ..
-  #     dockerfile: backend/aplications/parser_tg/application/bot/Dockerfile
-  #   container_name: bot
-  #   env_file:
-  #     - ../.env
-  #   working_dir: /app
-  #   command: python -m application.bot.main
+  bot:
+    build:
+      context: ..
+      dockerfile: app/applications/bot/Dockerfile
+    container_name: bot
+    env_file:
+      - ../.env
+    command: python -m app.applications.bot.main
 
 
   # scrap_tg:

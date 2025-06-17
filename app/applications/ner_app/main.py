@@ -10,7 +10,7 @@ from app.infra.brokers.message_broker.kafka import (
 from app.logic.commands.ner_people import NerAnalizeCommand
 from app.logic.init import init_conatainer
 from app.logic.mediator.base import Mediator
-from setings.setting import Setings
+from settings.setting import Setings
 
 
 def main() -> FastStream:

@@ -6,7 +6,7 @@ from app.domain.entity.news.news import News
 from app.logic.commands.news import CreateNewsCommand
 from app.logic.init import init_conatainer
 from app.logic.mediator.base import Mediator
-from setings.setting import Setings
+from settings.setting import Setings
 
 def main() -> FastStream:
     container = init_conatainer()

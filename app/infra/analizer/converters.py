@@ -1,9 +1,9 @@
 import logging
 from typing import Iterable
 from app.domain.entity.ner.person import NerPeople
-from backend.pullenti.ner.AnalysisResult import AnalysisResult
-from backend.pullenti.ner.Referent import Referent
-from backend.pullenti.ner.Slot import Slot
+from pullenti.ner.AnalysisResult import AnalysisResult
+from pullenti.ner.Referent import Referent
+from pullenti.ner.Slot import Slot
 
 
 def convert_analysis_result_to_ners(result: AnalysisResult) -> Iterable[NerPeople]:

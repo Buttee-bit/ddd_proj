@@ -1,15 +1,14 @@
 FROM python:3.11-slim-buster AS bot
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN pip install --upgrade pip
 
-WORKDIR /app
+COPY ./requirements.txt /app/requirements.txt
 
-COPY ./requirements.txt .
+RUN pip install -r /app/requirements.txt
 
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+COPY app/ /app/
+COPY pullenti/ /pullenti/
 
-COPY . .
 
-ENV PYTHONPATH=/app
+COPY ./.env /app/.env

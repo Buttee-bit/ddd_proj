@@ -8,7 +8,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
 from app.logic.init import init_conatainer
-from setings.setting import Setings
+from app.settings.setting import Setings
 
 
 

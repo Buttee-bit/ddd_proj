@@ -8,9 +8,9 @@ from app.infra.repositoryes.base import (
     BaseNewsRepository,
 )
 from app.logic.commands.base import CommandHandler
-# from app.infra.analizer.converters import (
-#     convert_analysis_result_to_ners,
-# )
+from app.infra.analizer.converters import (
+    convert_analysis_result_to_ners,
+)
 from app.logic.commands.base import (
     BaseCommand,
     CommandHandler,

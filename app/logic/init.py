@@ -6,10 +6,9 @@ from punq import (
     Scope,
 )
 from telethon import TelegramClient
-# from app.infra.analizer.pullenti_analizer import PullentiAnalizer
+from app.infra.analizer.pullenti_analizer import PullentiAnalizer
 from app.infra.telegram.tg import TgParsServices
-from app.infra.analizer.base import BaseAnalazer
-# from app.infra.analizer.person_analizer import PersonAnalizer
+
 from app.infra.brokers.base import BaseBroker
 from app.infra.brokers.message_broker.kafka import (
     DefaultKafkaBroker,
@@ -25,12 +24,12 @@ from app.infra.repositoryes.ners.peoples import (
     NerPeoplesUniqueRepository,
 )
 from app.infra.repositoryes.news_repo import NewsRepository
-# from app.logic.commands.ner_people import (
-#     AddNerPeopleToDocumentCommand,
-#     AddNerPeopleToDocumentHandler,
-#     NerAnalizeCommand,
-#     NerAnalizeHandler,
-# )
+from app.logic.commands.ner_people import (
+    AddNerPeopleToDocumentCommand,
+    AddNerPeopleToDocumentHandler,
+    NerAnalizeCommand,
+    NerAnalizeHandler,
+)
 from app.logic.commands.news import (
     CreateNewsCommandHandler,
     CreateNewsCommand,
@@ -52,7 +51,7 @@ from app.logic.queries.news import (
     GetNewslatestHandler,
     GetNewsLatestQuery,
 )
-from app.setings.setting import Setings
+from app.settings.setting import Setings
 from faststream.kafka import KafkaBroker
 
 
@@ -115,44 +114,44 @@ def _init_container() -> Container:
             mongo_db_collection_name=settings.mongodb_channels_collection_name,
         )
 
-    # def init_ner_people_repository() -> BaseNerPeopleRepository:
-    #     return NerPeoplesRepository(
-    #         mongo_db_client=client,
-    #         mongo_db_db_name=settings.mongodb_ner_database_name,
-    #         mongo_db_collection_name=settings.mongodb_ner_collection_persones_name,
-    #     )
+    def init_ner_people_repository() -> BaseNerPeopleRepository:
+        return NerPeoplesRepository(
+            mongo_db_client=client,
+            mongo_db_db_name=settings.mongodb_ner_database_name,
+            mongo_db_collection_name=settings.mongodb_ner_collection_persones_name,
+        )
 
-    # def init_unique_ner_repository() -> BaseNerPeopleRepository:
-    #     return NerPeoplesUniqueRepository(
-    #         mongo_db_client=client,
-    #         mongo_db_db_name=settings.mongodb_ner_database_name,
-    #         mongo_db_collection_name=settings.mongodb_ner_collection_unique_persones_name,
-    #     )
+    def init_unique_ner_repository() -> BaseNerPeopleRepository:
+        return NerPeoplesUniqueRepository(
+            mongo_db_client=client,
+            mongo_db_db_name=settings.mongodb_ner_database_name,
+            mongo_db_collection_name=settings.mongodb_ner_collection_unique_persones_name,
+        )
 
     container.register(
         BaseNewsRepository, factory=init_news_repository, scope=Scope.singleton
     )
-    # container.register(
-    #     NerPeoplesUniqueRepository,
-    #     factory=init_unique_ner_repository,
-    #     scope=Scope.singleton,
-    # )
+    container.register(
+        NerPeoplesUniqueRepository,
+        factory=init_unique_ner_repository,
+        scope=Scope.singleton,
+    )
     container.register(
         BaseChannelRepository, factory=init_channels_repository, scope=Scope.singleton
     )
-    # container.register(
-    #     BaseNerPeopleRepository,
-    #     factory=init_ner_people_repository,
-    #     scope=Scope.singleton,
-    # )
+    container.register(
+        BaseNerPeopleRepository,
+        factory=init_ner_people_repository,
+        scope=Scope.singleton,
+    )
 
     # Analizers
-    # def init_analizer_persones() -> BaseAnalazer:
-    #     return PullentiAnalizer(address_=settings.pulenty_server)
+    def init_analizer_persones() -> PullentiAnalizer:
+        return PullentiAnalizer(address_=settings.pulenty_server)
 
-    # container.register(
-    #     BaseAnalazer, factory=init_analizer_persones, scope=Scope.singleton
-    # )
+    container.register(
+        PullentiAnalizer, factory=init_analizer_persones, scope=Scope.singleton
+    )
 
     def init_mediator() -> Mediator:
         mediator = Mediator()
@@ -163,19 +162,19 @@ def _init_container() -> Container:
             tg_services=container.resolve(TgParsServices),
             broker=container.resolve(BaseBroker),
         )
-        # create_find_people_command = NerAnalizeHandler(
-        #     _mediator=mediator,
-        #     ner_people_repository=container.resolve(BaseNerPeopleRepository),
-        #     news_repository=container.resolve(BaseNewsRepository),
-        #     unique_ner_repository=container.resolve(NerPeoplesUniqueRepository),
-        #     analizer=container.resolve(BaseAnalazer),
-        # )
-        # add_ner_people_to_documenthandler = AddNerPeopleToDocumentHandler(
-        #     _mediator=mediator,
-        #     ner_people_repository=container.resolve(BaseNerPeopleRepository),
-        #     news_repository=container.resolve(BaseNewsRepository),
-        #     analizer=container.resolve(BaseAnalazer),
-        # )
+        create_find_people_command = NerAnalizeHandler(
+            _mediator=mediator,
+            ner_people_repository=container.resolve(BaseNerPeopleRepository),
+            news_repository=container.resolve(BaseNewsRepository),
+            unique_ner_repository=container.resolve(NerPeoplesUniqueRepository),
+            analizer=container.resolve(PullentiAnalizer),
+        )
+        add_ner_people_to_documenthandler = AddNerPeopleToDocumentHandler(
+            _mediator=mediator,
+            ner_people_repository=container.resolve(BaseNerPeopleRepository),
+            news_repository=container.resolve(BaseNewsRepository),
+            analizer=container.resolve(PullentiAnalizer),
+        )
         create_news_handler = CreateNewsCommandHandler(
             _mediator=mediator, news_repository=container.resolve(BaseNewsRepository)
         )
@@ -189,10 +188,10 @@ def _init_container() -> Container:
         mediator.register_command(SubscribeChannelCommand, [update_channel_info])
 
         mediator.register_command(CreateNewsCommand, [create_news_handler])
-        # mediator.register_command(
-        #     AddNerPeopleToDocumentCommand, [add_ner_people_to_documenthandler]
-        # )
-        # mediator.register_command(NerAnalizeCommand, [create_find_people_command])
+        mediator.register_command(
+            AddNerPeopleToDocumentCommand, [add_ner_people_to_documenthandler]
+        )
+        mediator.register_command(NerAnalizeCommand, [create_find_people_command])
         mediator.register_command(CreateChannelsCommand, [create_channel_handler])
 
         # Queries

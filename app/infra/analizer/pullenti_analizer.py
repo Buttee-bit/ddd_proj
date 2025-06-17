@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from app.infra.analizer.base import BaseAnalazer
-from backend.pullenti.ner.ServerService import ServerService
-from backend.pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
-from backend.pullenti.ner.address.AddressAnalyzer import AddressAnalyzer
-from backend.pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
-from backend.pullenti.ner.geo.GeoReferent import GeoReferent
-from backend.pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
-from backend.pullenti.ner.date.DateAnalyzer import DateAnalyzer
+from pullenti.ner.ServerService import ServerService
+from pullenti.ner.person.PersonAnalyzer import PersonAnalyzer
+from pullenti.ner.address.AddressAnalyzer import AddressAnalyzer
+from pullenti.ner.geo.GeoAnalyzer import GeoAnalyzer
+from pullenti.ner.geo.GeoReferent import GeoReferent
+from pullenti.ner.org.OrganizationAnalyzer import OrganizationAnalyzer
+from pullenti.ner.date.DateAnalyzer import DateAnalyzer
 
 @dataclass(frozen=True)
 class PullentiAnalizer(BaseAnalazer):
