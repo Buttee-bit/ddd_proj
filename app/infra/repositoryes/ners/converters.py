@@ -1,4 +1,6 @@
+import logging
 from typing import Iterable
+from app.domain.entity.ner.entity import Ner
 from app.domain.entity.ner.person import NerPeople
 
 
@@ -6,19 +8,24 @@ from app.domain.entity.ner.person import NerPeople
 def convert_docuemnt_to_ners_people(document:dict) -> Iterable[NerPeople]:
     ...
 
-
-def convert_ner_people_to_document(list_ner:list[NerPeople]) -> dict:
-    return [
-        {
-            "value": ner.value,
-            "props": ner.props,
-            "index": ner.index
-        } for ner in list_ner
-    ]
-
-
-def convert_one_ner_to_document(ner:NerPeople) -> dict:
+def convert_ner_to_document(data:Ner) -> dict:
     return {
-        "value": ner.value,
-        "props": ner.props,
+        'oid': data.oid,
+        'created_at': data.created_at,
+        'value': data.value,
+        'type': data.type,
+        'props': data.props,
+        # 'id_news': data.id_news,
     }
+
+
+
+def convert_document_to_ner(document:dict) -> Ner:
+    return Ner(
+        oid=document['oid'],
+        created_at=document['created_at'],
+        props=document['props'],
+        type=document['type'],
+        value=document['value'],
+        # id_news=document['id_news'],
+    )

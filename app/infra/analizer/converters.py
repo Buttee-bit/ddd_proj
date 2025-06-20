@@ -1,24 +1,19 @@
 import logging
 from typing import Iterable
-from app.domain.entity.ner.person import NerPeople
 from pullenti.ner.AnalysisResult import AnalysisResult
 from pullenti.ner.Referent import Referent
 from pullenti.ner.Slot import Slot
 
 
-def convert_analysis_result_to_ners(result: AnalysisResult) -> Iterable[NerPeople]:
-    list_ner = []
+def convert_analysis_result(result: AnalysisResult) -> Iterable[dict]:
     for entity in result.entities:
+        data = {}
+        data['value'] = entity.to_string_ex(short_variant=False)
+        data['type'] = entity.type_name
         entity: Referent
-        if entity.type_name == "PERSON":
-            value = entity
-            for slot in entity.slots:
-                slot: Slot
-                props = entity.get_string_values(attr_name="ATTRIBUTE")
-                logging.warning(f'props: {props}')
-            ner = NerPeople(
-                value=value.__str__(),
-                props=props,
-                index=[(i.begin_char, i.end_char) for i in entity.occurrence],
-            )
-    return list_ner
+        slots_entity = entity.slots
+        for slot in slots_entity:
+            slot: Slot
+            props = slot.convert_value_to_string(lang=result.base_language)
+            data['props'] = props
+        yield data

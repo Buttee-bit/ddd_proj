@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from app.domain.entity.news.news import News
-from app.infra.repositoryes.base import BaseNewsRepository
+from app.infra.repositoryes.news.base import BaseNewsRepository
 from app.logic.commands.base import BaseCommand, CommandHandler
 
 

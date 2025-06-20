@@ -21,32 +21,32 @@ services:
     command: python -m app.applications.bot.main
 
 
-  # scrap_tg:
-  #   build:
-  #     context: ..
-  #     dockerfile: backend/aplications/parser_tg/application/scrapping/Dockerfile
-  #   container_name: scrap_tg
-  #   env_file:
-  #     - ../.env
-  #   volumes:
-  #     - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
-  #   command: faststream run --factory application.scrapping.main:main
+  scrap_tg:
+    build:
+      context: ..
+      dockerfile: app/applications/scrapping/Dockerfile
+    container_name: scrap_tg
+    env_file:
+      - ../.env
+    volumes:
+      - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
+    command: faststream run --factory app.applications.scrapping.main:main
 
 
-  # writen:
-  #   build:
-  #     context: ..
-  #     dockerfile: backend/aplications/parser_tg/application/writen/Dockerfile
-  #   container_name: writen
-  #   env_file:
-  #     - ../.env
-  #   command: faststream run --factory application.writen.main:main
+  writen:
+    build:
+      context: ..
+      dockerfile: app/applications/writen/Dockerfile
+    container_name: writen
+    env_file:
+      - ../.env
+    command: faststream run --factory app.applications.writen.main:main
 
-  # ner_app:
-  #   build:
-  #     context: ..
-  #     dockerfile: backend/aplications/parser_tg/application/ner_app/Dockerfile
-  #   container_name: ner_app
-  #   env_file:
-  #     - ../.env
-  #   command: faststream run --factory application.ner_main:main
+  ner_app:
+    build:
+      context: ..
+      dockerfile: app/applications/ner_app/Dockerfile
+    container_name: ner_app
+    env_file:
+      - ../.env
+    command: faststream run --factory app.applications.ner_app.main:main

@@ -1,21 +1,21 @@
 from dataclasses import dataclass
 import logging
 
+from app.domain.entity.ner.entity import Ner
 from app.domain.entity.ner.person import NerPeople
 from app.infra.analizer.base import BaseAnalazer
-from app.infra.repositoryes.base import (
-    BaseNerPeopleRepository,
-    BaseNewsRepository,
-)
+
+from app.infra.repositoryes.ners.factory.base import NerFactory
+from app.infra.repositoryes.news.base import BaseNewsRepository
 from app.logic.commands.base import CommandHandler
 from app.infra.analizer.converters import (
-    convert_analysis_result_to_ners,
+    convert_analysis_result,
 )
 from app.logic.commands.base import (
     BaseCommand,
     CommandHandler,
 )
-
+from app.infra.repositoryes.ners.people import PeopleNerRepository
 
 @dataclass(frozen=True)
 class AddNerPeopleToDocumentCommand(BaseCommand):
@@ -26,26 +26,26 @@ class AddNerPeopleToDocumentCommand(BaseCommand):
 class AddNerPeopleToDocumentHandler(
     CommandHandler[AddNerPeopleToDocumentCommand, NerPeople]
 ):
-    ner_people_repository: BaseNerPeopleRepository
+    ner_people_repository: PeopleNerRepository
     news_repository: BaseNewsRepository
     analizer: BaseAnalazer
 
     async def handle(self, command: AddNerPeopleToDocumentCommand) -> None:
         news = await self.news_repository.get_one_news(oid=command.document_oid)
         analis_result = self.analizer.get_result(text=news.text)
-        list_ners = convert_analysis_result_to_ners(result=analis_result)
+        list_ners = convert_analysis_result(result=analis_result)
 
-        await self.ner_people_repository.add_ner_by_id_document(
-            id_document=command.document_oid,
-            ner=[
-                NerPeople(
-                    value=ner.value,
-                    props=ner.props,
-                    index=ner.index
-                ) for ner in list_ners
-            ]
-        )
-        return list_ners
+        # await self.ner_people_repository.add_ner_by_id_document(
+        #     id_document=command.document_oid,
+        #     ner=[
+        #         NerPeople(
+        #             value=ner.value,
+        #             props=ner.props,
+        #             index=ner.index
+        #         ) for ner in list_ners
+        #     ]
+        # )
+        # return list_ners
 
 
 
@@ -59,15 +59,16 @@ class NerAnalizeCommand(BaseCommand):
 class NerAnalizeHandler(
     CommandHandler[NerAnalizeCommand, NerPeople]
 ):
-    ner_people_repository: BaseNerPeopleRepository
-    news_repository: BaseNewsRepository
-    unique_ner_repository: BaseNerPeopleRepository
     analizer: BaseAnalazer
+    ner_factory: NerFactory
 
     async def handle(self, command: NerAnalizeCommand) -> None:
-        result = self.analizer.get_result(text=command.text)
-        logging.warning(f'result: {result}')
-        list_ners = convert_analysis_result_to_ners(result=result)
+        result = await self.analizer.get_result(text=command.text)
+        for entity in convert_analysis_result(result=result):
+            logging.warning(f'entity: {entity}')
+            ner = await self.ner_factory.create_ner(data=entity)
+            # Тут через фабрику ищу есть ли эта сущность в БД
+            #
         # await self.ner_people_repository.add_ner_by_id_document(
         #     id_document=command.oid,
         #     ner=[
@@ -78,5 +79,5 @@ class NerAnalizeHandler(
         #         ) for ner in list_ners
         #     ]
         # )
-        await self.unique_ner_repository.add_unique_ner(ner=list_ners)
-        return list_ners
+        # await self.unique_ner_repository.add_unique_ner(ner=list_ners)
+        # return list_ners

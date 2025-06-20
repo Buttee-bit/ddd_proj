@@ -14,7 +14,7 @@ from app.logic.commands.channels import (
 )
 from app.logic.init import init_conatainer
 from app.logic.mediator.base import Mediator
-from applications.scrapping.lifespan import lifespan
+from app.applications.scrapping.lifespan import lifespan
 from app.domain.events.channels import NewChannelReceivedEvent
 
 
@@ -34,7 +34,7 @@ def main() -> FastStream:
 
     app = FastStream(lifespan=lifespan, broker=news_broker.broker)
 
-    @after_startup
+    @app.after_startup
     async def on_startup(logger: Logger):
         telegram_task = asyncio.create_task(run_telegram_listener(logger, tg_services))
 

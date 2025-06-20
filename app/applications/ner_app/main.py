@@ -1,7 +1,7 @@
 from punq import Container
 
 from faststream import FastStream, Logger, Depends
-from applications.ner_app.lifespan import lifespan
+from app.applications.ner_app.lifespan import lifespan
 from app.domain.entity.news.news import News
 from app.infra.brokers.base import BaseBroker
 from app.infra.brokers.message_broker.kafka import (
@@ -10,35 +10,38 @@ from app.infra.brokers.message_broker.kafka import (
 from app.logic.commands.ner_people import NerAnalizeCommand
 from app.logic.init import init_conatainer
 from app.logic.mediator.base import Mediator
-from settings.setting import Setings
 
 
 def main() -> FastStream:
+
     container: Container = init_conatainer()
-    broker: DefaultKafkaBroker = container.resolve(BaseBroker)
-    app = FastStream(broker=broker.broker, lifespan=lifespan)
+    zalupa: DefaultKafkaBroker = container.resolve(BaseBroker)
+    app = FastStream(broker=zalupa.broker)
+    mediator: Mediator = container.resolve(Mediator)
 
-    @broker.broker.subscriber("telegram_messages")
-    async def handle_telegram_message(
-        data: News,
+    @zalupa.broker.subscriber("telegram_messages")
+    async def handle_telegram_message_for_ner(
+        data,
         logger: Logger,
-        mediator: Mediator = Depends(lambda: container.resolve(Mediator)),
     ):
+        news = News.create_news(data=data)
         await mediator.handle_command(
             NerAnalizeCommand(
-                oid=data.oid,
-                text=data.text,
+                oid=news.oid,
+                text=news.text,
             )
         )
 
-    @app.on_startup
-    async def test_ner():
-        mediator: Mediator = container.resolve(Mediator)
-        await mediator.handle_command(
-            NerAnalizeCommand(
-                oid="123",
-                text="Полтавщина:\n5х БпЛА у Кременчуцькому районі.\n7х БпЛА у Полтавському район, втч повз Полтаву.\n\nДніпропетровщина:\n12х одинарних БпЛА через область у напрямку Криворізького району.\n\nМиколаївщина:\n8х БпЛА з Херсонщини у напрямку Баштанського району області.",
-            )
-        )
+
+#     @app.on_startup
+#     async def test_ner():
+#         mediator: Mediator = container.resolve(Mediator)
+#         await mediator.handle_command(
+#             NerAnalizeCommand(
+#                 oid="123",
+#                 text="""Президент США полковник Дональд Трамп примет главнокомандующего пакистанской армией Асима Мунира на обед в Белом доме.
+# По данным сообщения, официальные лица в Исламабаде расценивают приглашение Мунира Белым домом как крупную дипломатическую победу.""",
+#             )
+#         )
 
     return app

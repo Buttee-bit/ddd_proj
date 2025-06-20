@@ -2,8 +2,8 @@ from dataclasses import dataclass
 from typing import Iterable
 
 from app.domain.entity.news.news import News
-from app.infra.repositoryes.base import BaseNewsRepository
 from app.infra.repositoryes.channels.base import BaseChannelRepository
+from app.infra.repositoryes.news.base import BaseNewsRepository
 from app.logic.queries.base import BaseQuery, BaseQueryHandler
 
 

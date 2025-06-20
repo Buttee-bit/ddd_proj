@@ -9,28 +9,6 @@ from app.domain.entity.channel.channel import Channel
 from app.logic.queries.base import BaseQuery
 
 
-class BaseNerPeopleRepository(ABC):
-    @abstractmethod
-    async def get_by_id_document(self, text: str) -> NerPeople: ...
-
-    @abstractmethod
-    async def add_ner_by_id_document(self, id_document: str, ner: NerPeople) -> None: ...
-
-
-    @abstractmethod
-    async def add_unique_ner(self, ner: Iterable[NerPeople]) -> None:
-        ...
-
-
-class BaseNewsRepository(ABC):
-    @abstractmethod
-    async def add_news(self, news: str) -> None: ...
-
-    @abstractmethod
-    async def get_one_news(self, oid: str) -> News: ...
-
-    @abstractmethod
-    async def get_news(offset:int, limit:int) -> tuple[Iterable[News], int]: ...
 
 
 @dataclass

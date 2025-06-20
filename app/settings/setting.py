@@ -1,8 +1,11 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 
 
 class Setings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", extra="ignore"
+    )
     session_file: str = Field(..., alias='SESSION_FILE')
     tg_api_id: str = Field(..., alias='TG_API_ID')
     tg_api_hash: str = Field(..., alias='TG_API_HASH')
@@ -21,13 +24,9 @@ class Setings(BaseSettings):
     mongodb_ner_database_name: str = Field(..., alias='MONGODB_NER_DATABASE_NAME')
     mongodb_ner_collection_persones_name: str = Field(..., alias='MONGODB_NER_COLLECTION_PERSONES_NAME')
     mongodb_ner_collection_unique_persones_name: str = Field(..., alias='MONGODB_NER_COLLECTION_UNIQUE_PERSONES_NAME')
-
+    mongodb_ner_collection_organizations: str = Field(..., alias='MONGODB_NER_COLLECTION_ORGANIZATIONS')
 
     pulenty_server: str = Field(..., alias='PULENTY_SERVER')
 
 
     kafka_url: str = Field(..., alias='KAFKA_URL')
-
-
-    class Config:
-        env_file = ".env"

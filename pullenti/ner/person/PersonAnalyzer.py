@@ -3,6 +3,7 @@
 # This class is generated using the converter Unisharping (www.unisharping.ru) from Pullenti C# project.
 # The latest version of the code is available on the site www.pullenti.ru
 
+import logging
 import typing
 import math
 from pullenti.unisharp.Utils import Utils
@@ -1210,29 +1211,28 @@ class PersonAnalyzer(Analyzer):
                 return ReferentToken(pat.prop_ref, pat.begin_token, pat.end_token)
             return None
         t = rt.end_token.next0_
-        while t is not None: 
-            if (t.is_char(';') and t.next0_ is not None): 
+        while t is not None:
+            if (t.is_char(';') and t.next0_ is not None):
                 rt1 = PersonAnalyzer._try_attach_person(t.next0_, True, -1, False)
-                if (rt1 is not None and rt1.referent.type_name == rt.referent.type_name): 
+                if (rt1 is not None and rt1.referent.type_name == rt.referent.type_name):
                     rt.referent.merge_slots(rt1.referent, True)
                     rt.end_token = rt1.end_token
                     t = rt.end_token
-                elif (rt1 is not None): 
+                elif (rt1 is not None):
                     t = rt1.end_token
             t = t.next0_
         return rt
-    
     __m_inited = None
-    
+
     @staticmethod
     def initialize() -> None:
         from pullenti.ner.person.internal.PersonAttrToken import PersonAttrToken
         from pullenti.ner.person.internal.PersonPropAnalyzer import PersonPropAnalyzer
         from pullenti.ner.person.internal.PersonIdToken import PersonIdToken
-        if (PersonAnalyzer.__m_inited): 
+        if (PersonAnalyzer.__m_inited):
             return
         PersonAnalyzer.__m_inited = True
-        try: 
+        try:
             MetaPerson.initialize()
             MetaPersonIdentity.initialize()
             MetaPersonProperty.initialize()
@@ -1243,7 +1243,7 @@ class PersonAnalyzer(Analyzer):
             PersonIdToken.initialize()
             Termin.ASSIGN_ALL_TEXTS_AS_NORMAL = False
             MailLine.initialize()
-        except Exception as ex: 
+        except Exception as ex:
             raise Utils.newException(ex.__str__(), ex)
         Termin.ASSIGN_ALL_TEXTS_AS_NORMAL = False
         ProcessorService.register_analyzer(PersonAnalyzer())

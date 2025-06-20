@@ -4,7 +4,7 @@ from dataclasses import dataclass
 # from backend.pullenti.ner.AnalysisResult import AnalysisResult
 
 
-@dataclass(frozen=True)
+@dataclass
 class BaseAnalazer:
     address_: str
 
