@@ -12,7 +12,7 @@ from app.settings.setting import Setings
 def main() -> FastStream:
     container = init_conatainer()
     setting: Setings = container.resolve(Setings)
-    broker = KafkaBroker(bootstrap_servers="localhost:9094")
+    broker = KafkaBroker(bootstrap_servers=setting.kafka_url)
     app = FastStream(broker=broker)
     mediator: Mediator = container.resolve(Mediator)
 

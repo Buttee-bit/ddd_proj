@@ -12,5 +12,5 @@ COPY pullenti/ /pullenti/
 
 
 COPY MyAppNewsNow.session ./MyAppNewsNow.session
-COPY MyAppNewsNow.session-journal ./MyAppNewsNow.session-journal
+# COPY MyAppNewsNow.session-journal ./MyAppNewsNow.session-journal
 COPY ./.env /app/.env

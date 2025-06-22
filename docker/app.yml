@@ -28,8 +28,6 @@ services:
     container_name: scrap_tg
     env_file:
       - ../.env
-    volumes:
-      - ../backend/aplications/parser_tg:/backend/aplications/parser_tg/
     command: faststream run --factory app.applications.scrapping.main:main
 
 
