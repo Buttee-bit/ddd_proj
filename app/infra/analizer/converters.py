@@ -7,8 +7,9 @@ from pullenti.ner.Slot import Slot
 
 def convert_analysis_result(result: AnalysisResult) -> Iterable[dict]:
     for entity in result.entities:
+        logging.warning(f'entity: {entity}')
         data = {}
-        data['value'] = entity.to_string_ex(short_variant=False)
+        data['value'] = entity.to_string_ex(short_variant=False, lang=result.base_language)
         data['type'] = entity.type_name
         entity: Referent
         slots_entity = entity.slots

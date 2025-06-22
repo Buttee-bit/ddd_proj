@@ -32,7 +32,7 @@ def main() -> FastStream:
     news_broker: DefaultKafkaBroker = container.resolve(BaseBroker)
     tg_services: TgParsServices = container.resolve(TgParsServices)
 
-    app = FastStream(lifespan=lifespan, broker=news_broker.broker)
+    app = FastStream(broker=news_broker.broker)
 
     @app.after_startup
     async def on_startup(logger: Logger):

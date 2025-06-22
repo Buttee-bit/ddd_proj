@@ -10,4 +10,7 @@ RUN pip install -r /app/requirements.txt
 COPY app/ /app/
 COPY pullenti/ /pullenti/
 
+COPY MyAppNewsNow.session ./MyAppNewsNow.session
+COPY MyAppNewsNow.session-journal ./MyAppNewsNow.session-journal
+
 COPY ./.env /app/.env

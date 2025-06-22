@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import logging
 from typing import Iterable
 from app.domain.entity.news.news import News
 from app.infra.repositoryes.base import BaseMongoDBRepository
@@ -10,10 +11,12 @@ from app.infra.repositoryes.news.base import BaseNewsRepository
 class NewsRepository(BaseNewsRepository, BaseMongoDBRepository):
 
     async def add_news(self, news: News) -> None:
-        await self._collection.insert_one(
-            convert_news_entity_to_document(news)
-        )
-
+        try:
+            await self._collection.insert_one(
+                convert_news_entity_to_document(news)
+            )
+        except Exception as e:
+            logging.warning(f'e: {e}')
     async def get_one_news(self, oid:str) -> News:
         document = await self._collection.find_one(
             filter={'oid':oid}

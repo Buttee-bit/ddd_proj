@@ -27,6 +27,7 @@ class CreateChannelCommandHandler(CommandHandler[CreateChannelsCommand, Channel]
     tg_services: TgParsServices
 
     async def handle(self, command: CreateChannelsCommand) -> Channel:
+        #  Переделать !
         entity = await self.tg_services.get_info_entity(channel_url=command.url)
         data = {
             "subscribers": entity.full_chat.participants_count,

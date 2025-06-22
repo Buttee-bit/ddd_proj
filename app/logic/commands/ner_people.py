@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import logging
+from typing import List
 
 from app.domain.entity.ner.entity import Ner
 from app.domain.entity.ner.person import NerPeople
@@ -62,22 +63,11 @@ class NerAnalizeHandler(
     analizer: BaseAnalazer
     ner_factory: NerFactory
 
-    async def handle(self, command: NerAnalizeCommand) -> None:
+    async def handle(self, command: NerAnalizeCommand) -> List[Ner]:
+        list_ner = []
         result = await self.analizer.get_result(text=command.text)
         for entity in convert_analysis_result(result=result):
-            logging.warning(f'entity: {entity}')
             ner = await self.ner_factory.create_ner(data=entity)
-            # Тут через фабрику ищу есть ли эта сущность в БД
-            #
-        # await self.ner_people_repository.add_ner_by_id_document(
-        #     id_document=command.oid,
-        #     ner=[
-        #         NerPeople(
-        #             value=ner.value,
-        #             props=ner.props,
-        #             index=ner.index
-        #         ) for ner in list_ners
-        #     ]
-        # )
-        # await self.unique_ner_repository.add_unique_ner(ner=list_ners)
-        # return list_ners
+            if ner:
+                list_ner.append(ner)
+        return list_ner

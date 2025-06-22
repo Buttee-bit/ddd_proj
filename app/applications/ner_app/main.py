@@ -1,7 +1,7 @@
+import logging
 from punq import Container
 
-from faststream import FastStream, Logger, Depends
-from app.applications.ner_app.lifespan import lifespan
+from faststream import FastStream
 from app.domain.entity.news.news import News
 from app.infra.brokers.base import BaseBroker
 from app.infra.brokers.message_broker.kafka import (
@@ -22,26 +22,14 @@ def main() -> FastStream:
     @zalupa.broker.subscriber("telegram_messages")
     async def handle_telegram_message_for_ner(
         data,
-        logger: Logger,
     ):
         news = News.create_news(data=data)
-        await mediator.handle_command(
+        list_ner = await mediator.handle_command(
             NerAnalizeCommand(
                 oid=news.oid,
                 text=news.text,
             )
         )
-
-
-#     @app.on_startup
-#     async def test_ner():
-#         mediator: Mediator = container.resolve(Mediator)
-#         await mediator.handle_command(
-#             NerAnalizeCommand(
-#                 oid="123",
-#                 text="""Президент США полковник Дональд Трамп примет главнокомандующего пакистанской армией Асима Мунира на обед в Белом доме.
-# По данным сообщения, официальные лица в Исламабаде расценивают приглашение Мунира Белым домом как крупную дипломатическую победу.""",
-#             )
-#         )
+        logging.warning(f'news:{news.oid}\nlist_ner: {list_ner}')
 
     return app

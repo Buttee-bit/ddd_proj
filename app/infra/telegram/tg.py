@@ -14,6 +14,7 @@ from app.domain.values.news.text import Text
 from app.infra.brokers.base import BaseBroker
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.types.messages import ChatFull
+from telethon.tl.functions.channels import GetFullChannelRequest
 
 from app.infra.repositoryes.channels.base import (
     BaseChannelRepository,
@@ -41,7 +42,6 @@ class TgParsServices:
         async def handler(event: events.NewMessage.Event):
             moscow_tz = pytz.timezone("Europe/Moscow")
             time_publish = event.date.astimezone(moscow_tz)
-
             try:
                 title = Title(event.text[:50]).as_generic_type()
                 text = Text(event.text).as_generic_type()
@@ -76,3 +76,8 @@ class TgParsServices:
             await self.tg_client.get_entity(channel.url) for channel in list_channels
         ]
         logging.warning(f"Updated channels: {len(self._list_channels)}")
+
+    async def get_info_entity(self, channel_url:str):
+        entity = await self.tg_client.get_entity(channel_url)
+        full_channel = await self.tg_client(GetFullChannelRequest(channel=entity))
+        return full_channel
