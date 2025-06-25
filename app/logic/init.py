@@ -9,10 +9,15 @@ from telethon import TelegramClient
 from app.infra.analizer.pullenti_analizer import PullentiAnalizer
 from app.infra.repositoryes.ners.base import BaseNerRepository
 from app.infra.repositoryes.ners.factory.base import NerFactory
-from app.infra.repositoryes.ners.factory.creators import OrganizationNerCreator, PeopleNerCreator
+from app.infra.repositoryes.ners.factory.creators import (
+    OrganizationNerCreator,
+    PeopleNerCreator,
+)
 from app.infra.repositoryes.ners.organizations import OrganizatrionNerRepository
 from app.infra.repositoryes.ners.people import PeopleNerRepository
 from app.infra.repositoryes.news.base import BaseNewsRepository
+from app.infra.repositoryes.object.base import BaseObjectDomainRepository
+from app.infra.repositoryes.object.mongo_object import ObjectsRepository
 from app.infra.telegram.tg import TgParsServices
 
 from app.infra.brokers.base import BaseBroker
@@ -40,6 +45,7 @@ from app.logic.commands.channels import (
     SubscribeChannelCommand,
     SubscribeChannelInfoCommandHandler,
 )
+from app.logic.commands.objects import CreateObjectCommand, CreateObjectCommandHandler, UpdateNerOrganizationObjectCommand, UpdateNerOrganizationObjectCommandHandler
 from app.logic.mediator.base import Mediator
 from app.logic.queries.channels import (
     GetChannelsQueryWithFilter,
@@ -64,6 +70,7 @@ def _init_container() -> Container:
     container = Container()
     container.register(Setings, instance=Setings(), scope=Scope.singleton)
     settings: Setings = container.resolve(Setings)
+
     def create_mongodb_client():
         return AsyncIOMotorClient(
             settings.mongodb_connection_uri,
@@ -76,7 +83,9 @@ def _init_container() -> Container:
     client = container.resolve(AsyncIOMotorClient)
 
     def create_news_broker() -> BaseBroker:
-        return DefaultKafkaBroker(broker=KafkaBroker(bootstrap_servers=settings.kafka_url))
+        return DefaultKafkaBroker(
+            broker=KafkaBroker(bootstrap_servers=settings.kafka_url)
+        )
 
     container.register(
         service=BaseBroker, factory=create_news_broker, scope=Scope.singleton
@@ -93,11 +102,10 @@ def _init_container() -> Container:
                 system_version="4.17.30-vxCUSTOM",
             ),
             broker=container.resolve(BaseBroker),
-            channels_repo=container.resolve(BaseChannelRepository)
+            channels_repo=container.resolve(BaseChannelRepository),
         )
 
     container.register(TgParsServices, factory=_init_TgServices, scope=Scope.singleton)
-
 
     # Repositories
     def init_news_repository() -> BaseNewsRepository:
@@ -128,6 +136,12 @@ def _init_container() -> Container:
             mongo_db_collection_name=settings.mongodb_ner_collection_organizations,
         )
 
+    def init_objects_repository() -> BaseObjectDomainRepository:
+        return ObjectsRepository(
+            mongo_db_client=client,
+            mongo_db_collection_name=settings.mongodb_object_collection_name,
+            mongo_db_db_name=settings.mongodb_object_database_name,
+        )
 
     container.register(
         BaseNewsRepository, factory=init_news_repository, scope=Scope.singleton
@@ -148,22 +162,39 @@ def _init_container() -> Container:
         scope=Scope.singleton,
     )
 
-    #Creators
+    container.register(
+        BaseObjectDomainRepository,
+        factory=init_objects_repository,
+        scope=Scope.singleton,
+    )
+
+    # Creators
     def init_ner_people_creator() -> PeopleNerCreator:
         return PeopleNerCreator(ner_repository=container.resolve(PeopleNerRepository))
 
     def init_ner_prganizations_creator() -> OrganizationNerCreator:
-        return OrganizationNerCreator(ner_repository=container.resolve(OrganizatrionNerRepository))
+        return OrganizationNerCreator(
+            ner_repository=container.resolve(OrganizatrionNerRepository)
+        )
 
-    container.register(PeopleNerCreator, factory=init_ner_people_creator, scope=Scope.singleton)
-    container.register(OrganizationNerCreator, factory=init_ner_prganizations_creator, scope=Scope.singleton)
+    container.register(
+        PeopleNerCreator, factory=init_ner_people_creator, scope=Scope.singleton
+    )
+    container.register(
+        OrganizationNerCreator,
+        factory=init_ner_prganizations_creator,
+        scope=Scope.singleton,
+    )
 
-
-    #NerFactory
+    # NerFactory
     def init_ner_factory() -> NerFactory:
         ner_factory = NerFactory()
-        ner_factory.register_creator(ner_type='PERSON', creator=container.resolve(PeopleNerCreator))
-        ner_factory.register_creator(ner_type='ORGANIZATION', creator=container.resolve(OrganizationNerCreator))
+        ner_factory.register_creator(
+            ner_type="PERSON", creator=container.resolve(PeopleNerCreator)
+        )
+        ner_factory.register_creator(
+            ner_type="ORGANIZATION", creator=container.resolve(OrganizationNerCreator)
+        )
         return ner_factory
 
     container.register(NerFactory, factory=init_ner_factory, scope=Scope.singleton)
@@ -188,7 +219,7 @@ def _init_container() -> Container:
         create_find_people_command = NerAnalizeHandler(
             _mediator=mediator,
             analizer=container.resolve(PullentiAnalizer),
-            ner_factory=container.resolve(NerFactory)
+            ner_factory=container.resolve(NerFactory),
         )
         add_ner_people_to_documenthandler = AddNerPeopleToDocumentHandler(
             _mediator=mediator,
@@ -203,8 +234,24 @@ def _init_container() -> Container:
         update_channel_info = SubscribeChannelInfoCommandHandler(
             _mediator=mediator,
             telegram_service=container.resolve(TgParsServices),
-            channel_repo=container.resolve(BaseChannelRepository)
+            channel_repo=container.resolve(BaseChannelRepository),
         )
+
+        create_object_command = CreateObjectCommandHandler(
+            _mediator=mediator,
+            object_repository=container.resolve(BaseObjectDomainRepository),
+        )
+
+
+        update_object_ner_organization_command = UpdateNerOrganizationObjectCommandHandler(
+            _mediator=mediator,
+            object_repository=container.resolve(BaseObjectDomainRepository),
+            ner_repository=container.resolve(OrganizatrionNerRepository)
+        )
+
+        mediator.register_command(UpdateNerOrganizationObjectCommand, [update_object_ner_organization_command])
+
+        mediator.register_command(CreateObjectCommand, [create_object_command])
 
         mediator.register_command(SubscribeChannelCommand, [update_channel_info])
 
@@ -214,6 +261,7 @@ def _init_container() -> Container:
         )
         mediator.register_command(NerAnalizeCommand, [create_find_people_command])
         mediator.register_command(CreateChannelsCommand, [create_channel_handler])
+
 
         # Queries
         mediator.register_query(

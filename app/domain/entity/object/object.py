@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from datetime import datetime
 
 from app.domain.entity.base import BaseEntity
 from app.domain.entity.ner.entity import Ner
@@ -14,6 +15,7 @@ class ObjectDomain(BaseEntity):
     news: list[News] = field(default_factory=list, kw_only=True)
     childrens: list["ObjectDomain"] = field(default_factory=list, kw_only=True)
     parents: list["ObjectDomain"] = field(default_factory=list, kw_only=True)
+    updatet_at: datetime = field(default_factory=datetime.now, kw_only=True)
 
     def add_child(self, children: "ObjectDomain") -> None:
         self.childrens.append(children)
@@ -26,4 +28,3 @@ class ObjectDomain(BaseEntity):
 
     def delete_ner(self, ner: Ner) -> None:
         self.ners.remove(ner)
-

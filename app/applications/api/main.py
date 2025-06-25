@@ -5,6 +5,7 @@ from app.applications.api.lifespan import lifespan
 from app.applications.api.handlers.channels.channels import router as channel_router
 from app.applications.api.handlers.entity import router as entity_router
 from app.applications.api.handlers.news import router as news_router
+from app.applications.api.handlers.objects.handlers import router as object_router
 from fastapi.middleware.cors import CORSMiddleware
 
 origins = [
@@ -36,4 +37,6 @@ def create_app() -> FastAPI:
     app.include_router(channel_router)
     app.include_router(entity_router)
     app.include_router(news_router)
+    app.include_router(object_router)
+
     return app

@@ -1,12 +1,11 @@
 import logging
-from typing import Container
 from fastapi import (
     Depends,
     status,
 )
 from fastapi.exceptions import HTTPException
 from fastapi.routing import APIRouter
-
+from punq import Container
 
 
 from app.applications.api.handlers.filters import GetChannelsFilters
@@ -57,11 +56,11 @@ async def create_channel_handler(
 async def get_channels_handler(
     container: Container = Depends(init_conatainer),
     filters: GetChannelsFilters = Depends(),
-) -> GetMessagesQueryResponseSchema:  # Changed return type
+) -> GetMessagesQueryResponseSchema:
     mediator: Mediator = container.resolve(Mediator)
     try:
         channels = await mediator.handle_query(
-            GetChannelsQueryWithFilter(filters=filters.to_app.infra()),
+            GetChannelsQueryWithFilter(filters=filters.to_infra()),
         )
         return GetMessagesQueryResponseSchema(
             count=len(channels),
@@ -73,5 +72,5 @@ async def get_channels_handler(
     except Exception as exception:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail={'error': str(exception)}  # Ensure error is string
+            detail={'error': str(exception)} 
         )
